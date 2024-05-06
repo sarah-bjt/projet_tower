@@ -6,6 +6,7 @@
 #include <iostream>
 
 #include "App.hpp"
+#include "game.hpp"
 
 namespace {
     App& window_as_app(GLFWwindow* window)
@@ -18,6 +19,11 @@ namespace {
 constexpr double TARGET_TIME_FOR_FRAME { 1.0 / 60.0 };
 
 int main() {
+    //Va créer une valeur game;
+    Game new_game;
+    new_game.create_game();
+    //Puis va utiliser une méthode pour le lancer
+
     // Set an error callback to display glfw errors
     glfwSetErrorCallback([](int error, const char* description) {
         std::cerr << "Error " << error << ": " << description << std::endl;
