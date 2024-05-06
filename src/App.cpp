@@ -58,7 +58,7 @@ void App::render() {
 
     glPushMatrix();
     glScalef(0.8f, 0.8f, 0.8f);
-    glRotatef(_angle, 0.0f, 0.0f, 1.0f);
+    //glRotatef(_angle, 0.0f, 0.0f, 1.0f);
     draw_quad_with_texture(_texture);
     glPopMatrix();
 

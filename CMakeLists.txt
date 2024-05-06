@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.22)  #POUR LINUX : 3.22    #POUR WINDOWS : 3.25  -------------------------------------------------------------------------------
 
 # Be nice to visual studio
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
@@ -61,6 +61,9 @@ if(NOT glfw_POPULATED)
     set(GLFW_BUILD_DOCS OFF CACHE INTERNAL "Build the GLFW documentation")
     set(GLFW_INSTALL OFF CACHE INTERNAL "Generate installation target")
 
+    set(GLFW_BUILD_X11 ON)    #POUR LINUX --------------------------------------------------------------------------------------------------------------------
+    set(GLFW_BUILD_WAYLAND OFF)  #----------------------------------------------------------------------------------------------------------------------------
+
     add_subdirectory(${glfw_SOURCE_DIR} ${glfw_BINARY_DIR})
 endif()
 
@@ -79,6 +82,10 @@ if(NOT glad_POPULATED)
     set(GLAD_PROFILE "compatibility" CACHE STRING "OpenGL profile")
     set(GLAD_API "gl=3.3" CACHE STRING "API type/version pairs, like \"gl=3.2,gles=\", no version means latest")
     set(GLAD_GENERATOR "c" CACHE STRING "Language to generate the binding for")
+
+    set(GLFW_BUILD_X11 ON)    #POUR LINUX --------------------------------------------------------------------------------------------------------------------
+    set(GLFW_BUILD_WAYLAND OFF) #----------------------------------------------------------------------------------------------------------------------------
+
     add_subdirectory(${glad_SOURCE_DIR} ${glad_BINARY_DIR})
 endif()
 
