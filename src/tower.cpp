@@ -1,5 +1,22 @@
 #include <iostream>
 #include "tower.hpp"
+#include "bullet.hpp"
+
+#include "App.hpp"
+
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include <img/img.hpp>
+
+#include <sstream>
+
+#include "simpletext.h"
+#include "utils.hpp"
+#include "GLHelpers.hpp"
+
+
+const int window_width = 1280;
+const int window_height = 720;
 
 void Tower::tower_map_apparition(int x_box, int y_box){   //prend en paramètres les coordonées du coin gauche/haut de la case où la tour devra se construire
     if(this->type == Tower_Type::Wood){

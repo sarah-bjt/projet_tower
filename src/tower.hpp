@@ -14,7 +14,7 @@ struct Tower{
     float fire_rythm;  // L'intervalle en millième de secondes entre chaque bullet de tirée.
     int price; // Le prix en fonction du type de tour
     Tower_Type type; //Le type de la tour
-    //---- tower_sprite;  //Le lien vers le sprite de la tour (en fonction de son type)
+    img::Image tower_sprite {img::load(make_absolute_path("images/images_objects/Wood_Tower.png", true), 3, true)};
 
     //Wave wave;
     //Bullet bullet

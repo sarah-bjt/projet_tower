@@ -10,6 +10,9 @@
 #include "utils.hpp"
 #include "GLHelpers.hpp"
 
+#include "game.hpp"
+#include "tower.hpp"
+
 App::App() : _previousTime(0.0), _viewSize(2.0) {
    // load what needs to be loaded here (for example textures)
 
