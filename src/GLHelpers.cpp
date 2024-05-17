@@ -5,7 +5,7 @@
 GLuint loadTexture(uint8_t const* data, int width, int height) {
     GLuint textureId {};
 
-    glEnable(GL_TEXTURE_2D);
+    //glEnable(GL_TEXTURE_2D);
     glGenTextures(1, &textureId);
     glBindTexture(GL_TEXTURE_2D, textureId);
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -18,7 +18,7 @@ GLuint loadTexture(uint8_t const* data, int width, int height) {
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
     // Error on MACOS (segmentation fault) when using glGenerateMipmap
     // glGenerateMipmap(GL_TEXTURE_2D);
-    glDisable(GL_TEXTURE_2D);
+    //glDisable(GL_TEXTURE_2D);
 
     return textureId;
 }

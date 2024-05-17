@@ -18,10 +18,33 @@
 const int window_width = 1280;
 const int window_height = 720;
 
-void Tower::tower_map_apparition(int x_box, int y_box){   //prend en paramètres les coordonées du coin gauche/haut de la case où la tour devra se construire
+void Tower::tower_map_apparition(float x_box, float y_box){   //prend en paramètres les coordonées du coin gauche/haut de la case où la tour devra se construire
     if(this->type == Tower_Type::Wood){
         //Applique dans la case sélectionnée le sprite de la tour wood
-        std::cout << "La tour de type Wood sera positionnée à : X=" << x_box << " et Y=" << y_box << std::endl;
+        //std::cout << "La tour de type Wood sera positionnée à : X=" << x_box << " et Y=" << y_box << std::endl;
+        img::Image wood_tower {img::load(make_absolute_path("images/images_objects/Wood_Tower.png", true), 3, true)};
+    
+        GLuint wood_tower_texture = loadTexture(wood_tower);
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, wood_tower_texture);
+        glColor3ub(255, 255, 255);
+        glBegin(GL_QUADS);
+            glTexCoord2d(0,0);
+            glVertex2f(x_box, y_box);
+
+            glTexCoord2d(1,0);
+            glVertex2f(x_box+2, y_box);
+
+            glTexCoord2d(1,1);
+            glVertex2f(x_box+2, y_box+1);
+
+            glTexCoord2d(0,1);
+            glVertex2f(x_box, y_box+1);
+        glEnd();
+        glBindTexture(GL_TEXTURE_2D, 0);
+        glDisable(GL_TEXTURE_2D);
+        // int x_image, y_image, n_canaux;
+	    // unsigned char* triforce = stbi_load("../images/images_objects/Wood_Tower.png",&x_image,&y_image,&n_canaux,0);
     }
     else if(this->type == Tower_Type::Rock){
         //Applique dans la case sélectionnée le sprite de la tour rock

@@ -19,10 +19,6 @@ namespace {
 constexpr double TARGET_TIME_FOR_FRAME { 1.0 / 60.0 };
 
 int main() {
-    //Va créer une valeur game;
-    Game new_game;
-    new_game.create_game();
-    //Puis va utiliser une méthode pour le lancer
 
     // Set an error callback to display glfw errors
     glfwSetErrorCallback([](int error, const char* description) {
@@ -61,6 +57,11 @@ int main() {
         return -1;
     }
 
+    //Va créer une valeur game;
+    Game new_game;
+    new_game.create_game();
+    //Puis va utiliser une méthode pour le lancer
+
     App app {};
 
     glfwSetWindowUserPointer(window, &app);
@@ -97,6 +98,7 @@ int main() {
 		double startTime { glfwGetTime() };
 
         app.update();
+        new_game.start();
 
         // Swap front and back buffers
         glfwSwapBuffers(window);
