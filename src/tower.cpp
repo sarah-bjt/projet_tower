@@ -19,6 +19,8 @@ const int window_width = 1280;
 const int window_height = 720;
 
 void Tower::tower_map_apparition(float x_box, float y_box){   //prend en paramètres les coordonées du coin gauche/haut de la case où la tour devra se construire
+    this->x_pos = x_box;
+    this->y_pos = y_box;
     if(this->type == Tower_Type::Wood){
         //Applique dans la case sélectionnée le sprite de la tour wood
         //std::cout << "La tour de type Wood sera positionnée à : X=" << x_box << " et Y=" << y_box << std::endl;

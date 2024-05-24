@@ -16,6 +16,8 @@ struct Tower{
     Tower_Type type; //Le type de la tour
     //img::Image tower_sprite {img::load(make_absolute_path("images/images_objects/Wood_Tower.png", true), 3, true)};
 
+    float x_pos, y_pos;
+
     //Wave wave;
     //Bullet bullet
     void tower_map_apparition(float x_box, float y_box);  //méthode pour faire apparaître les sprites des towers sur la map
