@@ -1,6 +1,18 @@
 #include <iostream>
 #include "enemy.hpp"
 
+#include "App.hpp"
+
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include <img/img.hpp>
+
+#include <sstream>
+
+#include "simpletext.h"
+#include "utils.hpp"
+#include "GLHelpers.hpp"
+
 void Enemy::enemy_apparition(){  
     if(this->type == Enemy_Type::Fast){
         //Applique dans la case sélectionnée le sprite de la ennemi fast
@@ -13,6 +25,27 @@ void Enemy::enemy_apparition(){
     else if(this->type == Enemy_Type::Robust){
         //Applique dans la case sélectionnée le sprite de la ennemi robust
         std::cout << "L'ennemi de type robust sera positionnée à la position initiale donnée " << std::endl;
+        img::Image robust_repos {img::load(make_absolute_path("images/images_objects/robust/robust_repos.png", true), 3, true)};
+    
+        GLuint robust_repos_texture = loadTexture(robust_repos);
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, robust_repos_texture);
+        glColor3ub(255, 255, 255);
+        glBegin(GL_QUADS);
+            glTexCoord2d(0,0);
+            glVertex2f(this->pos_X, this->pos_Y);
+
+            glTexCoord2d(1,0);
+            glVertex2f(this->pos_X+0.2f, this->pos_Y);
+
+            glTexCoord2d(1,1);
+            glVertex2f(this->pos_X+0.2f, this->pos_Y+0.2f);
+
+            glTexCoord2d(0,1);
+            glVertex2f(this->pos_X, this->pos_Y+0.2f);
+        glEnd();
+        glBindTexture(GL_TEXTURE_2D, 0);
+        glDisable(GL_TEXTURE_2D);
     }
 }
 
