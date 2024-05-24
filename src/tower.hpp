@@ -3,8 +3,8 @@
 enum class Tower_Type {
     Wood,
     Rock,
-    Long_ranged,
-    Short_ranged
+    // Long_ranged,
+    // Short_ranged
 };
 
 struct Tower{

@@ -4,7 +4,7 @@
 
 
 void Game::create_game(){
-    tower = Tower {1, 20, 2, 0.0005, 60, Tower_Type::Wood};
+    tower = Tower {1, 20, 2, 0.0005, 60, Tower_Type::Rock};
 }
 
 void Game::start(){
