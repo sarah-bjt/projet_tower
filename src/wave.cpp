@@ -23,4 +23,10 @@ void Wave::create_wave(int level){
             this->enemys.push_back(one_enemy);
         }
     }
+    else if(level == 2){
+        //En attente de réalisation 
+    }
+    else if(level == 3){
+        //En attente de réalisation 
+    }
 }
