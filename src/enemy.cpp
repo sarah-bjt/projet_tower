@@ -1,7 +1,7 @@
 #include <iostream>
 #include "enemy.hpp"
 
-void Enemy::enemy_apparition(int x_origin, int y_origin){  
+void Enemy::enemy_apparition(){  
     if(this->type == Enemy_Type::Fast){
         //Applique dans la case sélectionnée le sprite de la ennemi fast
         std::cout << "L'ennemi de type fast sera positionnée à la position initiale donnée " << std::endl;

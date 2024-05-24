@@ -3,8 +3,8 @@
 enum class Tower_Type {
     Wood,
     Rock,
-    Long_ranged,
-    Short_ranged
+    // Long_ranged,
+    // Short_ranged
 };
 
 struct Tower{
@@ -15,6 +15,8 @@ struct Tower{
     int price; // Le prix en fonction du type de tour
     Tower_Type type; //Le type de la tour
     //img::Image tower_sprite {img::load(make_absolute_path("images/images_objects/Wood_Tower.png", true), 3, true)};
+
+    float x_pos, y_pos;
 
     //Wave wave;
     //Bullet bullet
