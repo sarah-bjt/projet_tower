@@ -6,7 +6,7 @@
 void Wave::create_wave(int level){
     if(level == 1){
         for(int i {0}; i<this->number_enemys; i++){
-            Enemy one_enemy {1+i, 150, 2, 20, Enemy_Type::Normal, 0, 0};
+            Enemy one_enemy {1+i, 150, 2, 20, Enemy_Type::Normal, 0-i, 0};
             if(i==3){
                 one_enemy.life = 100;
                 one_enemy.speed = 3;
@@ -28,5 +28,18 @@ void Wave::create_wave(int level){
     }
     else if(level == 3){
         //En attente de réalisation 
+    }
+}
+
+void Wave::wave_forward(bool horizontal, bool vertical){
+    if(horizontal && !vertical){
+        for(int i {0}; i<this->number_enemys; i++){
+            this->enemys[i].pos_X++;
+        }
+    }
+    else if(!horizontal && vertical){
+        for(int i {0}; i<this->number_enemys; i++){
+            this->enemys[i].pos_Y++;
+        }
     }
 }
