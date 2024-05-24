@@ -14,5 +14,8 @@ void Game::create_game(){
 
 void Game::start(){
     tower.tower_map_apparition(0.0f, 0.0f);
-    //wave.wave_forward(true, false);
+    wave.wave_forward(false, true);
+    for(Enemy enemy : wave.enemys){
+        std::cout << enemy.pos_X << " et " << enemy.pos_Y << std::endl;
+    }
 }
