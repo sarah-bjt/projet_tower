@@ -6,7 +6,7 @@
 void Wave::create_wave(int level){
     if(level == 1){
         for(int i {0}; i<this->number_enemys; i++){
-            Enemy one_enemy {1+i, 150, 0.5f, 20, Enemy_Type::Normal, 0.0f-(((float)i)/100.0f), 0.0f};
+            Enemy one_enemy {1+i, 150, 0.5f, 20, Enemy_Type::Normal, 0.99f-(((float)i)*0.2f), 0.4f};
             if(i==3){
                 one_enemy.life = 100;
                 one_enemy.speed = 1.0f;
