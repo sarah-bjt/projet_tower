@@ -26,6 +26,8 @@ void Tower::tower_map_apparition(float x_box, float y_box){   //prend en paramè
         //std::cout << "La tour de type Wood sera positionnée à : X=" << x_box << " et Y=" << y_box << std::endl;
         img::Image wood_tower {img::load(make_absolute_path("images/images_objects/wood_tower.png", true), 3, true)};
     
+        glPushMatrix();
+
         GLuint wood_tower_texture = loadTexture(wood_tower);
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, wood_tower_texture);
@@ -45,12 +47,15 @@ void Tower::tower_map_apparition(float x_box, float y_box){   //prend en paramè
         glEnd();
         glBindTexture(GL_TEXTURE_2D, 0);
         glDisable(GL_TEXTURE_2D);
+        glPopMatrix();
     }
     else if(this->type == Tower_Type::Rock){
         //Applique dans la case sélectionnée le sprite de la tour rock
         //std::cout << "La tour de type Rock sera positionnée à : X=" << x_box << " et Y=" << y_box << std::endl;
         img::Image rock_tower {img::load(make_absolute_path("images/images_objects/rock_tower.png", true), 3, true)};
     
+        glPushMatrix();
+
         GLuint rock_tower_texture = loadTexture(rock_tower);
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, rock_tower_texture);
@@ -70,6 +75,7 @@ void Tower::tower_map_apparition(float x_box, float y_box){   //prend en paramè
         glEnd();
         glBindTexture(GL_TEXTURE_2D, 0);
         glDisable(GL_TEXTURE_2D);
+        glPopMatrix();
     }
     // else if(this->type == Tower_Type::Long_ranged){
     //     //Applique dans la case sélectionnée le sprite de la tour long_ranged

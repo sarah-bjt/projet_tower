@@ -19,6 +19,9 @@ void Enemy::enemy_apparition(){
         //std::cout << "L'ennemi de type fast sera positionnée à la position initiale donnée " << std::endl;
         img::Image fast_repos {img::load(make_absolute_path("images/images_objects/robust/robust_repos.png", true), 3, true)};
     
+        glPushMatrix();
+        //glTranslatef(pos_X, pos_Y,0.0f);
+
         GLuint fast_repos_texture = loadTexture(fast_repos);
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, fast_repos_texture);
@@ -38,12 +41,15 @@ void Enemy::enemy_apparition(){
         glEnd();
         glBindTexture(GL_TEXTURE_2D, 0);
         glDisable(GL_TEXTURE_2D);
+        glPopMatrix();
     }
     else if(this->type == Enemy_Type::Normal){
         //Applique dans la case sélectionnée le sprite de la ennemi normal
         //std::cout << "L'ennemi de type normal sera positionnée à la position initiale donnée " << std::endl;
         img::Image normal_repos {img::load(make_absolute_path("images/images_objects/robust/robust_repos.png", true), 3, true)};
     
+        glPushMatrix();
+
         GLuint normal_repos_texture = loadTexture(normal_repos);
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, normal_repos_texture);
@@ -63,12 +69,15 @@ void Enemy::enemy_apparition(){
         glEnd();
         glBindTexture(GL_TEXTURE_2D, 0);
         glDisable(GL_TEXTURE_2D);
+        glPopMatrix();
     }
     else if(this->type == Enemy_Type::Robust){
         //Applique dans la case sélectionnée le sprite de la ennemi robust
         //std::cout << "L'ennemi de type robust sera positionnée à la position initiale donnée " << std::endl;
         img::Image robust_repos {img::load(make_absolute_path("images/images_objects/robust/robust_repos.png", true), 3, true)};
     
+        glPushMatrix();
+
         GLuint robust_repos_texture = loadTexture(robust_repos);
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, robust_repos_texture);
@@ -88,6 +97,7 @@ void Enemy::enemy_apparition(){
         glEnd();
         glBindTexture(GL_TEXTURE_2D, 0);
         glDisable(GL_TEXTURE_2D);
+        glPopMatrix();
     }
 }
 

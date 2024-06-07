@@ -3,6 +3,16 @@
 #include "wave.hpp"
 #include "enemy.hpp"
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include <img/img.hpp>
+
+#include <sstream>
+
+#include "simpletext.h"
+#include "utils.hpp"
+#include "GLHelpers.hpp"
+
 void Wave::create_wave(int level){
     if(level == 1){
         for(int i {0}; i<this->number_enemys; i++){
@@ -33,20 +43,23 @@ void Wave::create_wave(int level){
 
 void Wave::wave_setup(){
     this->create_wave(1);
-    for(int i {0}; i<this->number_enemys; i++){
-        this->enemys[i].enemy_apparition();
-    }
+    // for(int i {0}; i<this->number_enemys; i++){
+    //     this->enemys[i].enemy_apparition();
+    // }
 }
 
 void Wave::wave_forward(bool horizontal, bool vertical){
+    const double time {glfwGetTime()/10};
     if(horizontal && !vertical){
         for(int i {0}; i<this->number_enemys; i++){
-            this->enemys[i].pos_X+=this->enemys[i].speed;
+            this->enemys[i].pos_X+=this->enemys[i].speed*time;
+            this->enemys[i].enemy_apparition();
         }
     }
     else if(!horizontal && vertical){
         for(int i {0}; i<this->number_enemys; i++){
-            this->enemys[i].pos_Y+=this->enemys[i].speed;
+            this->enemys[i].pos_Y+=this->enemys[i].speed*time;
+            this->enemys[i].enemy_apparition();
         }
     }
 }
