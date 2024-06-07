@@ -49,11 +49,11 @@ void Tower::tower_map_apparition(float x_box, float y_box){   //prend en paramè
     else if(this->type == Tower_Type::Rock){
         //Applique dans la case sélectionnée le sprite de la tour rock
         //std::cout << "La tour de type Rock sera positionnée à : X=" << x_box << " et Y=" << y_box << std::endl;
-        img::Image wood_tower {img::load(make_absolute_path("images/images_objects/rock_tower.png", true), 3, true)};
+        img::Image rock_tower {img::load(make_absolute_path("images/images_objects/rock_tower.png", true), 3, true)};
     
-        GLuint wood_tower_texture = loadTexture(wood_tower);
+        GLuint rock_tower_texture = loadTexture(rock_tower);
         glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, wood_tower_texture);
+        glBindTexture(GL_TEXTURE_2D, rock_tower_texture);
         glColor3ub(255, 255, 255);
         glBegin(GL_QUADS);
             glTexCoord2d(0,0);
