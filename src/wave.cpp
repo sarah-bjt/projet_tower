@@ -13,6 +13,8 @@
 #include "utils.hpp"
 #include "GLHelpers.hpp"
 
+double previous_time {0.0};
+
 void Wave::create_wave(int level){
     if(level == 1){
         for(int i {0}; i<this->number_enemys; i++){
@@ -50,16 +52,18 @@ void Wave::wave_setup(){
 
 void Wave::wave_forward(bool horizontal, bool vertical, bool UP, bool DOWN, bool LEFT, bool RIGHT){
     const double time {glfwGetTime()/10};
+    const double time_elapse {time - previous_time};
+    previous_time = time;
     if(horizontal && !vertical){
         if(RIGHT && !LEFT){
             for(int i {0}; i<this->number_enemys; i++){
-                this->enemys[i].pos_X+=this->enemys[i].speed*time;
+                this->enemys[i].pos_X+=this->enemys[i].speed*time_elapse;
                 this->enemys[i].enemy_apparition();
             }
         }
         else if(!RIGHT && LEFT){
             for(int i {0}; i<this->number_enemys; i++){
-                this->enemys[i].pos_X-=this->enemys[i].speed*time;
+                this->enemys[i].pos_X-=this->enemys[i].speed*time_elapse;
                 this->enemys[i].enemy_apparition();
             }
         }
@@ -67,13 +71,13 @@ void Wave::wave_forward(bool horizontal, bool vertical, bool UP, bool DOWN, bool
     else if(!horizontal && vertical){
         if(UP && !DOWN){
             for(int i {0}; i<this->number_enemys; i++){
-                this->enemys[i].pos_Y+=this->enemys[i].speed*time;
+                this->enemys[i].pos_Y+=this->enemys[i].speed*time_elapse;
                 this->enemys[i].enemy_apparition();
             }
         }
         else if(!UP && DOWN){
             for(int i {0}; i<this->number_enemys; i++){
-                this->enemys[i].pos_Y-=this->enemys[i].speed*time;
+                this->enemys[i].pos_Y-=this->enemys[i].speed*time_elapse;
                 this->enemys[i].enemy_apparition();
             }
         }
