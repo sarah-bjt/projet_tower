@@ -54,32 +54,7 @@ void Wave::wave_forward(bool horizontal, bool vertical, bool UP, bool DOWN, bool
     const double time {glfwGetTime()/10};
     const double time_elapse {time - previous_time};  //récupère le temps en direct
     previous_time = time;
-    if(horizontal && !vertical){   // Vérifie les directions demandées pour toute la vague d'ennemis
-        if(RIGHT && !LEFT){
-            for(int i {0}; i<this->number_enemys; i++){
-                this->enemys[i].pos_X+=this->enemys[i].speed*time_elapse;  //modifie la position de l'ennemi directement en ajoutant le temps direct multiplié par la vitesse de l'ennemi.
-                this->enemys[i].enemy_apparition();  //Apelle la méthode d'apparition de l'ennemi
-            }
-        }
-        else if(!RIGHT && LEFT){
-            for(int i {0}; i<this->number_enemys; i++){
-                this->enemys[i].pos_X-=this->enemys[i].speed*time_elapse;
-                this->enemys[i].enemy_apparition();
-            }
-        }
-    }
-    else if(!horizontal && vertical){
-        if(UP && !DOWN){
-            for(int i {0}; i<this->number_enemys; i++){
-                this->enemys[i].pos_Y+=this->enemys[i].speed*time_elapse;
-                this->enemys[i].enemy_apparition();
-            }
-        }
-        else if(!UP && DOWN){
-            for(int i {0}; i<this->number_enemys; i++){
-                this->enemys[i].pos_Y-=this->enemys[i].speed*time_elapse;
-                this->enemys[i].enemy_apparition();
-            }
-        }
+    for(int i {0}; i<this->number_enemys; i++){
+        this->enemys[i].enemy_forward(time_elapse, horizontal, vertical, UP, DOWN, LEFT, RIGHT); //this->H, this->V, this->u, this->d, this->l, this->r
     }
 }

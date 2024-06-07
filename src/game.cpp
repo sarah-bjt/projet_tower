@@ -12,7 +12,7 @@ void Game::create_game(){
 
 void Game::start(){
     tower.tower_map_apparition(0.0f, 0.0f);
-    if(var > 10){
+    if(var > 5){
         wave.wave_forward(false, true, false, true, false, false);
     }
     else {

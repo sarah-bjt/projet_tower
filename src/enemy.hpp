@@ -22,4 +22,6 @@ struct Enemy{
     void enemy_animation();   //méthode pour faire les sprites animés des ennemis (ils marchent)
     void enemy_death();   //méthode pour compter lorsqu'un ennemi est mort dû au joueur, et faire augmenter l'argent du joueur en fonction de money_reward
     void enemy_arrives();   //méthode pour comptabiliser lorsqu'un ennemi disparait par le portail sans se faire tuer par le joueur (il vit).
+    void enemy_forward(const double time_elapse, bool horizontal, bool vertical, bool UP, bool DOWN, bool LEFT, bool RIGHT); 
+    // ça c'est la fonction qui va permettre que les ennemis prennent la même directions sans pour autant agir en bloc
 };

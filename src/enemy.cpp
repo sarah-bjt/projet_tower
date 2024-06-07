@@ -133,3 +133,26 @@ void Enemy::enemy_arrives(){   //on va devoir relier à Party.cpp/.hpp (position
     //if(this->pos_X == (la position X de la sortie) && this->pos_Y == (la position Y de la sortie)){ --> ça ce sera plutôt dans une autre fonction qui fera appel à celle là
         //faire disparaitre le sprite de l'ennemi sans faire augmenter le score du joueur
 }
+
+void Enemy::enemy_forward(const double time_elapse, bool horizontal, bool vertical, bool UP, bool DOWN, bool LEFT, bool RIGHT){
+    if(horizontal && !vertical){   // Vérifie les directions demandées pour toute la vague d'ennemis
+        if(RIGHT && !LEFT){
+            this->pos_X+=this->speed*time_elapse;  //modifie la position de l'ennemi directement en ajoutant le temps direct multiplié par la vitesse de l'ennemi.
+            this->enemy_apparition();  //Apelle la méthode d'apparition de l'ennemi
+        }
+        else if(!RIGHT && LEFT){
+            this->pos_X-=this->speed*time_elapse;
+            this->enemy_apparition();
+        }
+    }
+    else if(!horizontal && vertical){
+        if(UP && !DOWN){
+            this->pos_Y+=this->speed*time_elapse;
+            this->enemy_apparition();
+        }
+        else if(!UP && DOWN){
+            this->pos_Y-=this->speed*time_elapse;
+            this->enemy_apparition();
+        }
+    }
+}
