@@ -36,13 +36,13 @@ void Bullet::bullet_draw(){
     glPopMatrix();
 }
 
-void Bullet::bullet_fire(float pos_X, float pos_Y){
+void Bullet::bullet_fire(float target_X, float target_Y){
     const double time {glfwGetTime()/10};
     const double time_elapse {time - previousTime};  //récupère le temps en direct
     previousTime = time;
 
-    this->_directX += pos_X * this->speed * time_elapse;
-    this->_directY += pos_Y * this->speed * time_elapse;
+    this->_directX += target_X * this->speed * time_elapse;
+    this->_directY += target_Y * this->speed * time_elapse;
 
     this->bullet_draw();
 }
