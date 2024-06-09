@@ -41,8 +41,8 @@ void Bullet::bullet_fire(float target_X, float target_Y){
     const double time_elapse {time - previousTime};  //récupère le temps en direct
     previousTime = time;
 
-    this->_directX += target_X * this->speed * time_elapse;
-    this->_directY += target_Y * this->speed * time_elapse;
+    this->_directX -= target_X * this->speed * time_elapse;
+    this->_directY -= target_Y * this->speed * time_elapse;
 
     this->bullet_draw();
 }
