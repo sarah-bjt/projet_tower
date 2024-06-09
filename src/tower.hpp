@@ -22,7 +22,7 @@ struct Tower{
 
     //Wave wave;
     //Bullet bullet
-    void tower_map_apparition(float x_box, float y_box);  //méthode pour faire apparaître les sprites des towers sur la map
+    void tower_map_apparition();  //méthode pour faire apparaître les sprites des towers sur la map
     void tower_interface_apparition(); //méthode pour faire apparaître en continu les sprites des towers sur la boutique de l'interface
     void tower_aiming();  //La méthode pour détecter un ennemi à partir de fire_distance
     void tower_fire(int x_pos_enemy, int y_pos_enemy);  //méthode pour faire feu sur un ennemi quand il y a détection

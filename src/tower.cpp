@@ -18,9 +18,7 @@
 const int window_width = 1280;
 const int window_height = 720;
 
-void Tower::tower_map_apparition(float x_box, float y_box){   //prend en paramètres les coordonées du coin gauche/haut de la case où la tour devra se construire
-    this->x_pos = x_box;
-    this->y_pos = y_box;
+void Tower::tower_map_apparition(){   //prend en paramètres les coordonées du coin gauche/haut de la case où la tour devra se construire
     if(this->type == Tower_Type::Wood){
         //Applique dans la case sélectionnée le sprite de la tour wood
         //std::cout << "La tour de type Wood sera positionnée à : X=" << x_box << " et Y=" << y_box << std::endl;
@@ -34,16 +32,16 @@ void Tower::tower_map_apparition(float x_box, float y_box){   //prend en paramè
         glColor3ub(255, 255, 255);
         glBegin(GL_QUADS);
             glTexCoord2d(0,0);
-            glVertex2f(x_box, y_box);
+            glVertex2f(this->x_pos, this->y_pos);
 
             glTexCoord2d(1,0);
-            glVertex2f(x_box+0.2f, y_box);
+            glVertex2f(this->x_pos+0.2f, this->y_pos);
 
             glTexCoord2d(1,1);
-            glVertex2f(x_box+0.2f, y_box+0.2f);
+            glVertex2f(this->x_pos+0.2f, this->y_pos+0.2f);
 
             glTexCoord2d(0,1);
-            glVertex2f(x_box, y_box+0.2f);
+            glVertex2f(this->x_pos, this->y_pos+0.2f);
         glEnd();
         glBindTexture(GL_TEXTURE_2D, 0);
         glDisable(GL_TEXTURE_2D);
@@ -62,16 +60,16 @@ void Tower::tower_map_apparition(float x_box, float y_box){   //prend en paramè
         glColor3ub(255, 255, 255);
         glBegin(GL_QUADS);
             glTexCoord2d(0,0);
-            glVertex2f(x_box, y_box);
+            glVertex2f(this->x_pos, this->y_pos);
 
             glTexCoord2d(1,0);
-            glVertex2f(x_box+0.2f, y_box);
+            glVertex2f(this->x_pos+0.2f, this->y_pos);
 
             glTexCoord2d(1,1);
-            glVertex2f(x_box+0.2f, y_box+0.2f);
+            glVertex2f(this->x_pos+0.2f, this->y_pos+0.2f);
 
             glTexCoord2d(0,1);
-            glVertex2f(x_box, y_box+0.2f);
+            glVertex2f(this->x_pos, this->y_pos+0.2f);
         glEnd();
         glBindTexture(GL_TEXTURE_2D, 0);
         glDisable(GL_TEXTURE_2D);
