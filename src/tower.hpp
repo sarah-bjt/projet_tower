@@ -1,4 +1,5 @@
 #pragma once
+#include "bullet.hpp"
 
 enum class Tower_Type {
     Wood,
@@ -17,6 +18,7 @@ struct Tower{
     //img::Image tower_sprite {img::load(make_absolute_path("images/images_objects/Wood_Tower.png", true), 3, true)};
 
     float x_pos, y_pos;
+    Bullet bullet;
 
     //Wave wave;
     //Bullet bullet
