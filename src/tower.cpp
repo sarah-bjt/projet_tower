@@ -99,8 +99,6 @@ void Tower::tower_aiming(){
 }
 
 void Tower::tower_fire(float x_pos_enemy, float y_pos_enemy){
-    //on va utiliser le (tableau) bullet
-    //utiliser une méthode d'animation de la struct Bullet pour la lancer
     this->bullet = Bullet{0.01f, 0.5f, this->x_pos, this->y_pos}; //, 0.0f, 0.0f
     this->bullet.bullet_fire(x_pos_enemy, y_pos_enemy);
 }
