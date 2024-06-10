@@ -13,15 +13,17 @@
 #include "utils.hpp"
 #include "GLHelpers.hpp"
 
-double previousTime {0.0};
+float invisible {1.0f};
 
 void Bullet::bullet_draw(){
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glPushMatrix();
     glTranslatef(this->_directX, this->_directY, 0.0f);
-    glColor3f(1.0f, 1.0f, 1.0f);
+    glColor4f(1.0f, 1.0f, 1.0f, invisible);
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(this->X, this->Y);
     for (int i = 0; i <= 100; i++) {
@@ -45,8 +47,16 @@ void Bullet::bullet_fire(float target_X, float target_Y){
     //std::cout << "_directX = " << this->_directX << " et _directY = " << this->_directY << std::endl;
 
     this->bullet_draw();
+
+    this->X = this->_directX;
+    this->Y = this->_directY;
+    if(this->X < target_X+0.02f && this->X > target_X-0.02f){
+        if(this->Y < target_Y+0.02f && this->Y > target_Y-0.02f){
+            this->bullet_disappear();
+        }
+    }
 }
 
 void Bullet::bullet_disappear(){
-    delete this;  //Est-ce correct meme ?
+    invisible = 0.0f;
 }
