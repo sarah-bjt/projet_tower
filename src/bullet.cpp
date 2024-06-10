@@ -23,7 +23,7 @@ void Bullet::bullet_draw(){
     glTranslatef(this->_directX, this->_directY, 0.0f);
     glColor3f(1.0f, 1.0f, 1.0f);
     glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(0.0f, 0.0f);
+    glVertex2f(this->X, this->Y);
     for (int i = 0; i <= 100; i++) {
         float angle = 2.0f * M_PI * float(i) / float(100);
         float x = cosf(angle) * this->size;
@@ -38,11 +38,11 @@ void Bullet::bullet_draw(){
 
 void Bullet::bullet_fire(float target_X, float target_Y){
     const double time {glfwGetTime()/10};
-    const double time_elapse {time - previousTime};  //récupère le temps en direct
-    previousTime = time;
 
-    this->_directX -= target_X * this->speed * time_elapse;
-    this->_directY -= target_Y * this->speed * time_elapse;
+    this->_directX += target_X * this->speed * time;
+    this->_directY += target_Y * this->speed * time;
+
+    //std::cout << "_directX = " << this->_directX << " et _directY = " << this->_directY << std::endl;
 
     this->bullet_draw();
 }

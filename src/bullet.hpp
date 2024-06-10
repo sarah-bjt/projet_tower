@@ -3,7 +3,8 @@
 struct Bullet{
     float size;  //Taille de la bullet
     float speed;
-    //une instance qui contiendra le dessin de la balle
+    //une instance qui contiendra le dessin de la balle ??
+    float X, Y;
     float _directX, _directY;
 
     void bullet_draw(); //méthode pour dessiner la balle
