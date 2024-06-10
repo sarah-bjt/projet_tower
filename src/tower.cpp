@@ -94,15 +94,15 @@ void Tower::tower_aiming(){
     //on récupère la position de chaque ennemi de la vague (tableau)
     //on calcule la distance entre leur position et celle de la tour
     if(true){  //si la distance est <= à fire_distance
-        this->tower_fire(13, 45);  //on appelle la fonction qui tire les bullet, en référant la position de l'enemi visé
+        this->tower_fire(-0.5f, 0.5f);  //on appelle la fonction qui tire les bullet, en référant la position de l'enemi visé
     }
 }
 
-void Tower::tower_fire(int x_pos_enemy, int y_pos_enemy){
+void Tower::tower_fire(float x_pos_enemy, float y_pos_enemy){
     //on va utiliser le (tableau) bullet
     //utiliser une méthode d'animation de la struct Bullet pour la lancer
-    this->bullet = Bullet{0.01f, 0.5f, 0.0f, 0.0f};
-    this->bullet.bullet_fire(-0.5f, 0.5f);
+    this->bullet = Bullet{0.01f, 0.5f, this->x_pos, this->y_pos}; //, 0.0f, 0.0f
+    this->bullet.bullet_fire(x_pos_enemy, y_pos_enemy);
 }
 
 // LES DEUX FONCTIONS PRÉCÉDENTES DEVRONT ÊTRE UTILISÉES DANS UN WHILE DANS GAME.CPP OU PARTY.CPP ...
