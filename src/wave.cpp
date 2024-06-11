@@ -51,7 +51,7 @@ void Wave::wave_setup(){
 }
 
 void Wave::wave_forward(bool horizontal, bool vertical, bool UP, bool DOWN, bool LEFT, bool RIGHT){
-    const double time {glfwGetTime()/10};
+    const double time {glfwGetTime()/40};
     const double time_elapse {time - previous_time};  //récupère le temps en direct
     previous_time = time;
     for(int i {0}; i<this->number_enemys; i++){
