@@ -1,6 +1,7 @@
 #include <iostream>
 #include "tower.hpp"
 #include "bullet.hpp"
+#include "wave.hpp"
 
 #include "App.hpp"
 
@@ -91,15 +92,20 @@ void Tower::tower_interface_apparition(){    //peut être qu'au final on aura pa
 
 void Tower::tower_aiming(){
     //il faudra que je sois relié à wave pour avoir un tableau de Enemy
+    for(auto enemy : this->wave_enemys.enemys){
+        bool dist_X {(enemy.pos_X+0.1f > this->x_pos+0.1f - this->fire_distance*0.2f) && (enemy.pos_X+0.1f < this->x_pos+0.1f + this->fire_distance*0.2f)};
+        bool dist_Y {(enemy.pos_Y+0.1f > this->y_pos+0.1f - this->fire_distance*0.2f) && (enemy.pos_Y+0.1f < this->y_pos+0.1f + this->fire_distance*0.2f)};
+        if(dist_X && dist_Y){
+            this->tower_fire(enemy.pos_X, enemy.pos_Y);
+            //this->tower_aiming();
+        }
+    }
     //on récupère la position de chaque ennemi de la vague (tableau)
     //on calcule la distance entre leur position et celle de la tour
-    if(true){  //si la distance est <= à fire_distance
-        this->tower_fire(-0.5f, 0.5f);  //on appelle la fonction qui tire les bullet, en référant la position de l'enemi visé
-    }
 }
 
 void Tower::tower_fire(float x_pos_enemy, float y_pos_enemy){
-    this->bullet = Bullet{0.01f, 0.5f, this->x_pos, this->y_pos}; //, 0.0f, 0.0f
+    this->bullet = Bullet{0.01f, 1.5f, this->x_pos+0.1f, this->y_pos+0.1f}; //, 0.0f, 0.0f
     this->bullet.bullet_fire(x_pos_enemy, y_pos_enemy);
 }
 

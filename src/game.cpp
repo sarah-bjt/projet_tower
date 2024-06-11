@@ -5,9 +5,13 @@
 int var {0};
 
 void Game::create_game(){
-    tower = Tower {1, 20, 2, 0.0005, 60, Tower_Type::Rock, 0.0f, 0.0f};
+    tower = Tower {1, 80, 3, 0.0005, 150, Tower_Type::Rock, 0.0f, 0.0f};
     wave = Wave {};
     wave.wave_setup();
+    tower.wave_enemys = wave;
+    // for(auto enemy : tower.wave_enemys.enemys){
+    //     std::cout << enemy.life << std::endl;
+    // }
 }
 
 void Game::start(){
