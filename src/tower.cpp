@@ -2,6 +2,7 @@
 #include "tower.hpp"
 #include "bullet.hpp"
 #include "wave.hpp"
+#include <vector>
 
 #include "App.hpp"
 
@@ -90,14 +91,19 @@ void Tower::tower_interface_apparition(){    //peut être qu'au final on aura pa
     //Applique définitivement les sprites de chaque tower dans la boutique de l'interface
 }
 
-void Tower::tower_aiming(){
+void Tower::tower_aiming(std::vector<Enemy>& enemys){
+    bool not_alive {false};
     //il faudra que je sois relié à wave pour avoir un tableau de Enemy
-    for(auto enemy : this->wave_enemys.enemys){
-        bool dist_X {(enemy.pos_X+0.1f > this->x_pos+0.1f - this->fire_distance*0.2f) && (enemy.pos_X+0.1f < this->x_pos+0.1f + this->fire_distance*0.2f)};
-        bool dist_Y {(enemy.pos_Y+0.1f > this->y_pos+0.1f - this->fire_distance*0.2f) && (enemy.pos_Y+0.1f < this->y_pos+0.1f + this->fire_distance*0.2f)};
-        if(dist_X && dist_Y){
-            this->tower_fire(enemy.pos_X, enemy.pos_Y);
-            enemy.enemy_death(this->bullet.X, this->bullet.Y, this->fire_power);
+    for(int i {0}; i<enemys.size(); i++){ 
+        bool dist_X {(enemys[i].pos_X+0.1f > this->x_pos+0.1f - this->fire_distance*0.2f) && (enemys[i].pos_X+0.1f < this->x_pos+0.1f + this->fire_distance*0.2f)};
+        bool dist_Y {(enemys[i].pos_Y+0.1f > this->y_pos+0.1f - this->fire_distance*0.2f) && (enemys[i].pos_Y+0.1f < this->y_pos+0.1f + this->fire_distance*0.2f)};  //verif des distances pour les ennemys dans le périmètre de la tour
+        if(dist_X && dist_Y && enemys[i].enemy_id!=-1){
+            this->tower_fire(enemys[i].pos_X, enemys[i].pos_Y);
+            not_alive = enemys[i].enemy_death(this->bullet.X, this->bullet.Y, this->fire_power);
+        }
+        if(not_alive && enemys[i].enemy_id!=-1){  //si l'ennemi est mort et qu'il n'est pas DEJA mort alors on change son statut en mort
+            enemys[i].enemy_id = -1;
+            not_alive = false;
         }
     }
     //on récupère la position de chaque ennemi de la vague (tableau)
