@@ -97,7 +97,7 @@ void Tower::tower_aiming(){
         bool dist_Y {(enemy.pos_Y+0.1f > this->y_pos+0.1f - this->fire_distance*0.2f) && (enemy.pos_Y+0.1f < this->y_pos+0.1f + this->fire_distance*0.2f)};
         if(dist_X && dist_Y){
             this->tower_fire(enemy.pos_X, enemy.pos_Y);
-            //this->tower_aiming();
+            enemy.enemy_death(this->bullet.X, this->bullet.Y, this->fire_power);
         }
     }
     //on récupère la position de chaque ennemi de la vague (tableau)

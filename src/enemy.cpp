@@ -101,7 +101,11 @@ void Enemy::enemy_apparition(){
     }
 }
 
-bool Enemy::alive(){   //cette méthode vérifie les points de vie des ennemis
+bool Enemy::alive(float bullet_x, float bullet_y, int power_impact){   //cette méthode vérifie les points de vie des ennemis
+    if(bullet_x < this->pos_X+0.02f && bullet_y > this->pos_Y-0.02f){
+        this->life -= power_impact;
+    }
+    std::cout << this->life << std::endl;
     if(this->life > 0){  //si les points de vie sont au dessus de 0
         return true;  //alors il est toujours vivant (donc true)
     }
@@ -110,9 +114,9 @@ bool Enemy::alive(){   //cette méthode vérifie les points de vie des ennemis
     }
 }
 
-void Enemy::enemy_animation(){  
+void Enemy::enemy_animation(float bullet_x, float bullet_y, int power_impact){  
     int switch_sprite {0};
-    while(this->alive()){
+    while(this->alive(bullet_x, bullet_y, power_impact)){
         if(switch_sprite%2 == 0){
             //Afficher le sprite d'animation n°1 avec this->pos_X et this->pos_Y
         }
@@ -122,8 +126,9 @@ void Enemy::enemy_animation(){
     }
 }
 
-void Enemy::enemy_death(){
-    if(!this->alive()){
+void Enemy::enemy_death(float bullet_x, float bullet_y, int power_impact){
+    if(!this->alive(bullet_x, bullet_y, power_impact)){
+        std::cout << "MORT" << std::endl;
         //Faire disparaitre le sprite de l'ennemi à tout jamais (ça va faire un trou dans la vague d'ennemi et c'est normal)
         //Et faire augmenter le score du joueur
     }
