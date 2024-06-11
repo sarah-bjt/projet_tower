@@ -14,6 +14,8 @@
 #include "GLHelpers.hpp"
 
 void Enemy::enemy_apparition(){  
+    if(!this->texture ==0) return;
+
     if(this->type == Enemy_Type::Fast){
         //Applique dans la case sélectionnée le sprite de la ennemi fast
         //std::cout << "L'ennemi de type fast sera positionnée à la position initiale donnée " << std::endl;
@@ -22,9 +24,9 @@ void Enemy::enemy_apparition(){
         glPushMatrix();
         //glTranslatef(pos_X, pos_Y,0.0f);
 
-        GLuint fast_repos_texture = loadTexture(fast_repos);
+        this->texture = loadTexture(fast_repos);
         glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, fast_repos_texture);
+        glBindTexture(GL_TEXTURE_2D, this->texture);
         glColor3ub(255, 255, 255);
         glBegin(GL_QUADS);
             glTexCoord2d(0,0);
@@ -50,9 +52,9 @@ void Enemy::enemy_apparition(){
     
         glPushMatrix();
 
-        GLuint normal_repos_texture = loadTexture(normal_repos);
+        this->texture = loadTexture(normal_repos);
         glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, normal_repos_texture);
+        glBindTexture(GL_TEXTURE_2D, this->texture);
         glColor3ub(255, 255, 255);
         glBegin(GL_QUADS);
             glTexCoord2d(0,0);
@@ -78,9 +80,9 @@ void Enemy::enemy_apparition(){
     
         glPushMatrix();
 
-        GLuint robust_repos_texture = loadTexture(robust_repos);
+        this->texture = loadTexture(robust_repos);
         glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, robust_repos_texture);
+        glBindTexture(GL_TEXTURE_2D, this->texture);
         glColor3ub(255, 255, 255);
         glBegin(GL_QUADS);
             glTexCoord2d(0,0);
@@ -129,6 +131,10 @@ void Enemy::enemy_animation(float bullet_x, float bullet_y, int power_impact){
 void Enemy::enemy_death(float bullet_x, float bullet_y, int power_impact){
     if(!this->alive(bullet_x, bullet_y, power_impact)){
         std::cout << "MORT" << std::endl;
+        
+        glDeleteTextures(1, &this->texture);
+        this->texture = 0;
+
         //Faire disparaitre le sprite de l'ennemi à tout jamais (ça va faire un trou dans la vague d'ennemi et c'est normal)
         //Et faire augmenter le score du joueur
     }
@@ -140,6 +146,8 @@ void Enemy::enemy_arrives(){   //on va devoir relier à Party.cpp/.hpp (position
 }
 
 void Enemy::enemy_forward(const double time_elapse, bool horizontal, bool vertical, bool UP, bool DOWN, bool LEFT, bool RIGHT){
+    if(!this->texture == 0) return;
+
     if(horizontal && !vertical){   // Vérifie les directions demandées pour toute la vague d'ennemis
         if(RIGHT && !LEFT){
             this->pos_X+=this->speed*time_elapse;  //modifie la position de l'ennemi directement en ajoutant le temps direct multiplié par la vitesse de l'ennemi.

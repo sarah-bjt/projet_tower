@@ -1,5 +1,17 @@
 #pragma once
 
+#include "App.hpp"
+
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include <img/img.hpp>
+
+#include <sstream>
+
+#include "simpletext.h"
+#include "utils.hpp"
+#include "GLHelpers.hpp"
+
 enum class Enemy_Type {
     Fast,
     Normal,
@@ -15,6 +27,7 @@ struct Enemy{
 
     float pos_X;
     float pos_Y; //Sa position qui va évoluée avec le temps
+    GLuint texture;
 
     //Wave wave;
     void enemy_apparition();  //méthode pour faire apparaître les sprites des ennemis sur la map quand ils arrivent
