@@ -14,7 +14,7 @@
 #include "GLHelpers.hpp"
 
 void Enemy::enemy_apparition(){
-    if(this->enemy_id == -1) return;  
+    if(this->enemy_id == -1 || this->enemy_id == -2) return;  
 
     if(this->type == Enemy_Type::Fast){
         //Applique dans la case sélectionnée le sprite de la ennemi fast
@@ -106,13 +106,18 @@ bool Enemy::enemy_death(float bullet_x, float bullet_y, int power_impact){
     return false;
 }
 
-void Enemy::enemy_arrives(){   //on va devoir relier à Party.cpp/.hpp (position d'apparition des ennemis, position de la sortie à protéger)
-    //if(this->pos_X == (la position X de la sortie) && this->pos_Y == (la position Y de la sortie)){ --> ça ce sera plutôt dans une autre fonction qui fera appel à celle là
-        //faire disparaitre le sprite de l'ennemi sans faire augmenter le score du joueur
+bool Enemy::enemy_arrives(){   //on va devoir relier à Party.cpp/.hpp (position d'apparition des ennemis, position de la sortie à protéger)
+    //conditions exemple mais faudra aller les chercher dans les infos de path, party, levels...
+    if(this->pos_Y+0.1f <= -0.5f){ //this->pos_X+0.1f >= 0.5f, --> ça ce sera plutôt dans une autre fonction qui fera appel à celle là
+        std::cout << "arrivé" << std::endl;
+        return true;
+    }
+    return false;
+    //faire disparaitre le sprite de l'ennemi sans faire augmenter le score du joueur
 }
 
 void Enemy::enemy_forward(const double time_elapse, bool horizontal, bool vertical, bool UP, bool DOWN, bool LEFT, bool RIGHT){
-    if(this->enemy_id == -1) return;  
+    if(this->enemy_id == -1 || this->enemy_id == -2) return;  
 
     if(horizontal && !vertical){   // Vérifie les directions demandées pour toute la vague d'ennemis
         if(RIGHT && !LEFT){
