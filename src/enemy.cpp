@@ -88,6 +88,19 @@ bool Enemy::enemy_death(float bullet_x, float bullet_y, int power_impact){
         return true;
         //Faire disparaitre le sprite de l'ennemi à tout jamais (ça va faire un trou dans la vague d'ennemi et c'est normal)
         //Et faire augmenter le score du joueur
+        // CODE A IMPLEMENTER QUAND J'AURAIS LE FCIHIER JOUEUR :
+        /*
+        player.money += this->money_reward;  //en utilisant la méthode increaseMoney()
+        if(this->type == Enemy_Type::Fast){
+            player.score += 2;  //en utilisant la méthode increaseScore()
+        }
+        else if(this->type == Enemy_Type::Robust){
+            player.score += 3;
+        }
+        else {
+            player.score += 1;
+        }
+        */
     }
 
     return false;
