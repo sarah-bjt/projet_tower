@@ -100,10 +100,13 @@ void Tower::tower_aiming(std::vector<Enemy>& enemys){
         if(dist_X && dist_Y && enemys[i].enemy_id!=-1){  //Si l'ennemi se trouve dans la zone de tire et qu'il n'est pas déjà mort 
             this->tower_fire(enemys[i].pos_X, enemys[i].pos_Y);
             not_alive = enemys[i].enemy_death(this->bullet.X, this->bullet.Y, this->fire_power);
-        }
-        if(not_alive && enemys[i].enemy_id!=-1){  //si l'ennemi est mort et qu'il n'est pas DEJA mort alors on change son statut en mort
-            enemys[i].enemy_id = -1;
-            not_alive = false;
+
+            if(not_alive){  //si l'ennemi est mort et qu'il n'est pas DEJA mort alors on change son statut en mort
+                enemys[i].enemy_id = -1;
+                not_alive = false;
+            }
+
+            //break;
         }
     }
     //on récupère la position de chaque ennemi de la vague (tableau)
