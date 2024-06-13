@@ -9,3 +9,4 @@ struct Player {
     int buy();
     int increaseScore();
 };
+// 

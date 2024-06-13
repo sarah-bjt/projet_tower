@@ -1,5 +1,6 @@
 #include <iostream>
 #include "player.hpp"
+#include "enemy.hpp"
 
 
 std::string Player::chooseName()
@@ -15,7 +16,7 @@ int Player::increaseMoney()
         money+=5;
     }
 };
-
+// 
 int Player::buy()
 {
     if() //Si votre qté d'argent est >= au prix, vous pouvez l'acheter et on retire la qté d'argent de notre somme d'argent

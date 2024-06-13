@@ -13,7 +13,7 @@ std::vector<WeightedGraphEdge> WeightedGraph::getNeighbors(int vertex) const
         return {};
     }
 }
-
+//
 std::unordered_map<int, std::pair<float, int>> dijkstra(WeightedGraph const& graph, int const& start, int const end) //Prend en paramètre un graphe, un sommet de départ et un sommet d'arrivée
 {
     std::unordered_map<int, std::pair<float, int>> distances {}; //Tableau associatif associant à chaque sommet du graphe une paire (distance, sommet précédent). Ce tableau permet de stocker les distances les plus courtes du sommet de départ à chaque sommet.
