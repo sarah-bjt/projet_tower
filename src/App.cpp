@@ -18,7 +18,7 @@ App::App() : _previousTime(0.0), _viewSize(2.0) {
 
     img::Image test {img::load(make_absolute_path("images/level.png", true), 3, true)};
     
-    _texture = loadTexture(test);
+    //_texture = loadTexture(test);
 }
 
 void App::setup() {

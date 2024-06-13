@@ -19,19 +19,19 @@ void Enemy::enemy_apparition(){
     if(this->type == Enemy_Type::Fast){
         //Applique dans la case sélectionnée le sprite de la ennemi fast
         //std::cout << "L'ennemi de type fast sera positionnée à la position initiale donnée " << std::endl;
-        img::Image fast_repos {img::load(make_absolute_path("images/images_objects/robust/robust_repos.png", true), 3, true)};
+        img::Image fast_repos {img::load(make_absolute_path("images/images_objects/robust/robust_repos.png", true), 4, true)};
         this->texture = loadTexture(fast_repos);
     }
     else if(this->type == Enemy_Type::Normal){
         //Applique dans la case sélectionnée le sprite de la ennemi normal
         //std::cout << "L'ennemi de type normal sera positionnée à la position initiale donnée " << std::endl;
-        img::Image normal_repos {img::load(make_absolute_path("images/images_objects/robust/robust_repos.png", true), 3, true)};
+        img::Image normal_repos {img::load(make_absolute_path("images/images_objects/robust/robust_repos.png", true), 4, true)};
         this->texture = loadTexture(normal_repos);
     }
     else if(this->type == Enemy_Type::Robust){
         //Applique dans la case sélectionnée le sprite de la ennemi robust
         //std::cout << "L'ennemi de type robust sera positionnée à la position initiale donnée " << std::endl;
-        img::Image robust_repos {img::load(make_absolute_path("images/images_objects/robust/robust_repos.png", true), 3, true)};
+        img::Image robust_repos {img::load(make_absolute_path("images/images_objects/robust/robust_repos.png", true), 4, true)};
         this->texture = loadTexture(robust_repos);
     }
 

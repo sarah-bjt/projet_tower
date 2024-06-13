@@ -24,7 +24,7 @@ void Tower::tower_map_apparition(){   //prend en paramètres les coordonées du 
     if(this->type == Tower_Type::Wood){
         //Applique dans la case sélectionnée le sprite de la tour wood
         //std::cout << "La tour de type Wood sera positionnée à : X=" << x_box << " et Y=" << y_box << std::endl;
-        img::Image wood_tower {img::load(make_absolute_path("images/images_objects/wood_tower.png", true), 3, true)};
+        img::Image wood_tower {img::load(make_absolute_path("images/images_objects/wood_tower.png", true), 4, true)};
     
         glPushMatrix();
 
@@ -52,7 +52,7 @@ void Tower::tower_map_apparition(){   //prend en paramètres les coordonées du 
     else if(this->type == Tower_Type::Rock){
         //Applique dans la case sélectionnée le sprite de la tour rock
         //std::cout << "La tour de type Rock sera positionnée à : X=" << x_box << " et Y=" << y_box << std::endl;
-        img::Image rock_tower {img::load(make_absolute_path("images/images_objects/rock_tower.png", true), 3, true)};
+        img::Image rock_tower {img::load(make_absolute_path("images/images_objects/rock_tower.png", true), 4, true)};
     
         glPushMatrix();
 
