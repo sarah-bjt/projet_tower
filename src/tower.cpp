@@ -97,7 +97,7 @@ void Tower::tower_aiming(std::vector<Enemy>& enemys){
     for(int i {0}; i<enemys.size(); i++){ 
         bool dist_X {(enemys[i].pos_X+0.1f > this->x_pos+0.1f - this->fire_distance*0.2f) && (enemys[i].pos_X+0.1f < this->x_pos+0.1f + this->fire_distance*0.2f)};
         bool dist_Y {(enemys[i].pos_Y+0.1f > this->y_pos+0.1f - this->fire_distance*0.2f) && (enemys[i].pos_Y+0.1f < this->y_pos+0.1f + this->fire_distance*0.2f)};  //verif des distances pour les ennemys dans le périmètre de la tour
-        if(dist_X && dist_Y && enemys[i].enemy_id!=-1){
+        if(dist_X && dist_Y && enemys[i].enemy_id!=-1){  //Si l'ennemi se trouve dans la zone de tire et qu'il n'est pas déjà mort 
             this->tower_fire(enemys[i].pos_X, enemys[i].pos_Y);
             not_alive = enemys[i].enemy_death(this->bullet.X, this->bullet.Y, this->fire_power);
         }
