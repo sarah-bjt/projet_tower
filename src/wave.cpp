@@ -3,11 +3,23 @@
 #include "wave.hpp"
 #include "enemy.hpp"
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include <img/img.hpp>
+
+#include <sstream>
+
+#include "simpletext.h"
+#include "utils.hpp"
+#include "GLHelpers.hpp"
+
+double previous_time {0.0};
+
 void Wave::create_wave(int level){
     if(level == 1){
         for(int i {0}; i<this->number_enemys; i++){
-            Enemy one_enemy {1+i, 150, 0.5f, 20, Enemy_Type::Normal, 0.0f-(float)i, 0.0f};
-            if(i==3){
+            Enemy one_enemy {1+i, 150, 0.5f, 20, Enemy_Type::Normal, 0.99f-(((float)i)*0.2f), 0.4f};  //initialise l'ennemis
+            if(i==3){  //condition temporaire pour intégrer des types d'ennemis différents dans une même vague
                 one_enemy.life = 100;
                 one_enemy.speed = 1.0f;
                 one_enemy.money_reward = 30;
@@ -20,7 +32,7 @@ void Wave::create_wave(int level){
                 one_enemy.type = Enemy_Type::Robust;
             }
 
-            this->enemys.push_back(one_enemy);
+            this->enemys.push_back(one_enemy);  //ajout de l'ennemi dans le tableau d'ennemis de la vague
         }
     }
     else if(level == 2){
@@ -31,15 +43,18 @@ void Wave::create_wave(int level){
     }
 }
 
-void Wave::wave_forward(bool horizontal, bool vertical){
-    if(horizontal && !vertical){
-        for(int i {0}; i<this->number_enemys; i++){
-            this->enemys[i].pos_X+=this->enemys[i].speed;
-        }
-    }
-    else if(!horizontal && vertical){
-        for(int i {0}; i<this->number_enemys; i++){
-            this->enemys[i].pos_Y+=this->enemys[i].speed;
-        }
+void Wave::wave_setup(){
+    this->create_wave(1);
+    // for(int i {0}; i<this->number_enemys; i++){
+    //     this->enemys[i].enemy_apparition();
+    // }
+}
+
+void Wave::wave_forward(bool horizontal, bool vertical, bool UP, bool DOWN, bool LEFT, bool RIGHT){
+    const double time {glfwGetTime()/40};
+    const double time_elapse {time - previous_time};  //récupère le temps en direct
+    previous_time = time;
+    for(int i {0}; i<this->number_enemys; i++){
+        this->enemys[i].enemy_forward(time_elapse, horizontal, vertical, UP, DOWN, LEFT, RIGHT); //this->H, this->V, this->u, this->d, this->l, this->r
     }
 }
