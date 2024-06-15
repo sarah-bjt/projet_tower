@@ -18,7 +18,7 @@ double previous_time {0.0};
 void Wave::create_wave(int level){
     if(level == 1){
         for(int i {0}; i<this->number_enemys; i++){
-            Enemy one_enemy {1+i, 150, 0.5f, 20, Enemy_Type::Normal, 0.99f-(((float)i)*0.2f), 0.4f};  //initialise l'ennemis
+            Enemy one_enemy {1+i, 150, 0.5f, 20, Enemy_Type::Normal, 0.99f-(((float)i)*0.2f), 0.4f, 0};  //initialise l'ennemis
             if(i==3){  //condition temporaire pour intégrer des types d'ennemis différents dans une même vague
                 one_enemy.life = 100;
                 one_enemy.speed = 1.0f;
