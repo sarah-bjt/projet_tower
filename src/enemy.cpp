@@ -53,7 +53,7 @@ bool Enemy::alive(float bullet_x, float bullet_y, int power_impact){   //cette m
 }
 
 img::Image Enemy::enemy_animation(){  
-    if(this->enemy_id != -1 && this->enemy_id != -2){
+    //if(this->enemy_id != -1 && this->enemy_id != -2){
         if(this->anim%110 >= 0 && this->anim%110 <= 10){
             //Afficher le sprite d'animation n°1 avec this->pos_X et this->pos_Y
             if(this->type == Enemy_Type::Fast){
@@ -275,7 +275,7 @@ img::Image Enemy::enemy_animation(){
                 return robust_march;
             }
         }
-    }
+    //}
 }
 
 bool Enemy::enemy_death(float bullet_x, float bullet_y, int power_impact){
