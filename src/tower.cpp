@@ -24,7 +24,7 @@ void Tower::tower_map_apparition(){   //prend en paramètres les coordonées du 
     if(this->type == Tower_Type::Wood){
         //Applique dans la case sélectionnée le sprite de la tour wood
         //std::cout << "La tour de type Wood sera positionnée à : X=" << x_box << " et Y=" << y_box << std::endl;
-        img::Image wood_tower {img::load(make_absolute_path("images/images_objects/wood_tower.png", true), 3, true)};
+        img::Image wood_tower {img::load(make_absolute_path("images/images_objects/wood_tower.png", true), 4, true)};
     
         glPushMatrix();
 
@@ -52,7 +52,7 @@ void Tower::tower_map_apparition(){   //prend en paramètres les coordonées du 
     else if(this->type == Tower_Type::Rock){
         //Applique dans la case sélectionnée le sprite de la tour rock
         //std::cout << "La tour de type Rock sera positionnée à : X=" << x_box << " et Y=" << y_box << std::endl;
-        img::Image rock_tower {img::load(make_absolute_path("images/images_objects/rock_tower.png", true), 3, true)};
+        img::Image rock_tower {img::load(make_absolute_path("images/images_objects/rock_tower.png", true), 4, true)};
     
         glPushMatrix();
 
@@ -97,13 +97,16 @@ void Tower::tower_aiming(std::vector<Enemy>& enemys){
     for(int i {0}; i<enemys.size(); i++){ 
         bool dist_X {(enemys[i].pos_X+0.1f > this->x_pos+0.1f - this->fire_distance*0.2f) && (enemys[i].pos_X+0.1f < this->x_pos+0.1f + this->fire_distance*0.2f)};
         bool dist_Y {(enemys[i].pos_Y+0.1f > this->y_pos+0.1f - this->fire_distance*0.2f) && (enemys[i].pos_Y+0.1f < this->y_pos+0.1f + this->fire_distance*0.2f)};  //verif des distances pour les ennemys dans le périmètre de la tour
-        if(dist_X && dist_Y && enemys[i].enemy_id!=-1){
+        if(dist_X && dist_Y && enemys[i].enemy_id!=-1){  //Si l'ennemi se trouve dans la zone de tire et qu'il n'est pas déjà mort 
             this->tower_fire(enemys[i].pos_X, enemys[i].pos_Y);
             not_alive = enemys[i].enemy_death(this->bullet.X, this->bullet.Y, this->fire_power);
-        }
-        if(not_alive && enemys[i].enemy_id!=-1){  //si l'ennemi est mort et qu'il n'est pas DEJA mort alors on change son statut en mort
-            enemys[i].enemy_id = -1;
-            not_alive = false;
+
+            if(not_alive){  //si l'ennemi est mort et qu'il n'est pas DEJA mort alors on change son statut en mort
+                enemys[i].enemy_id = -1;
+                not_alive = false;
+            }
+
+            //break;
         }
     }
     //on récupère la position de chaque ennemi de la vague (tableau)
