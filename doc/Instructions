@@ -2,3 +2,6 @@ Dans CMakeLists.txt :
 	Ligne 1 : Changer la version selon votre système
 	Lignes 64-65 : Pour windows, enlever ces deux lignes (commentaires)
 	Lignes 86-87 : Pour windows, enlever ces deux lignes (commentaires)
+
+Dans Bullt.cpp :
+	Ligne 30 : M_PI peut ne pas fonctionner sur Windows, 
