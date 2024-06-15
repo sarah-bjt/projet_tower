@@ -54,7 +54,7 @@ bool Enemy::alive(float bullet_x, float bullet_y, int power_impact){   //cette m
 
 img::Image Enemy::enemy_animation(){  
     if(this->enemy_id != -1 && this->enemy_id != -2){
-        if(this->anim%50 >= 0 && this->anim%50 <= 10){
+        if(this->anim%70 >= 0 && this->anim%70 <= 10){
             //Afficher le sprite d'animation n°1 avec this->pos_X et this->pos_Y
             if(this->type == Enemy_Type::Fast){
                 //Applique dans la case sélectionnée le sprite de la ennemi fast
@@ -78,7 +78,7 @@ img::Image Enemy::enemy_animation(){
                 return robust_repos;
             }
         }
-        else if(this->anim%50>10 && this->anim%50 <= 20){
+        else if(this->anim%70>10 && this->anim%70 <= 20){
             //Afficher le sprite d'animation n°2 avec this->pos_X et this->pos_Y
             if(this->type == Enemy_Type::Fast){
                 //Applique dans la case sélectionnée le sprite de la ennemi fast
@@ -102,7 +102,7 @@ img::Image Enemy::enemy_animation(){
                 return robust_march;
             }
         }
-        else if(this->anim%50 > 20 && this->anim%50 <= 30){
+        else if(this->anim%70 > 20 && this->anim%70 <= 30){
             //Afficher le sprite d'animation n°2 avec this->pos_X et this->pos_Y
             if(this->type == Enemy_Type::Fast){
                 //Applique dans la case sélectionnée le sprite de la ennemi fast
@@ -126,7 +126,7 @@ img::Image Enemy::enemy_animation(){
                 return robust_march;
             }
         }
-        else if(this->anim%50 > 30 && this->anim%50 <= 40){
+        else if(this->anim%70 > 30 && this->anim%70 <= 40){
             //Afficher le sprite d'animation n°2 avec this->pos_X et this->pos_Y
             if(this->type == Enemy_Type::Fast){
                 //Applique dans la case sélectionnée le sprite de la ennemi fast
@@ -150,7 +150,7 @@ img::Image Enemy::enemy_animation(){
                 return robust_march;
             }
         }
-        else if(this->anim%50 > 40 && this->anim%50 <= 50){
+        else if(this->anim%70 > 40 && this->anim%70 <= 50){
             //Afficher le sprite d'animation n°2 avec this->pos_X et this->pos_Y
             if(this->type == Enemy_Type::Fast){
                 //Applique dans la case sélectionnée le sprite de la ennemi fast
@@ -174,7 +174,7 @@ img::Image Enemy::enemy_animation(){
                 return robust_march;
             }
         }
-        else {
+        else if(this->anim%70 > 50 && this->anim%70 < 60){
             //Afficher le sprite d'animation n°2 avec this->pos_X et this->pos_Y
             if(this->type == Enemy_Type::Fast){
                 //Applique dans la case sélectionnée le sprite de la ennemi fast
@@ -194,6 +194,30 @@ img::Image Enemy::enemy_animation(){
                 //Applique dans la case sélectionnée le sprite de la ennemi robust
                 //std::cout << "L'ennemi de type robust sera positionnée à la position initiale donnée " << std::endl;
                 img::Image robust_march {img::load(make_absolute_path("images/images_objects/robust/ours_jump2.png", true), 4, true)};
+                this->anim++;
+                return robust_march;
+            }
+        }
+        else {
+            //Afficher le sprite d'animation n°2 avec this->pos_X et this->pos_Y
+            if(this->type == Enemy_Type::Fast){
+                //Applique dans la case sélectionnée le sprite de la ennemi fast
+                //std::cout << "L'ennemi de type fast sera positionnée à la position initiale donnée " << std::endl;
+                img::Image fast_march {img::load(make_absolute_path("images/images_objects/mash/mash1.png", true), 4, true)};
+                this->anim++;
+                return fast_march;
+            }
+            else if(this->type == Enemy_Type::Normal){
+                //Applique dans la case sélectionnée le sprite de la ennemi normal
+                //std::cout << "L'ennemi de type normal sera positionnée à la position initiale donnée " << std::endl;
+                img::Image normal_march {img::load(make_absolute_path("images/images_objects/bird/bird7.png", true), 4, true)};
+                this->anim++;
+                return normal_march;
+            }
+            else if(this->type == Enemy_Type::Robust){
+                //Applique dans la case sélectionnée le sprite de la ennemi robust
+                //std::cout << "L'ennemi de type robust sera positionnée à la position initiale donnée " << std::endl;
+                img::Image robust_march {img::load(make_absolute_path("images/images_objects/robust/ours_jump3.png", true), 4, true)};
                 this->anim++;
                 return robust_march;
             }
