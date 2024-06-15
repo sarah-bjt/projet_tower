@@ -9,19 +9,19 @@ std::string Player::chooseName()
     std::cin >> name;
 };
 
-int Player::increaseMoney()
-{
-    if() //Si tel ennemi est tué vous gagnez tant de points
-    {
-        money+=5;
-    }
-};
-// 
+// int Player::increaseMoney()
+// {
+//     if() //Si tel ennemi est tué vous gagnez tant de points
+//     {
+//         money+=5;
+//     }
+// };
+
 int Player::buy()
 {
-    if() //Si votre qté d'argent est >= au prix, vous pouvez l'acheter et on retire la qté d'argent de notre somme d'argent
+    if(money > price) //Si votre qté d'argent est >= au prix, vous pouvez l'acheter et on retire la qté d'argent de notre somme d'argent
     {
-        money-=
+        money-= price;
     }
     else 
     {
@@ -29,10 +29,15 @@ int Player::buy()
     }
 };
 
-int Player::increaseScore()
+// int Player::increaseScore()
+// {
+//     if() //si tel ennemi est tué vous gagnez tant de points
+//     {
+//         score+=1;
+//     }
+// };
+
+void addTower(const Tower_Type& tower)
 {
-    if() //si tel ennemi est tué vous gagnez tant de points
-    {
-        score+=1;
-    }
-};
+    towers.push_back(tower);
+}
