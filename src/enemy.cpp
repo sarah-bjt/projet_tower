@@ -343,23 +343,6 @@ void Enemy::enemy_arrives(){   //on va devoir relier à Party.cpp/.hpp (position
 void Enemy::enemy_forward(const double time_elapse, const WeightedGraph& graph){  //, bool horizontal, bool vertical, bool UP, bool DOWN, bool LEFT, bool RIGHT
     if(this->enemy_id == -1 || this->enemy_id == -2) return;  
 
-    // if(horizontal && !vertical){   // Vérifie les directions demandées pour toute la vague d'ennemis
-    //     if(RIGHT && !LEFT){
-    //         this->pos_X+=this->speed*time_elapse;  //modifie la position de l'ennemi directement en ajoutant le temps direct multiplié par la vitesse de l'ennemi.  
-    //     }
-    //     else if(!RIGHT && LEFT){
-    //         this->pos_X-=this->speed*time_elapse;
-    //     }
-    // }
-    // else if(!horizontal && vertical){
-    //     if(UP && !DOWN){
-    //         this->pos_Y+=this->speed*time_elapse;
-    //     }
-    //     else if(!UP && DOWN){
-    //         this->pos_Y-=this->speed*time_elapse;
-    //     }
-    // }
-
     if (this->path.empty() || this->current_target >= this->path.size()) return;  // Si le chemin est vide ou l'ennemi a atteint la fin du chemin
 
     int target_node = this->path[this->current_target];
