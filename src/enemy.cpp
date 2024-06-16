@@ -331,7 +331,7 @@ bool Enemy::enemy_death(float bullet_x, float bullet_y, int power_impact){
 
 void Enemy::enemy_arrives(){   //on va devoir relier à Party.cpp/.hpp (position d'apparition des ennemis, position de la sortie à protéger)
     //conditions exemple mais faudra aller les chercher dans les infos de path, party, levels...
-    if(this->pos_Y+0.1f <= -0.5f){ //this->pos_X+0.1f >= 0.5f, --> ça ce sera plutôt dans une autre fonction qui fera appel à celle là
+    if(this->current_target > this->path.size()){ //this->pos_X+0.1f >= 0.5f, --> ça ce sera plutôt dans une autre fonction qui fera appel à celle là
         //std::cout << "arrivé" << std::endl;
         this->enemy_id = -2;
         //return true;
