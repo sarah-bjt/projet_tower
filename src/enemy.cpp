@@ -13,6 +13,8 @@
 #include "utils.hpp"
 #include "GLHelpers.hpp"
 
+#include "path.hpp"
+
 void Enemy::enemy_apparition(img::Image image){
     if(this->enemy_id == -1 || this->enemy_id == -2) return; 
 
@@ -338,24 +340,45 @@ void Enemy::enemy_arrives(){   //on va devoir relier à Party.cpp/.hpp (position
     //faire disparaitre le sprite de l'ennemi sans faire augmenter le score du joueur
 }
 
-void Enemy::enemy_forward(const double time_elapse, bool horizontal, bool vertical, bool UP, bool DOWN, bool LEFT, bool RIGHT){
+void Enemy::enemy_forward(const double time_elapse, const WeightedGraph& graph){  //, bool horizontal, bool vertical, bool UP, bool DOWN, bool LEFT, bool RIGHT
     if(this->enemy_id == -1 || this->enemy_id == -2) return;  
 
-    if(horizontal && !vertical){   // Vérifie les directions demandées pour toute la vague d'ennemis
-        if(RIGHT && !LEFT){
-            this->pos_X+=this->speed*time_elapse;  //modifie la position de l'ennemi directement en ajoutant le temps direct multiplié par la vitesse de l'ennemi.  
-        }
-        else if(!RIGHT && LEFT){
-            this->pos_X-=this->speed*time_elapse;
-        }
+    // if(horizontal && !vertical){   // Vérifie les directions demandées pour toute la vague d'ennemis
+    //     if(RIGHT && !LEFT){
+    //         this->pos_X+=this->speed*time_elapse;  //modifie la position de l'ennemi directement en ajoutant le temps direct multiplié par la vitesse de l'ennemi.  
+    //     }
+    //     else if(!RIGHT && LEFT){
+    //         this->pos_X-=this->speed*time_elapse;
+    //     }
+    // }
+    // else if(!horizontal && vertical){
+    //     if(UP && !DOWN){
+    //         this->pos_Y+=this->speed*time_elapse;
+    //     }
+    //     else if(!UP && DOWN){
+    //         this->pos_Y-=this->speed*time_elapse;
+    //     }
+    // }
+
+    if (this->path.empty() || this->current_target >= this->path.size()) return;  // Si le chemin est vide ou l'ennemi a atteint la fin du chemin
+
+    int target_node = this->path[this->current_target];
+    // Supposons que vous avez une méthode pour obtenir la position du nœud
+    std::pair<float, float> target_position = get_node_position(target_node, graph);
+
+    float dx = target_position.first - this->pos_X;
+    float dy = target_position.second - this->pos_Y;
+    float distance = sqrt(dx * dx + dy * dy);
+
+    if (distance < this->speed * time_elapse) {  // Si l'ennemi atteint le nœud cible
+        this->pos_X = target_position.first;
+        this->pos_Y = target_position.second;
+        this->current_target++;
+    } else {
+        // Déplace l'ennemi vers le nœud cible
+        this->pos_X += this->speed * time_elapse * (dx / distance);
+        this->pos_Y += this->speed * time_elapse * (dy / distance);
     }
-    else if(!horizontal && vertical){
-        if(UP && !DOWN){
-            this->pos_Y+=this->speed*time_elapse;
-        }
-        else if(!UP && DOWN){
-            this->pos_Y-=this->speed*time_elapse;
-        }
-    }
+
     this->enemy_apparition(this->enemy_animation()); //Apelle la méthode d'apparition de l'ennemi
 }
