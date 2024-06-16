@@ -4,4 +4,4 @@ Dans CMakeLists.txt :
 	Lignes 86-87 : Pour windows, enlever ces deux lignes (commentaires)
 
 Dans Bullt.cpp :
-	Ligne 30 : M_PI peut ne pas fonctionner sur Windows, 
+	Ligne 30 : M_PI peut ne pas fonctionner sur Windows, et apparemment sur Linux il faut impérativement mettre M_PI
