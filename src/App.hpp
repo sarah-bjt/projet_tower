@@ -26,7 +26,8 @@ private:
     float _viewSize {};
 
     // Add your variables here
-    GLuint _texture {};
+    GLuint _tex_tower_rock {};
+    GLuint _tex_tower_wood {};
     float _angle {};
 
     SimpleText TextRenderer {};

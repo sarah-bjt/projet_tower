@@ -11,38 +11,29 @@
 #include "GLHelpers.hpp"
 
 
-App::App() : _previousTime(0.0), _viewSize(1.0) {
+App::App() : _previousTime(0.0), _viewSize(2.0) {
    // load what needs to be loaded here (for example textures)
 
-    img::Image test {img::load(make_absolute_path("images/level.png", true), 3, true)};
+    img::Image tower_rock {img::load(make_absolute_path("images/images_objects/rock_tower.png", true), 4, true)};
+    img::Image tower_wood {img::load(make_absolute_path("images/images_objects/wood_tower.png", true), 4, true)};
     
-    // _texture = loadTexture(test);
+    _tex_tower_rock = loadTexture(tower_rock);
+    _tex_tower_wood = loadTexture(tower_wood);
 }
 
 
 void App::setup() {
     // couleur de fond
-    glClearColor(0.5f, 0.8f, 0.7f, 2.0f);
+    glClearColor(192/255.0f, 226/255.0f, 157/255.0f,1);
 
     // Setup the text renderer with blending enabled and white text color
     TextRenderer.ResetFont();
-    TextRenderer.SetColor(SimpleText::TEXT_COLOR, SimpleText::Color::WHITE);
+    TextRenderer.SetColor(SimpleText::TEXT_COLOR, SimpleText::Color::BLACK);
     TextRenderer.SetColorf(SimpleText::BACKGROUND_COLOR, 0.f, 0.f, 0.f, 0.f);
     TextRenderer.EnableBlending(true);
-
-    // Text to display
-    TextRenderer.Label("le jeu de fouuuu", _width , _height - 20, SimpleText::RIGHT);
 }
 
 void App::update() {
-
-    // const double currentTime { glfwGetTime() };
-    // const double elapsedTime { currentTime - _previousTime};
-    // _previousTime = currentTime;
-
-    // _angle += 10.0f * elapsedTime;
-    // _angle = std::fmod(_angle, 360.0f);
-    
     render();
 }
 
@@ -52,35 +43,57 @@ void App::render() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    // render exemple quad
-    // glColor3f(1.0f, 0.0f, 0.0f);
-    // glBegin(GL_QUADS);
-    //     glVertex2f(-0.5f, -0.5f);
-    //     glVertex2f(0.5f, -0.5f);
-    //     glVertex2f(0.5f, 0.5f);
-    //     glVertex2f(-0.5f, 0.5f);
-    // glEnd();
 
-    // glPushMatrix();
-    // glScalef(0.8f, 0.8f, 0.8f);
-    // //glRotatef(_angle, 0.0f, 0.0f, 1.0f);
-    // //draw_quad_with_texture(_texture);
-    // glPopMatrix();
+    glPushMatrix();
+    glTranslatef(0.5f,0.2f,0);
+    glColor3f(235/255.0f, 185/255.0f, 119/255.0f);
+    glBegin(GL_QUADS);
+        glVertex2f(-0.25f, -0.25f);
+        glVertex2f(0.25f, -0.25f);
+        glVertex2f(0.25f, 0.25f);
+        glVertex2f(-0.25f, 0.25f);
+    glEnd();
+    glPopMatrix();
 
-    //TextRenderer.Label("Example of using SimpleText library", _width / 2, 20, SimpleText::CENTER);
+    glPushMatrix();
+    glTranslatef(0.5f,0.2f,0);
+    glScalef(0.4f, 0.4f, 0.4f);
+    draw_quad_with_texture(_tex_tower_rock);
+    glPopMatrix();
+
+
+    glPushMatrix();
+    glTranslatef(1.3f,0.2f,0);
+    glColor3f(235/255.0f, 185/255.0f, 119/255.0f);
+    glBegin(GL_QUADS);
+        glVertex2f(-0.25f, -0.25f);
+        glVertex2f(0.25f, -0.25f);
+        glVertex2f(0.25f, 0.25f);
+        glVertex2f(-0.25f, 0.25f);
+    glEnd();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(1.3f,0.2f,0);
+    glScalef(0.4f, 0.4f, 0.4f);
+    draw_quad_with_texture(_tex_tower_wood);
+    glPopMatrix();
+
+    TextRenderer.Label("Bienvenue dans notre jeu", _width - _width/4, 60, SimpleText::CENTER);
+    TextRenderer.Label("Vous avez masse de thune", _width - _width/4, 2*60, SimpleText::CENTER);
 
     // Without set precision
     // const std::string angle_label_text { "Angle: " + std::to_string(_angle) };
     // With c++20 you can use std::format
     // const std::string angle_label_text { std::format("Angle: {:.2f}", _angle) };
 
-    // Using stringstream to format the string with fixed precision
-    std::string angle_label_text {};
-    std::stringstream stream {};
-    stream << std::fixed << "Angle: " << std::setprecision(2) << _angle;
-    angle_label_text = stream.str();
+     // Using stringstream to format the string with fixed precision
+    // std::string angle_label_text {};
+    // std::stringstream stream {};
+    // stream << std::fixed << "tessssssssss de merdeeee " << std::setprecision(2) << _angle;
+    // angle_label_text = stream.str();
 
-    //TextRenderer.Label(angle_label_text.c_str(), _width / 2, _height - 4, SimpleText::CENTER);
+    // TextRenderer.Label(angle_label_text.c_str(), _width / 2, _height - 4, SimpleText::CENTER);
 
     TextRenderer.Render();
 }
