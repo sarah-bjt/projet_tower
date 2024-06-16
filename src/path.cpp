@@ -66,9 +66,16 @@ void read_itd_file(const std::string& filepath, WeightedGraph& graph) {
         if (line.find("node") == 0) {
             std::istringstream iss(line);
             std::string node_keyword;
-            int node_id, x, y, next;
-            iss >> node_keyword >> node_id >> x >> y >> next;
-            graph.node_positions.emplace_back(x, y);
+            int node_id;
+            float x, y;
+
+            // Extracting the relevant parts from the line
+            if (iss >> node_keyword >> node_id >> x >> y) {
+                graph.node_positions.emplace_back(x, y);
+            } else {
+                // Handle error in parsing the line
+                std::cerr << "Error parsing line: " << line << std::endl;
+            }
         }
     }
 }
@@ -78,6 +85,15 @@ std::pair<float, float> get_node_position(int node, const WeightedGraph& graph) 
         return graph.node_positions[node];
     } else {
         // Gestion d'erreur si le nœud n'existe pas
-        return std::make_pair(-1.0f, -1.0f);
+        return std::make_pair(-1.0f-(120.0f/720.0f), 1.0f-2.0f*(120.0f/720.0f));
     }
+    // if(node == 1){
+    //     return std::make_pair(-1.0f-(120.0f/720.0f), 1.0f-2.0f*(120.0f/720.0f));
+    // }
+    // else if(node == 2){
+    //     return std::make_pair(-1.0f-(120.0f/720.0f), 1.0f-4.0f*(120.0f/720.0f));
+    // }
+    // else {
+    //     return std::make_pair(0.0f+(120.0f/720.0f), 1.0f-4.0f*(120.0f/720.0f));
+    // }
 }

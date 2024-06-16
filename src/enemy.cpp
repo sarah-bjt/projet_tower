@@ -346,12 +346,11 @@ void Enemy::enemy_forward(const double time_elapse, const WeightedGraph& graph){
     if (this->path.empty() || this->current_target >= this->path.size()) return;  // Si le chemin est vide ou l'ennemi a atteint la fin du chemin
 
     int target_node = this->path[this->current_target];
-    // Supposons que vous avez une méthode pour obtenir la position du nœud
     std::pair<float, float> target_position = get_node_position(target_node, graph);
 
-    float dx = target_position.first - this->pos_X;
-    float dy = target_position.second - this->pos_Y;
-    float distance = sqrt(dx * dx + dy * dy);
+    float dist_x = target_position.first - this->pos_X;
+    float dist_y = target_position.second - this->pos_Y;
+    float distance = sqrt(dist_x * dist_x + dist_y * dist_y);
 
     if (distance < this->speed * time_elapse) {  // Si l'ennemi atteint le nœud cible
         this->pos_X = target_position.first;
@@ -359,8 +358,8 @@ void Enemy::enemy_forward(const double time_elapse, const WeightedGraph& graph){
         this->current_target++;
     } else {
         // Déplace l'ennemi vers le nœud cible
-        this->pos_X += this->speed * time_elapse * (dx / distance);
-        this->pos_Y += this->speed * time_elapse * (dy / distance);
+        this->pos_X += this->speed * time_elapse * (dist_x / distance);
+        this->pos_Y += this->speed * time_elapse * (dist_y / distance);
     }
 
     this->enemy_apparition(this->enemy_animation()); //Apelle la méthode d'apparition de l'ennemi
