@@ -39,7 +39,10 @@ void Map::map_apparition(img::Image const& map) {
     uint8_t const* data = map.data();
     size_t const size = map.width() * map.height();
     // float aspect_ratio = static_cast<float>(window_width) / window_height;
-    float size_case {8*(texture_width / window_width)};
+    float size_case {7*(texture_width / window_width)};
+
+    glPushMatrix();
+    glTranslatef(-11*size_case,-6*size_case,0);
 
     for (int i = 0; i < 12; ++i) {
         for (int j = 0; j < 12; ++j) {
@@ -78,6 +81,7 @@ void Map::map_apparition(img::Image const& map) {
             glDisable(GL_TEXTURE_2D);
         }
     }
+    glPopMatrix();
 }
 
 
