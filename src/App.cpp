@@ -45,36 +45,32 @@ void App::render() {
 
 
     glPushMatrix();
-    glTranslatef(0.5f,0.2f,0);
+    glTranslatef(0.6f,0.2f,0);
     glColor3f(235/255.0f, 185/255.0f, 119/255.0f);
     glBegin(GL_QUADS);
-        glVertex2f(-0.25f, -0.25f);
-        glVertex2f(0.25f, -0.25f);
+        glVertex2f(-0.25f, -0.75f);
+        glVertex2f(0.25f, -0.75f);
         glVertex2f(0.25f, 0.25f);
         glVertex2f(-0.25f, 0.25f);
     glEnd();
-    glPopMatrix();
 
-    glPushMatrix();
-    glTranslatef(0.5f,0.2f,0);
     glScalef(0.4f, 0.4f, 0.4f);
     draw_quad_with_texture(_tex_tower_rock);
     glPopMatrix();
 
 
     glPushMatrix();
-    glTranslatef(1.3f,0.2f,0);
+    glTranslatef(1.35f,0.2f,0);
     glColor3f(235/255.0f, 185/255.0f, 119/255.0f);
     glBegin(GL_QUADS);
-        glVertex2f(-0.25f, -0.25f);
-        glVertex2f(0.25f, -0.25f);
+        glVertex2f(-0.25f, -0.75f);
+        glVertex2f(0.25f, -0.75f);
         glVertex2f(0.25f, 0.25f);
         glVertex2f(-0.25f, 0.25f);
     glEnd();
-    glPopMatrix();
 
-    glPushMatrix();
-    glTranslatef(1.3f,0.2f,0);
+    TextRenderer.Label("The Rock Tower !!", _width - _width/4, 80, SimpleText::CENTER);
+
     glScalef(0.4f, 0.4f, 0.4f);
     draw_quad_with_texture(_tex_tower_wood);
     glPopMatrix();
