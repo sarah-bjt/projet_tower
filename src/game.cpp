@@ -5,13 +5,13 @@
 int var {0};
 
 void Game::create_game(){
-    tower = Tower {1, 200, 3, 0.0005, 150, Tower_Type::Rock, -0.2f, -0.2f};
+    tower = Tower {1, 100, 3, 0.0005, 150, Tower_Type::Rock, -0.2f, -0.2f};
     wave = Wave {};
     wave.wave_setup();
 }
 
 void Game::start(){
-    map.map_apparition(map2);
+    map.map_apparition(map1);
     tower.tower_map_apparition();
     if(var > 20){
         wave.wave_forward(false, true, false, true, false, false);
@@ -21,9 +21,6 @@ void Game::start(){
     }
     tower.tower_aiming(this->wave.enemys);
     for(auto& enemy : this->wave.enemys){
-        // if(enemy.enemy_arrives()){
-        //     enemy.enemy_id = -2;
-        // }
         enemy.enemy_arrives();
     }
     var++;

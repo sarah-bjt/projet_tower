@@ -3,6 +3,8 @@
 #include <unordered_map>
 #include <queue>
 #include <vector>
+#include <fstream>
+#include <sstream>
 
 std::vector<WeightedGraphEdge> WeightedGraph::getNeighbors(int vertex) const
 {
@@ -54,4 +56,28 @@ std::unordered_map<int, std::pair<float, int>> dijkstra(WeightedGraph const& gra
     }
 
     return distances; //On renvoie le tableau associatif contenant les plus courts chemins
+}
+
+void read_itd_file(const std::string& filepath, WeightedGraph& graph) {
+    std::ifstream file(filepath);
+    std::string line;
+
+    while (std::getline(file, line)) {
+        if (line.find("node") == 0) {
+            std::istringstream iss(line);
+            std::string node_keyword;
+            int node_id, x, y, next;
+            iss >> node_keyword >> node_id >> x >> y >> next;
+            graph.node_positions.emplace_back(x, y);
+        }
+    }
+}
+
+std::pair<float, float> get_node_position(int node, const WeightedGraph& graph) {
+    if (node < graph.node_positions.size()) {
+        return graph.node_positions[node];
+    } else {
+        // Gestion d'erreur si le nœud n'existe pas
+        return std::make_pair(-1.0f, -1.0f);
+    }
 }

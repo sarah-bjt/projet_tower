@@ -2,10 +2,12 @@
 
 #include <vector>
 #include "enemy.hpp"
+#include "path.hpp"
 
 struct Wave{
     std::vector<Enemy> enemys {};
     int number_enemys {10};
+    WeightedGraph graph;
 
     //Il va me falloir une instance Path pour pouvoir gérer la direction de la vague, et ainsi faire tourner les ennemis un par un
 
