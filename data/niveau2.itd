@@ -1,0 +1,32 @@
+ITD
+
+# Carte du niveau 2
+map map2.png
+
+# Blanc
+path 255 255 255
+
+# Bleu
+in 0 0 255
+
+# Rouge
+out 255 0 0
+
+graph 17
+node 0 77 15 1
+node 1 77 108 2 3
+node 2 46 108 4
+node 3 108 108 12
+node 4 46 263 5
+node 5 139 263 6
+node 6 139 294 7
+node 7 139 356
+node 8 325 294 6
+node 9 325 201 8
+node 10 263 201 9
+node 11 263 170 10
+node 12 108 170 11
+node 13 263 139 11
+node 14 325 139 13
+node 15 325 77 14
+node 16 356 77 15
