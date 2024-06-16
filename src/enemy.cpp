@@ -19,7 +19,6 @@ void Enemy::enemy_apparition(img::Image image){
     if(this->type == Enemy_Type::Robust){
         this->texture = loadTexture(image);
         glPushMatrix();
-            glScalef(2.5f, 2.5f, 1);
             glEnable(GL_TEXTURE_2D);
             glBindTexture(GL_TEXTURE_2D, this->texture);
             glColor3ub(255, 255, 255);
