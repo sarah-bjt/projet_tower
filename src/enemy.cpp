@@ -20,29 +20,52 @@ void Enemy::enemy_apparition(img::Image image){
 
     if(this->type == Enemy_Type::Robust){
         glScalef(2, 2, 1);
-    }
+        this->texture = loadTexture(image);
+        glPushMatrix();
+            glEnable(GL_TEXTURE_2D);
+            glBindTexture(GL_TEXTURE_2D, this->texture);
+            glColor3ub(255, 255, 255);
+            glBegin(GL_QUADS);
+                glTexCoord2d(0,0);
+                glVertex2f(this->pos_X, this->pos_Y);
 
-    this->texture = loadTexture(image);
-    glPushMatrix();
-        glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, this->texture);
-        glColor3ub(255, 255, 255);
-        glBegin(GL_QUADS);
-            glTexCoord2d(0,0);
-            glVertex2f(this->pos_X, this->pos_Y);
+                glTexCoord2d(1,0);
+                glVertex2f(this->pos_X+(120.0f/720.0f), this->pos_Y);
 
-            glTexCoord2d(1,0);
-            glVertex2f(this->pos_X+(120.0f/720.0f), this->pos_Y);
+                glTexCoord2d(1,1);
+                glVertex2f(this->pos_X+(120.0f/720.0f), this->pos_Y+(120.0f/720.0f));
 
-            glTexCoord2d(1,1);
-            glVertex2f(this->pos_X+(120.0f/720.0f), this->pos_Y+(120.0f/720.0f));
-
-            glTexCoord2d(0,1);
-            glVertex2f(this->pos_X, this->pos_Y+(120.0f/720.0f));
-        glEnd();
-        glBindTexture(GL_TEXTURE_2D, 0);
-        glDisable(GL_TEXTURE_2D);
+                glTexCoord2d(0,1);
+                glVertex2f(this->pos_X, this->pos_Y+(120.0f/720.0f));
+            glEnd();
+            glBindTexture(GL_TEXTURE_2D, 0);
+            glDisable(GL_TEXTURE_2D);
         glPopMatrix();
+        glScalef(0.5f, 0.5f, 1);
+    }
+    else {
+        this->texture = loadTexture(image);
+        glPushMatrix();
+            glEnable(GL_TEXTURE_2D);
+            glBindTexture(GL_TEXTURE_2D, this->texture);
+            glColor3ub(255, 255, 255);
+            glBegin(GL_QUADS);
+                glTexCoord2d(0,0);
+                glVertex2f(this->pos_X, this->pos_Y);
+
+                glTexCoord2d(1,0);
+                glVertex2f(this->pos_X+(120.0f/720.0f), this->pos_Y);
+
+                glTexCoord2d(1,1);
+                glVertex2f(this->pos_X+(120.0f/720.0f), this->pos_Y+(120.0f/720.0f));
+
+                glTexCoord2d(0,1);
+                glVertex2f(this->pos_X, this->pos_Y+(120.0f/720.0f));
+            glEnd();
+            glBindTexture(GL_TEXTURE_2D, 0);
+            glDisable(GL_TEXTURE_2D);
+        glPopMatrix();
+    }
 }
 
 bool Enemy::alive(float bullet_x, float bullet_y, int power_impact){   //cette méthode vérifie les points de vie des ennemis
