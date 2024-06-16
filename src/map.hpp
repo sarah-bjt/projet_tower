@@ -1,3 +1,35 @@
+#pragma once
+
+#include <iostream>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include <img/img.hpp>
+#include "GLHelpers.hpp"
+#include "utils.hpp"
+
+
+struct Map{
+    // Définir les dimensions de la fenêtre
+    const int window_width = 1280;
+    const int window_height = 720;
+
+    // Définition des tailles de texture
+    float texture_width { 31.0f };
+    float texture_height { 31.0f };
+
+    // Fonction pour faire apparaître la map
+    void map_apparition(img::Image const& map);
+};
+
+// Déclaration des images de la map et des textures
+extern img::Image map1;
+extern img::Image map2;
+extern img::Image map3;
+
+extern img::Image path;
+extern img::Image grass;
+
+
 // #pragma once
 
 // // #define GLFW_INCLUDE_NONE
@@ -64,31 +96,3 @@
 
 // std::vector<uint8_t> pixels_as_list(img::Image const& image);
 // void map_apparition(img::Image const& map);
-
-
-#pragma once
-
-#include <iostream>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <img/img.hpp>
-#include "GLHelpers.hpp"
-#include "utils.hpp"
-
-// Définition des constantes
-
-
-// Déclaration des images de la map et des textures
-extern img::Image map1;
-extern img::Image path;
-extern img::Image grass;
-
-// Définition des tailles de texture et de la map finale
-extern float texture_width;
-extern float texture_height;
-
-// Fonction pour obtenir les pixels sous forme de liste
-std::vector<uint8_t> pixels_as_list(img::Image const& image);
-
-// Fonction pour faire apparaître la map
-void map_apparition(img::Image const& map);

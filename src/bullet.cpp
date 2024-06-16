@@ -27,7 +27,7 @@ void Bullet::bullet_draw(){
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(this->X, this->Y);
     for (int i = 0; i <= 100; i++) {
-        float angle = 2.0f * M_PI * float(i) / float(100);
+        float angle = 2.0f * 3.14 * float(i) / float(100);
         float x = cosf(angle) * this->size +  this->X;
         float y = sinf(angle) * this->size +  this->Y;
         

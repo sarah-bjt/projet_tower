@@ -11,7 +11,7 @@ void Game::create_game(){
 }
 
 void Game::start(){
-    map_apparition(map1);
+    map.map_apparition(map2);
     tower.tower_map_apparition();
     if(var > 20){
         wave.wave_forward(false, true, false, true, false, false);
