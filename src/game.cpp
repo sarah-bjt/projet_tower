@@ -5,7 +5,7 @@
 int var {0};
 
 void Game::create_game(){
-    tower = Tower {1, 200, 3, 0.0005, 150, Tower_Type::Rock, 0.0f, 0.0f};
+    tower = Tower {1, 200, 3, 0.0005, 150, Tower_Type::Rock, -0.2f, -0.2f};
     wave = Wave {};
     wave.wave_setup();
 }

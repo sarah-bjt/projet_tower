@@ -37,13 +37,13 @@ void Tower::tower_map_apparition(){   //prend en paramètres les coordonées du 
             glVertex2f(this->x_pos, this->y_pos);
 
             glTexCoord2d(1,0);
-            glVertex2f(this->x_pos+0.2f, this->y_pos);
+            glVertex2f(this->x_pos+(170.0f/720.0f), this->y_pos);
 
             glTexCoord2d(1,1);
-            glVertex2f(this->x_pos+0.2f, this->y_pos+0.2f);
+            glVertex2f(this->x_pos+(170.0f/720.0f), this->y_pos+(170.0f/720.0f));
 
             glTexCoord2d(0,1);
-            glVertex2f(this->x_pos, this->y_pos+0.2f);
+            glVertex2f(this->x_pos, this->y_pos+(170.0f/720.0f));
         glEnd();
         glBindTexture(GL_TEXTURE_2D, 0);
         glDisable(GL_TEXTURE_2D);
@@ -65,13 +65,13 @@ void Tower::tower_map_apparition(){   //prend en paramètres les coordonées du 
             glVertex2f(this->x_pos, this->y_pos);
 
             glTexCoord2d(1,0);
-            glVertex2f(this->x_pos+0.2f, this->y_pos);
+            glVertex2f(this->x_pos+(170.0f/720.0f), this->y_pos);
 
             glTexCoord2d(1,1);
-            glVertex2f(this->x_pos+0.2f, this->y_pos+0.2f);
+            glVertex2f(this->x_pos+(170.0f/720.0f), this->y_pos+(170.0f/720.0f));
 
             glTexCoord2d(0,1);
-            glVertex2f(this->x_pos, this->y_pos+0.2f);
+            glVertex2f(this->x_pos, this->y_pos+(170.0f/720.0f));
         glEnd();
         glBindTexture(GL_TEXTURE_2D, 0);
         glDisable(GL_TEXTURE_2D);
