@@ -3,12 +3,13 @@
 #include "tower.hpp"
 #include "enemy.hpp"
 #include "wave.hpp"
+#include "map.hpp"
 
 struct Game{
     //std::vector<Tower> tower; //(bullet dans tower ...)
     Tower tower;  //En fait ce serait un tableau de tower
     Wave wave; //(enemy dans wave...)
-    //Map map;
+    Map map;
     //Interface interface;
     //Player player;
     //Party party; (Path dans party...)

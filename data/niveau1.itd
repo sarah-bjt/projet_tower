@@ -1,0 +1,31 @@
+ITD
+
+# Carte du niveau 1
+map map1v3.png
+
+# Blanc
+path 255 255 255
+
+# Bleu
+in 0 0 255
+
+# Rouge
+out 255 0 0
+
+graph 16
+node 0 15 263 1
+node 1 46 263 2
+node 2 46 170 3
+node 3 139 170 4
+node 4 139 325 5
+node 5 325 325 6
+node 6 325 232 7
+node 7 263 232 8
+node 8 263 170 9
+node 9 325 170 10
+node 10 325 46 11
+node 11 232 46 12
+node 12 232 108 13
+node 13 139 108 14
+node 14 139 46 15
+node 15 15 46
