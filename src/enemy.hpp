@@ -32,8 +32,8 @@ struct Enemy{
     float pos_Y; //Sa position qui va évoluée avec le temps
     int anim;
     int current_target;
-    GLuint texture {0};
     std::vector<int> path;
+    GLuint texture {0};
 
     //Wave wave;
     void enemy_apparition(img::Image image);  //méthode pour faire apparaître les sprites des ennemis sur la map quand ils arrivent
