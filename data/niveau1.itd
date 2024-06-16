@@ -13,19 +13,19 @@ in 0 0 255
 out 255 0 0
 
 graph 16
-node 0 15 263 1
-node 1 46 263 2
-node 2 46 170 3
-node 3 139 170 4
-node 4 139 325 5
-node 5 325 325 6
-node 6 325 232 7
-node 7 263 232 8
-node 8 263 170 9
-node 9 325 170 10
-node 10 325 46 11
-node 11 232 46 12
-node 12 232 108 13
-node 13 139 108 14
-node 14 139 46 15
-node 15 15 46
+node 0 0 1 1
+node 1 4 1 2
+node 2 4 3 3
+node 3 7 3 4
+node 4 7 1 5
+node 5 10 1 6
+node 6 10 5 7
+node 7 8 5 8
+node 8 8 7 9
+node 9 10 7 10
+node 10 10 10 11
+node 11 4 10 12
+node 12 4 5 13
+node 13 1 5 14
+node 14 1 8 15
+node 15 0 8
