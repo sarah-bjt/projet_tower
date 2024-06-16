@@ -13,13 +13,10 @@
 #include "utils.hpp"
 #include "GLHelpers.hpp"
 
-//float const taille_case {};
-
 void Enemy::enemy_apparition(img::Image image){
     if(this->enemy_id == -1 || this->enemy_id == -2) return; 
 
     if(this->type == Enemy_Type::Robust){
-        glScalef(2, 2, 1);
         this->texture = loadTexture(image);
         glPushMatrix();
             glEnable(GL_TEXTURE_2D);
@@ -41,7 +38,6 @@ void Enemy::enemy_apparition(img::Image image){
             glBindTexture(GL_TEXTURE_2D, 0);
             glDisable(GL_TEXTURE_2D);
         glPopMatrix();
-        glScalef(0.5f, 0.5f, 1);
     }
     else {
         this->texture = loadTexture(image);
