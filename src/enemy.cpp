@@ -27,13 +27,13 @@ void Enemy::enemy_apparition(img::Image image){
                 glVertex2f(this->pos_X, this->pos_Y);
 
                 glTexCoord2d(1,0);
-                glVertex2f(this->pos_X+(120.0f/720.0f), this->pos_Y);
+                glVertex2f(this->pos_X+(200.0f/720.0f), this->pos_Y);
 
                 glTexCoord2d(1,1);
-                glVertex2f(this->pos_X+(120.0f/720.0f), this->pos_Y+(120.0f/720.0f));
+                glVertex2f(this->pos_X+(200.0f/720.0f), this->pos_Y+(200.0f/720.0f));
 
                 glTexCoord2d(0,1);
-                glVertex2f(this->pos_X, this->pos_Y+(120.0f/720.0f));
+                glVertex2f(this->pos_X, this->pos_Y+(200.0f/720.0f));
             glEnd();
             glBindTexture(GL_TEXTURE_2D, 0);
             glDisable(GL_TEXTURE_2D);
@@ -95,7 +95,7 @@ img::Image Enemy::enemy_animation(){
             }
             else if(this->type == Enemy_Type::Robust){
                 //Applique dans la case sélectionnée le sprite de la ennemi robust
-                img::Image robust_repos {img::load(make_absolute_path("images/images_objects/robust/ours1.png", true), 4, true)};
+                img::Image robust_repos {img::load(make_absolute_path("images/images_objects/robust/ours2.png", true), 4, true)};
                 this->anim++;
                 return robust_repos;
             }
