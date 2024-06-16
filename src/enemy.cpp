@@ -13,8 +13,14 @@
 #include "utils.hpp"
 #include "GLHelpers.hpp"
 
+//float const taille_case {};
+
 void Enemy::enemy_apparition(img::Image image){
-    if(this->enemy_id == -1 || this->enemy_id == -2) return;  
+    if(this->enemy_id == -1 || this->enemy_id == -2) return; 
+
+    if(this->type == Enemy_Type::Robust){
+        glScalef(2, 2, 1);
+    }
 
     this->texture = loadTexture(image);
     glPushMatrix();
@@ -26,13 +32,13 @@ void Enemy::enemy_apparition(img::Image image){
             glVertex2f(this->pos_X, this->pos_Y);
 
             glTexCoord2d(1,0);
-            glVertex2f(this->pos_X+0.2f, this->pos_Y);
+            glVertex2f(this->pos_X+(120.0f/720.0f), this->pos_Y);
 
             glTexCoord2d(1,1);
-            glVertex2f(this->pos_X+0.2f, this->pos_Y+0.2f);
+            glVertex2f(this->pos_X+(120.0f/720.0f), this->pos_Y+(120.0f/720.0f));
 
             glTexCoord2d(0,1);
-            glVertex2f(this->pos_X, this->pos_Y+0.2f);
+            glVertex2f(this->pos_X, this->pos_Y+(120.0f/720.0f));
         glEnd();
         glBindTexture(GL_TEXTURE_2D, 0);
         glDisable(GL_TEXTURE_2D);
@@ -70,7 +76,7 @@ img::Image Enemy::enemy_animation(){
             }
             else if(this->type == Enemy_Type::Robust){
                 //Applique dans la case sélectionnée le sprite de la ennemi robust
-                img::Image robust_repos {img::load(make_absolute_path("images/images_objects/robust/robust_repos.png", true), 4, true)};
+                img::Image robust_repos {img::load(make_absolute_path("images/images_objects/robust/ours1.png", true), 4, true)};
                 this->anim++;
                 return robust_repos;
             }
@@ -270,7 +276,7 @@ img::Image Enemy::enemy_animation(){
             }
             else if(this->type == Enemy_Type::Robust){
                 //Applique dans la case sélectionnée le sprite de la ennemi robust
-                img::Image robust_march {img::load(make_absolute_path("images/images_objects/robust/ours2.png", true), 4, true)};
+                img::Image robust_march {img::load(make_absolute_path("images/images_objects/robust/ours3.png", true), 4, true)};
                 this->anim++;
                 return robust_march;
             }
@@ -280,7 +286,7 @@ img::Image Enemy::enemy_animation(){
 
 bool Enemy::enemy_death(float bullet_x, float bullet_y, int power_impact){
     if(!this->alive(bullet_x, bullet_y, power_impact)){
-        std::cout << "MORT" << std::endl;
+        //std::cout << "MORT" << std::endl;
         return true;
         //Faire disparaitre le sprite de l'ennemi à tout jamais (ça va faire un trou dans la vague d'ennemi et c'est normal)
         //Et faire augmenter le score du joueur
@@ -305,7 +311,7 @@ bool Enemy::enemy_death(float bullet_x, float bullet_y, int power_impact){
 void Enemy::enemy_arrives(){   //on va devoir relier à Party.cpp/.hpp (position d'apparition des ennemis, position de la sortie à protéger)
     //conditions exemple mais faudra aller les chercher dans les infos de path, party, levels...
     if(this->pos_Y+0.1f <= -0.5f){ //this->pos_X+0.1f >= 0.5f, --> ça ce sera plutôt dans une autre fonction qui fera appel à celle là
-        std::cout << "arrivé" << std::endl;
+        //std::cout << "arrivé" << std::endl;
         this->enemy_id = -2;
         //return true;
     }
