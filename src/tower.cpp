@@ -95,9 +95,10 @@ void Tower::tower_aiming(std::vector<Enemy>& enemys){
     bool not_alive {false};
     //il faudra que je sois relié à wave pour avoir un tableau de Enemy
     for(int i {0}; i<enemys.size(); i++){ 
-        bool dist_X {(enemys[i].pos_X+0.1f > this->x_pos+0.1f - this->fire_distance*0.2f) && (enemys[i].pos_X+0.1f < this->x_pos+0.1f + this->fire_distance*0.2f)};
-        bool dist_Y {(enemys[i].pos_Y+0.1f > this->y_pos+0.1f - this->fire_distance*0.2f) && (enemys[i].pos_Y+0.1f < this->y_pos+0.1f + this->fire_distance*0.2f)};  //verif des distances pour les ennemys dans le périmètre de la tour
+        bool dist_X {(enemys[i].pos_X+((120.0f/720.0f)/2.0f) > this->x_pos+((120.0f/720.0f)/2.0f) - this->fire_distance*(120.0f/720.0f)) && (enemys[i].pos_X+((120.0f/720.0f)/2.0f) < this->x_pos+((120.0f/720.0f)/2.0f) + this->fire_distance*(120.0f/720.0f))};
+        bool dist_Y {(enemys[i].pos_Y+((120.0f/720.0f)/2.0f) > this->y_pos+((120.0f/720.0f)/2.0f) - this->fire_distance*(120.0f/720.0f)) && (enemys[i].pos_Y+((120.0f/720.0f)/2.0f) < this->y_pos+((120.0f/720.0f)/2.0f) + this->fire_distance*(120.0f/720.0f))};  //verif des distances pour les ennemys dans le périmètre de la tour
         if(dist_X && dist_Y && enemys[i].enemy_id!=-1){  //Si l'ennemi se trouve dans la zone de tire et qu'il n'est pas déjà mort 
+            std::cout << "a capté" << std::endl;
             this->tower_fire(enemys[i].pos_X, enemys[i].pos_Y);
             not_alive = enemys[i].enemy_death(this->bullet.X, this->bullet.Y, this->fire_power);
 
