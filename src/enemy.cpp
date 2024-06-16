@@ -302,13 +302,14 @@ bool Enemy::enemy_death(float bullet_x, float bullet_y, int power_impact){
     return false;
 }
 
-bool Enemy::enemy_arrives(){   //on va devoir relier à Party.cpp/.hpp (position d'apparition des ennemis, position de la sortie à protéger)
+void Enemy::enemy_arrives(){   //on va devoir relier à Party.cpp/.hpp (position d'apparition des ennemis, position de la sortie à protéger)
     //conditions exemple mais faudra aller les chercher dans les infos de path, party, levels...
     if(this->pos_Y+0.1f <= -0.5f){ //this->pos_X+0.1f >= 0.5f, --> ça ce sera plutôt dans une autre fonction qui fera appel à celle là
         std::cout << "arrivé" << std::endl;
-        return true;
+        this->enemy_id = -2;
+        //return true;
     }
-    return false;
+    //return false;
     //faire disparaitre le sprite de l'ennemi sans faire augmenter le score du joueur
 }
 

@@ -35,7 +35,7 @@ struct Enemy{
     bool alive(float bullet_x, float bullet_y, int power_impact); //méthode qui permettra au jeu de vérifier simultanément si l'ennemi est toujours en vie ou mort
     img::Image enemy_animation();   //méthode pour faire les sprites animés des ennemis (ils marchent)
     bool enemy_death(float bullet_x, float bullet_y, int power_impact);   //méthode pour compter lorsqu'un ennemi est mort dû au joueur, et faire augmenter l'argent du joueur en fonction de money_reward
-    bool enemy_arrives();   //méthode pour comptabiliser lorsqu'un ennemi disparait par le portail sans se faire tuer par le joueur (il vit).
+    void enemy_arrives();   //méthode pour comptabiliser lorsqu'un ennemi disparait par le portail sans se faire tuer par le joueur (il vit).
     void enemy_forward(const double time_elapse, bool horizontal, bool vertical, bool UP, bool DOWN, bool LEFT, bool RIGHT); 
     // ça c'est la fonction qui va permettre que les ennemis prennent la même directions sans pour autant agir en bloc
 };

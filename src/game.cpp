@@ -20,9 +20,10 @@ void Game::start(){
     }
     tower.tower_aiming(this->wave.enemys);
     for(auto& enemy : this->wave.enemys){
-        if(enemy.enemy_arrives()){
-            enemy.enemy_id = -2;
-        }
+        // if(enemy.enemy_arrives()){
+        //     enemy.enemy_id = -2;
+        // }
+        enemy.enemy_arrives();
     }
     var++;
 }
