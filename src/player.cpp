@@ -3,41 +3,41 @@
 #include "enemy.hpp"
 
 
-std::string Player::chooseName()
-{
-    std::cout << "Entrez un nom : " << std::endl;
-    std::cin >> name;
-};
-
-// int Player::increaseMoney()
+// std::string Player::chooseName()
 // {
-//     if() //Si tel ennemi est tué vous gagnez tant de points
+//     std::cout << "Entrez un nom : " << std::endl;
+//     std::cin >> name;
+// };
+
+// // int Player::increaseMoney()
+// // {
+// //     if() //Si tel ennemi est tué vous gagnez tant de points
+// //     {
+// //         money+=5;
+// //     }
+// // };
+
+// int Player::buy()
+// {
+//     if(money > price) //Si votre qté d'argent est >= au prix, vous pouvez l'acheter et on retire la qté d'argent de notre somme d'argent
 //     {
-//         money+=5;
+//         money-= price;
+//     }
+//     else 
+//     {
+//         std::cout << "Vous n'avez pas assez d'argent" << std::endl;
 //     }
 // };
 
-int Player::buy()
-{
-    if(money > price) //Si votre qté d'argent est >= au prix, vous pouvez l'acheter et on retire la qté d'argent de notre somme d'argent
-    {
-        money-= price;
-    }
-    else 
-    {
-        std::cout << "Vous n'avez pas assez d'argent" << std::endl;
-    }
-};
+// // int Player::increaseScore()
+// // {
+// //     if() //si tel ennemi est tué vous gagnez tant de points
+// //     {
+// //         score+=1;
+// //     }
+// // };
 
-// int Player::increaseScore()
+// void addTower(const Tower_Type& tower)
 // {
-//     if() //si tel ennemi est tué vous gagnez tant de points
-//     {
-//         score+=1;
-//     }
-// };
-
-void addTower(const Tower_Type& tower)
-{
-    towers.push_back(tower);
-}
+//     towers.push_back(tower);
+// }
