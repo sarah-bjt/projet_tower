@@ -13,12 +13,13 @@ void Game::create_game(){
 void Game::start(){
     map.map_apparition(map1);
     tower.tower_map_apparition();
-    if(var > 20){
-        wave.wave_forward(false, true, false, true, false, false);
-    }
-    else {
-        wave.wave_forward(true, false, false, false, false, true);
-    }
+    // if(var > 20){
+    //     wave.wave_forward(false, true, false, true, false, false);
+    // }
+    // else {
+    //     wave.wave_forward(true, false, false, false, false, true);
+    // }
+    wave.wave_forward();
     tower.tower_aiming(this->wave.enemys);
     for(auto& enemy : this->wave.enemys){
         enemy.enemy_arrives();
