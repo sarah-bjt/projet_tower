@@ -10,35 +10,37 @@
 #include "utils.hpp"
 #include "GLHelpers.hpp"
 
-#include "game.hpp"
-#include "tower.hpp"
 
-App::App() : _previousTime(0.0), _viewSize(2.0) {
+App::App() : _previousTime(0.0), _viewSize(1.0) {
    // load what needs to be loaded here (for example textures)
 
     img::Image test {img::load(make_absolute_path("images/level.png", true), 3, true)};
     
-    //_texture = loadTexture(test);
+    // _texture = loadTexture(test);
 }
 
+
 void App::setup() {
-    // Set the clear color to a nice blue
-    glClearColor(0.0f, 0.0f, 0.4f, 1.0f);
+    // couleur de fond
+    glClearColor(0.5f, 0.8f, 0.7f, 2.0f);
 
     // Setup the text renderer with blending enabled and white text color
     TextRenderer.ResetFont();
     TextRenderer.SetColor(SimpleText::TEXT_COLOR, SimpleText::Color::WHITE);
     TextRenderer.SetColorf(SimpleText::BACKGROUND_COLOR, 0.f, 0.f, 0.f, 0.f);
     TextRenderer.EnableBlending(true);
+
+    // Text to display
+    TextRenderer.Label("le jeu de fouuuu", _width , _height - 20, SimpleText::RIGHT);
 }
 
 void App::update() {
 
-    const double currentTime { glfwGetTime() };
-    const double elapsedTime { currentTime - _previousTime};
-    _previousTime = currentTime;
+    // const double currentTime { glfwGetTime() };
+    // const double elapsedTime { currentTime - _previousTime};
+    // _previousTime = currentTime;
 
-    _angle += 10.0f * elapsedTime;
+    // _angle += 10.0f * elapsedTime;
     // _angle = std::fmod(_angle, 360.0f);
     
     render();
@@ -59,11 +61,11 @@ void App::render() {
     //     glVertex2f(-0.5f, 0.5f);
     // glEnd();
 
-    glPushMatrix();
-    glScalef(0.8f, 0.8f, 0.8f);
-    //glRotatef(_angle, 0.0f, 0.0f, 1.0f);
-    //draw_quad_with_texture(_texture);
-    glPopMatrix();
+    // glPushMatrix();
+    // glScalef(0.8f, 0.8f, 0.8f);
+    // //glRotatef(_angle, 0.0f, 0.0f, 1.0f);
+    // //draw_quad_with_texture(_texture);
+    // glPopMatrix();
 
     //TextRenderer.Label("Example of using SimpleText library", _width / 2, 20, SimpleText::CENTER);
 
