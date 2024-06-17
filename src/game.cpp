@@ -34,10 +34,13 @@ void Game::update(int player_action, std::pair<double, double> mouse_position)
     static bool woodTowerPurchased = false; // Variable statique pour suivre l'état de l'achat de la tour en bois
     static bool rockTowerPurchased = false; // Variable statique pour suivre l'état de l'achat de la tour en pierre
 
+    float position_tower_x {-1.85f + ( static_cast<float>( mouse_position.first)/60)*(120.0f/720.0f)};
+    float position_tower_y {0.85f - ( static_cast<float>( mouse_position.second)/60)*(120.0f/720.0f)};
+
     if (player_action == 1 && !woodTowerPurchased) //Pour tower Wood
     {
         std::cout << "achat tour B dans les positions "<<mouse_position.first<<mouse_position.second << std::endl;
-        Tower towerW = Tower {1, 20, 2, 0.0005, 60, Tower_Type::Wood,static_cast<float>( mouse_position.first), static_cast<float>(mouse_position.second)};
+        Tower towerW = Tower {1, 20, 2, 0.0005, 60, Tower_Type::Wood,position_tower_x, position_tower_y};
         this->player.decreaseMoney(towerW.price);
         all_towers.push_back(towerW);
         std::cout << "argent = " << this->player.money << std::endl;
@@ -47,7 +50,7 @@ void Game::update(int player_action, std::pair<double, double> mouse_position)
     else if (player_action == 2 && !rockTowerPurchased) // Pour tower Rock
     {
         std::cout << "achat tour P dans les positions "<<mouse_position.first<<mouse_position.second << std::endl;
-        Tower towerR = Tower {1, 80, 3, 0.0005, 150, Tower_Type::Rock,static_cast<float>(mouse_position.first), static_cast<float>( mouse_position.second)};
+        Tower towerR = Tower {1, 80, 3, 0.0005, 150, Tower_Type::Rock,position_tower_x, position_tower_y};
         this->player.decreaseMoney(towerR.price);
         all_towers.push_back(towerR);
         std::cout << "argent = " << this->player.money << std::endl;
