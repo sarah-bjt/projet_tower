@@ -34,8 +34,8 @@ void Game::update(int player_action, std::pair<double, double> mouse_position)
     static bool woodTowerPurchased = false; // Variable statique pour suivre l'état de l'achat de la tour en bois
     static bool rockTowerPurchased = false; // Variable statique pour suivre l'état de l'achat de la tour en pierre
 
-    float position_tower_x {-1.85f + ( static_cast<float>( mouse_position.first)/60)*(120.0f/720.0f)};
-    float position_tower_y {0.85f - ( static_cast<float>( mouse_position.second)/60)*(120.0f/720.0f)};
+    float position_tower_x {-1.85f + static_cast<int>( static_cast<float>( mouse_position.first)/60)*(120.0f/720.0f)};
+    float position_tower_y {0.85f - static_cast<int>( static_cast<float>( mouse_position.second)/60)*(120.0f/720.0f)};
 
     if (player_action == 1 && !woodTowerPurchased) //Pour tower Wood
     {
