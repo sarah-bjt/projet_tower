@@ -8,9 +8,11 @@
 class App {
 public:
     App(const std::string& player_name);
+    int score;
+    int money;
 
     void setup();
-    void update();
+    void update(Player& player);
     
     // GLFW callbacks binding
     void key_callback(int key, int scancode, int action, int mods);

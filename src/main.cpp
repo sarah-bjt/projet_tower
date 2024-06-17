@@ -132,7 +132,7 @@ int main() {
             player_action = 0;
         }
 
-        app.update();
+        app.update(new_game.player);
         new_game.start();
 
         // Swap front and back buffers

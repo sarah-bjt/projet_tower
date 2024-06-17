@@ -9,6 +9,7 @@
 #include <sstream>
 #include "simpletext.h"
 #include <GLFW/glfw3.h>
+#include "player.hpp"
 
 
 
@@ -40,13 +41,17 @@ void App::setup() {
     TextRenderer.EnableBlending(true);
 }
 
-void App::update() {
+void App::update(Player& player) {
+    this->score = player.score;
+    this->money = player.money;
     render();
 }
 
 
 
 void App::render() {
+    this->score=0;
+    this->money=200;
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
@@ -65,11 +70,11 @@ void App::render() {
     // Info joueur
 
     // score
-    const std::string player_score_text { "votre score : " + std::to_string(0) };
+    const std::string player_score_text { "votre score : " + std::to_string(score) };
     TextRenderer.Label(player_score_text.c_str(), _width - _width/4, 140, SimpleText::CENTER);
 
     // argent (oeuf)
-    const std::string player_money_text { "votre nombre d oeufs : " + std::to_string(200) };
+    const std::string player_money_text { "votre nombre d oeufs : " + std::to_string(money) };
     TextRenderer.Label(player_money_text.c_str(), _width - _width/4, 160, SimpleText::CENTER);
 
     // visuel Boutique
