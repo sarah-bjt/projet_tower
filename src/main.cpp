@@ -25,6 +25,8 @@ int main() {
     std::cout << "Entrez votre nom: ";
     std::getline(std::cin, player_name);
 
+    std::cout <<  " Le jeu va commencer ! " << std::endl;
+
     // Set an error callback to display glfw errors
     glfwSetErrorCallback([](int error, const char* description) {
         std::cerr << "Error " << error << ": " << description << std::endl;
@@ -113,6 +115,7 @@ int main() {
 
         // Get time (in second) at loop beginning
 		double startTime { glfwGetTime() };
+        
 
         glfwPollEvents(); // Ensure events are processed to update key state
 

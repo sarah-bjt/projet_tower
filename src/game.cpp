@@ -34,6 +34,16 @@ void Game::start(){
     var++;
 }
 
+// void Game::check_game_over() {
+//     if (/* Condition de victoire */) {
+//         app->player_won = true;
+//         app->game_over = true;
+//     } else if (/* Condition de défaite */) {
+//         app->player_won = false;
+//         app->game_over = true;
+//     }
+// }
+
 void Game::update(int player_action, std::pair<double, double> position)
 {
     static bool woodTowerPurchased = false; // Variable statique pour suivre l'état de l'achat de la tour en bois
@@ -59,3 +69,4 @@ void Game::update(int player_action, std::pair<double, double> position)
         rockTowerPurchased = false;
     }
 }
+

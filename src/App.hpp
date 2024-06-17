@@ -31,8 +31,11 @@ private:
     GLuint _tex_tower_rock {};
     GLuint _tex_tower_wood {};
     GLuint _tex_egg {};
-    float _angle {};
     std::string _player_name;
+    GLuint _tex_win {};
+    GLuint _tex_lose {};
+    bool game_over = false;
+    bool player_won = false;
 
     SimpleText TextRenderer {};
 };
