@@ -64,11 +64,15 @@ int main() {
 
     App app {};
 
+
+
+
     glfwSetWindowUserPointer(window, &app);
 
     glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
         window_as_app(window).key_callback(key, scancode, action, mods);
     });
+
     glfwSetMouseButtonCallback(window, [](GLFWwindow* window, int button, int action, int mods) {
         window_as_app(window).mouse_button_callback(button, action, mods);
     });
@@ -90,6 +94,8 @@ int main() {
     }
 
     app.setup();
+
+
 
     // Loop until the user closes the window
     while (!glfwWindowShouldClose(window)) {
@@ -114,6 +120,7 @@ int main() {
 			glfwWaitEventsTimeout(TARGET_TIME_FOR_FRAME-elapsedTime);
 		}
     }
+
 
     glfwTerminate();
     return 0;

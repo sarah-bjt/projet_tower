@@ -13,11 +13,19 @@
 #include "utils.hpp"
 #include "GLHelpers.hpp"
 
+
+
+
 double previous_time {0.0};
 
 void Wave::create_wave(int level){
     WeightedGraph graphe;
-    read_itd_file(make_absolute_path("data/niveau1.itd", true), graphe);
+    // Convert std::filesystem::path to std::string
+    std::filesystem::path path = make_absolute_path("data/niveau1.itd", true);
+    read_itd_file(path.string(), graphe);
+
+    // WeightedGraph graphe;
+    // read_itd_file(make_absolute_path("data/niveau1.itd", true), graphe);
     for(int i {0}; i<graphe.node_positions.size(); i++){
         std::cout << graphe.node_positions[i].first << ", " << graphe.node_positions[i].second << std::endl;
     }
