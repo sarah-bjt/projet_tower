@@ -123,11 +123,18 @@ void App::render() {
 
 }
 
-void App::key_callback(int key, int scancode, int action, int mods) {
-    // std::cout << "je suis dans key callback" << std::endl;
-        // Vérifier si la touche W est pressée
-    if (key == 90 && scancode == 44 && action == GLFW_PRESS) {
-        std::cout << "La touche W a été pressée." << std::endl;
+int App::key_callback(int key, int scancode, int action, int mods) {
+    if (key == 90 && scancode == 44 && action == GLFW_PRESS)
+    {
+        return 1; // Pour la touche W
+    }
+    else if (key == 82 && scancode == 19 && action == GLFW_PRESS)
+    {
+        return 2; // Pour la touche R
+    }
+    else
+    {
+        return 0;
     }
 }
 
@@ -137,7 +144,8 @@ void App::mouse_button_callback(int /*button*/, int /*action*/, int /*mods*/) {
 void App::scroll_callback(double /*xoffset*/, double /*yoffset*/) {
 }
 
-void App::cursor_position_callback(double xpos, double ypos) {
+std::pair<double, double> App::cursor_position_callback(double xpos, double ypos) {
+    return std::make_pair(xpos, ypos);
 }
 
 void App::size_callback(int width, int height) {
