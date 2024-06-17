@@ -4,7 +4,7 @@
 #include "enemy.hpp"
 #include "wave.hpp"
 #include "map.hpp"
-#include "app.hpp"
+#include "App.hpp"
 
 struct Game{
     //std::vector<Tower> tower; //(bullet dans tower ...)

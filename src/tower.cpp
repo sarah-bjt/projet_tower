@@ -16,6 +16,7 @@
 #include "utils.hpp"
 #include "GLHelpers.hpp"
 
+float time_to_wait {0.0f};
 
 const int window_width = 1280;
 const int window_height = 720;
@@ -87,10 +88,6 @@ void Tower::tower_map_apparition(){   //prend en paramètres les coordonées du 
     // }
 }
 
-void Tower::tower_interface_apparition(){    //peut être qu'au final on aura pas besoin de cette méthode
-    //Applique définitivement les sprites de chaque tower dans la boutique de l'interface
-}
-
 void Tower::tower_aiming(std::vector<Enemy>& enemys){
     bool not_alive {false};
     //il faudra que je sois relié à wave pour avoir un tableau de Enemy
@@ -98,16 +95,19 @@ void Tower::tower_aiming(std::vector<Enemy>& enemys){
         bool dist_X {(enemys[i].pos_X+((120.0f/720.0f)/2.0f) > this->x_pos+((120.0f/720.0f)/2.0f) - this->fire_distance*(120.0f/720.0f)) && (enemys[i].pos_X+((120.0f/720.0f)/2.0f) < this->x_pos+((120.0f/720.0f)/2.0f) + this->fire_distance*(120.0f/720.0f))};
         bool dist_Y {(enemys[i].pos_Y+((120.0f/720.0f)/2.0f) > this->y_pos+((120.0f/720.0f)/2.0f) - this->fire_distance*(120.0f/720.0f)) && (enemys[i].pos_Y+((120.0f/720.0f)/2.0f) < this->y_pos+((120.0f/720.0f)/2.0f) + this->fire_distance*(120.0f/720.0f))};  //verif des distances pour les ennemys dans le périmètre de la tour
         if(dist_X && dist_Y && enemys[i].enemy_id!=-1){  //Si l'ennemi se trouve dans la zone de tire et qu'il n'est pas déjà mort 
-            std::cout << "a capté" << std::endl;
-            this->tower_fire(enemys[i].pos_X, enemys[i].pos_Y);
-            not_alive = enemys[i].enemy_death(this->bullet.X, this->bullet.Y, this->fire_power);
+            if(time_to_wait >= this->fire_rythm || time_to_wait == 0.0f){
+                std::cout << "a capté" << std::endl;
+                this->tower_fire(enemys[i].pos_X, enemys[i].pos_Y);
+                not_alive = !enemys[i].alive(this->bullet.X, this->bullet.Y, this->fire_power);
 
-            if(not_alive){  //si l'ennemi est mort et qu'il n'est pas DEJA mort alors on change son statut en mort
-                enemys[i].enemy_id = -1;
-                not_alive = false;
+                if(not_alive){  //si l'ennemi est mort et qu'il n'est pas DEJA mort alors on change son statut en mort
+                    enemys[i].enemy_id = -1;
+                    not_alive = false;
+                }
+
+                time_to_wait = 0.0f;
             }
-
-            //break;
+            time_to_wait += 0.01f;
         }
     }
     //on récupère la position de chaque ennemi de la vague (tableau)
@@ -115,7 +115,7 @@ void Tower::tower_aiming(std::vector<Enemy>& enemys){
 }
 
 void Tower::tower_fire(float x_pos_enemy, float y_pos_enemy){
-    this->bullet = Bullet{0.01f, 1.5f, this->x_pos+0.1f, this->y_pos+0.1f}; //, 0.0f, 0.0f
+    this->bullet = Bullet{0.01f, 1.5f, this->x_pos+(120.0f/720.0f)/2.0f, this->y_pos+(120.0f/720.0f)/2.0f}; //, 0.0f, 0.0f
     this->bullet.bullet_fire(x_pos_enemy, y_pos_enemy);
 }
 

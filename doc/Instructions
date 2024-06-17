@@ -5,3 +5,9 @@ Dans CMakeLists.txt :
 
 Dans Bullt.cpp :
 	Ligne 30 : M_PI peut ne pas fonctionner sur Windows, et apparemment sur Linux il faut impérativement mettre M_PI
+
+Dans App.cpp :
+	Ligne 83 : Pour windows la condition du if est : Windows : key == 90 && scancode == 44 && action == GLFW_PRESS
+				Pour Linux c'est : key == 90 && scancode == 52 && action == GLFW_PRESS
+	Ligne 86 : Pour windows la condition du if est : Windows : key == 82 && scancode == 19 && action == GLFW_PRESS
+				Pour Linux c'est : key == 82 && scancode == 27 && action == GLFW_PRESS

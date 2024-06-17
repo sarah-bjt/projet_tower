@@ -67,7 +67,8 @@ void Enemy::enemy_apparition(img::Image image){
 }
 
 bool Enemy::alive(float bullet_x, float bullet_y, int power_impact){   //cette méthode vérifie les points de vie des ennemis
-    if(bullet_x < this->pos_X+0.02f && bullet_y > this->pos_Y-0.02f){
+    std::cout << "entre dans alive" << std::endl;
+    if((bullet_x < this->pos_X+(120.0f/720.0f) && bullet_x > this->pos_X) && (bullet_y > this->pos_Y && bullet_y < this->pos_Y+(120.0f/720.0f))){
         this->life -= power_impact;
     }
     //std::cout << this->life << std::endl;

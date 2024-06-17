@@ -17,7 +17,7 @@ void t_button_callback(GLFWwindow *window, int key, int scancode, int action, in
 int var {0};
 
 void Game::create_game(){
-    all_towers.push_back(Tower {1, 100, 3, 0.0005, 150, Tower_Type::Rock, -0.2f, -0.2f});
+    all_towers.push_back(Tower {1, 50, 3, 1.5f, 150, Tower_Type::Rock, -0.2f, -0.2f});
     wave = Wave {};
     wave.wave_setup();
 }
