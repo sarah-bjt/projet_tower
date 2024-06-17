@@ -15,9 +15,15 @@ void Game::create_game(){
 
 void Game::start(){
     map.map_apparition(map1);
-    all_towers[0].tower_map_apparition();
+    // all_towers[0].tower_map_apparition();
+    for(int i {0}; i<all_towers.size(); i++){
+        all_towers[i].tower_map_apparition();
+    }
     wave.wave_forward();
-    all_towers[0].tower_aiming(this->wave.enemys);
+    // all_towers[0].tower_aiming(this->wave.enemys);
+    for(int i {0}; i<all_towers.size(); i++){
+        all_towers[i].tower_aiming(this->wave.enemys);
+    }
     for(auto& enemy : this->wave.enemys){
         enemy.enemy_arrives();
     }
