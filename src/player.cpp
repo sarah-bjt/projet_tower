@@ -1,7 +1,7 @@
-#include <iostream>
 #include "player.hpp"
-#include "enemy.hpp"
 
+#include "enemy.hpp"
+#include <iostream>
 
 std::string Player::chooseName()
 {

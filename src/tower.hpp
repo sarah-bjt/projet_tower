@@ -1,6 +1,8 @@
 #pragma once
+
 #include "bullet.hpp"
 #include "wave.hpp"
+
 #include <vector>
 
 enum class Tower_Type {

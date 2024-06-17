@@ -1,17 +1,17 @@
-#include <iostream>
-#include <vector>
 #include "wave.hpp"
+
 #include "enemy.hpp"
+#include "utils.hpp"
+#include "GLHelpers.hpp"
+
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <img/img.hpp>
-
+#include <iostream>
+#include <vector>
 #include <sstream>
-
 #include "simpletext.h"
-#include "utils.hpp"
-#include "GLHelpers.hpp"
 
 
 

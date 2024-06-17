@@ -1,12 +1,11 @@
-#include <glad/glad.h>
-
-#define GLFW_INCLUDE_NONE
-#include <GLFW/glfw3.h>
-
-#include <iostream>
-
 #include "App.hpp"
 #include "game.hpp"
+
+#define GLFW_INCLUDE_NONE
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include <iostream>
+
 
 namespace {
     App& window_as_app(GLFWwindow* window)

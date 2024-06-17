@@ -1,20 +1,19 @@
-#include <iostream>
 #include "tower.hpp"
+
 #include "bullet.hpp"
 #include "wave.hpp"
-#include <vector>
-
+#include "utils.hpp"
+#include "GLHelpers.hpp"
 #include "App.hpp"
 
+#include <vector>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <img/img.hpp>
-
+#include <iostream>
 #include <sstream>
-
 #include "simpletext.h"
-#include "utils.hpp"
-#include "GLHelpers.hpp"
+
 
 float time_to_wait {0.0f};
 

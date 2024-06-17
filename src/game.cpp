@@ -1,8 +1,9 @@
-#include <iostream>
-#include <vector>
 #include "game.hpp"
+
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <iostream>
+#include <vector>
 
 // pour faire apparaitre les towers
 void t_button_callback(GLFWwindow *window, int key, int scancode, int action, int mods)

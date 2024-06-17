@@ -1,8 +1,9 @@
 #pragma once
 
-#include <vector>
 #include "enemy.hpp"
 #include "path.hpp"
+
+#include <vector>
 
 struct Wave{
     std::vector<Enemy> enemys {};

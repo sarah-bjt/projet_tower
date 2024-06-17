@@ -1,15 +1,15 @@
 #include "App.hpp"
+#include "utils.hpp"
+#include "GLHelpers.hpp"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <img/img.hpp>
 #include<iostream>
-
 #include <sstream>
-
 #include "simpletext.h"
-#include "utils.hpp"
-#include "GLHelpers.hpp"
+
+
 
 
 App::App() : _previousTime(0.0), _viewSize(2.0) {
@@ -28,7 +28,7 @@ void App::setup() {
     // couleur de fond
     glClearColor(192/255.0f, 226/255.0f, 157/255.0f,1);
 
-    // Setup the text renderer with blending enabled and white text color
+    // Setup de text en noir renderer avec blending
     TextRenderer.ResetFont();
     TextRenderer.SetColor(SimpleText::TEXT_COLOR, SimpleText::Color::BLACK);
     TextRenderer.SetColorf(SimpleText::BACKGROUND_COLOR, 0.f, 0.f, 0.f, 0.f);
@@ -39,7 +39,8 @@ void App::update() {
     render();
 }
 
-// --------------------------------------------------------------------------------------------------------------------------
+
+
 std::string player_name {"Sophie"}; // nom provisoir
 
 void App::render() {
@@ -64,8 +65,6 @@ void App::render() {
     // argent (oeuf)
     const std::string player_money_text { "votre nombre d oeufs : " + std::to_string(200) };
     TextRenderer.Label(player_money_text.c_str(), _width - _width/4, 160, SimpleText::CENTER);
-
-
 
 // visuel Boutique
 
