@@ -12,7 +12,7 @@
 
 
 
-App::App() : _previousTime(0.0), _viewSize(2.0) {
+App::App(const std::string& player_name) : _previousTime(0.0), _viewSize(2.0),_player_name(player_name) {
     
     img::Image tower_rock {img::load(make_absolute_path("images/images_objects/rock_tower.png", true), 4, true)};
     img::Image tower_wood {img::load(make_absolute_path("images/images_objects/wood_tower.png", true), 4, true)};
@@ -41,7 +41,7 @@ void App::update() {
 
 
 
-std::string player_name {"Sophie"}; // nom provisoir
+// std::string player_name {"Sophie"}; // nom provisoir
 
 void App::render() {
 
@@ -52,7 +52,7 @@ void App::render() {
 // Phrases de bienvenue
 
     TextRenderer.Label("Tempete de Poulets Geants !", _width - _width/4, 60, SimpleText::CENTER);
-    const std::string player_name_text { "Bienvenue " + player_name };
+    const std::string player_name_text { "Bienvenue " + _player_name };
     TextRenderer.Label(player_name_text.c_str(),  _width - _width/4, 85, SimpleText::CENTER);
     TextRenderer.Label("Vous avez masse d oeufs !", _width - _width/4, 120, SimpleText::CENTER);
 

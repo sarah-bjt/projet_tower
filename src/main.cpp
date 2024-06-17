@@ -19,6 +19,11 @@ constexpr double TARGET_TIME_FOR_FRAME { 1.0 / 60.0 };
 
 int main() {
 
+    // Demander au joueur de saisir son nom
+    std::string player_name;
+    std::cout << "Entrez votre nom: ";
+    std::getline(std::cin, player_name);
+
     // Set an error callback to display glfw errors
     glfwSetErrorCallback([](int error, const char* description) {
         std::cerr << "Error " << error << ": " << description << std::endl;
@@ -61,7 +66,8 @@ int main() {
     new_game.create_game();
     //Puis va utiliser une méthode pour le lancer
 
-    App app {};
+    // App app {};
+    App app(player_name);
 
 
 

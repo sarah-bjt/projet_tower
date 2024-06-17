@@ -6,7 +6,7 @@
 
 class App {
 public:
-    App();
+    App(const std::string& player_name);
 
     void setup();
     void update();
@@ -31,6 +31,7 @@ private:
     GLuint _tex_tower_wood {};
     GLuint _tex_egg {};
     float _angle {};
+    std::string _player_name;
 
     SimpleText TextRenderer {};
 };
