@@ -36,15 +36,26 @@ void Game::start(){
 
 void Game::update(int player_action, std::pair<double, double> position)
 {
-    if (player_action == 1) //Pour tower Wood
+    static bool woodTowerPurchased = false; // Variable statique pour suivre l'état de l'achat de la tour en bois
+    static bool rockTowerPurchased = false; // Variable statique pour suivre l'état de l'achat de la tour en pierre
+
+    if (player_action == 1 && !woodTowerPurchased) //Pour tower Wood
     {
-        std::cout << "achat tour" << std::endl;
+        std::cout << "achat tour W" << std::endl;
         all_towers.push_back(Tower {1, 20, 2, 0.0005, 60, Tower_Type::Wood, static_cast<float>(position.first), static_cast<float>(position.second)});
+        woodTowerPurchased = true;
+        std::cout << "Nombre total de tours : " << all_towers.size() << std::endl;
     }
-    else if (player_action == 2) // Pour tower Rock
+    else if (player_action == 2 && !rockTowerPurchased) // Pour tower Rock
     {
-        std::cout << "achat tour" << std::endl;
+        std::cout << "achat tour R" << std::endl;
         all_towers.push_back(Tower {1, 80, 3, 0.0005, 150, Tower_Type::Rock, static_cast<float>(position.first), static_cast<float>(position.second)});
+        rockTowerPurchased = true;
+        std::cout << "Nombre total de tours : " << all_towers.size() << std::endl;
     }
-    std::cout << "Nombre total de tours : " << all_towers.size() << std::endl;
+    if (player_action == 0)
+    {
+        woodTowerPurchased = false;
+        rockTowerPurchased = false;
+    }
 }

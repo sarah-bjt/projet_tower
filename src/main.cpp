@@ -116,13 +116,15 @@ int main() {
 
         glfwPollEvents(); // Ensure events are processed to update key state
 
-        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-            key = GLFW_KEY_W;
-        } else if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
-            key = GLFW_KEY_R;
-        } else {
-            key = 0;
+        if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
+        {
+            key = GLFW_KEY_B;
         }
+        else if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
+        {
+            key = GLFW_KEY_P;
+        }
+
         action = glfwGetKey(window, key);
         scancode = glfwGetKeyScancode(key);
 
@@ -145,14 +147,6 @@ int main() {
 			glfwWaitEventsTimeout(TARGET_TIME_FOR_FRAME-elapsedTime);
 		}
 
-
-        if (player_action == 1) {
-            // Action pour la touche W
-            std::cout << "Action pour la touche W" << std::endl;
-        } else if (player_action == 2) {
-            // Action pour la touche R
-            std::cout << "Action pour la touche R" << std::endl;
-        }
         new_game.update(player_action, window_as_app(window).cursor_position_callback(xpos, ypos));
     }
 

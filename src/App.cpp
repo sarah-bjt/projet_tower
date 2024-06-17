@@ -8,6 +8,7 @@
 #include<iostream>
 #include <sstream>
 #include "simpletext.h"
+#include <GLFW/glfw3.h>
 
 
 
@@ -124,11 +125,11 @@ void App::render() {
 }
 
 int App::key_callback(int key, int scancode, int action, int mods) {
-    if (key == 90 && scancode == 44 && action == GLFW_PRESS)
+    if (key == 66 && scancode == 48 && action == GLFW_PRESS)
     {
         return 1; // Pour la touche W
     }
-    else if (key == 82 && scancode == 19 && action == GLFW_PRESS)
+    else if (key == 80 && scancode == 25 && action == GLFW_PRESS)
     {
         return 2; // Pour la touche R
     }
