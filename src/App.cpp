@@ -44,6 +44,11 @@ void App::setup() {
 void App::update(Player& player) {
     this->score = player.score;
     this->money = player.money;
+    
+    // argent (oeuf)
+    const std::string player_money_text { "votre nombre d oeufs : " + std::to_string(this->money) };
+    TextRenderer.Label(player_money_text.c_str(), _width - _width/4, 160, SimpleText::CENTER);
+
     render();
 }
 
@@ -73,9 +78,7 @@ void App::render() {
     const std::string player_score_text { "votre score : " + std::to_string(score) };
     TextRenderer.Label(player_score_text.c_str(), _width - _width/4, 140, SimpleText::CENTER);
 
-    // argent (oeuf)
-    const std::string player_money_text { "votre nombre d oeufs : " + std::to_string(money) };
-    TextRenderer.Label(player_money_text.c_str(), _width - _width/4, 160, SimpleText::CENTER);
+    
 
     // visuel Boutique
 
@@ -94,7 +97,7 @@ void App::render() {
     glPopMatrix();
 
     TextRenderer.Label("La tour en pierres", _width - _width/4 - 105, 390, SimpleText::CENTER);
-    TextRenderer.Label("Elle coute 150 oeufs", _width - _width/4 - 105, 410, SimpleText::CENTER);
+    TextRenderer.Label("Prix : 150 oeufs", _width - _width/4 - 105, 410, SimpleText::CENTER);
     TextRenderer.Label("Puissance de tire : 80", _width - _width/4 - 105, 430, SimpleText::CENTER);
     TextRenderer.Label("POUR ACHETER ", _width - _width/4 - 105, 470, SimpleText::CENTER);
     TextRenderer.Label("PRESS P", _width - _width/4 - 105, 490, SimpleText::CENTER);
@@ -114,7 +117,7 @@ void App::render() {
     glPopMatrix();
 
     TextRenderer.Label("La tour en bois", _width - _width/4 + 165, 390, SimpleText::CENTER);
-    TextRenderer.Label("Elle coute 60 oeufs", _width - _width/4 + 165, 410, SimpleText::CENTER);
+    TextRenderer.Label("Prix : 60 oeufs", _width - _width/4 + 165, 410, SimpleText::CENTER);
     TextRenderer.Label("Puissance de tire : 20", _width - _width/4 + 165, 430, SimpleText::CENTER);
     TextRenderer.Label("POUR ACHETER ", _width - _width/4 + 165, 470, SimpleText::CENTER);
     TextRenderer.Label("PRESS B", _width - _width/4 + 165, 490, SimpleText::CENTER);
