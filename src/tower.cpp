@@ -103,7 +103,13 @@ void Tower::tower_aiming(std::vector<Enemy>& enemys, Player& player){
                 if(not_alive){  //si l'ennemi est mort et qu'il n'est pas DEJA mort alors on change son statut en mort
                     enemys[i].enemy_id = -1;
                     player.increaseMoney(enemys[i].money_reward);
-                    std::cout << player.money << std::endl;
+                    if(enemys[i].type == Enemy_Type::Normal){
+                        player.increaseScore(1);
+                    }
+                    else {
+                        player.increaseScore(2);
+                    }
+                    std::cout << player.score << std::endl;
                     not_alive = false;
                 }
 

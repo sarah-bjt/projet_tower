@@ -1,6 +1,5 @@
 #include "player.hpp"
 
-#include "enemy.hpp"
 #include <iostream>
 
 void Player::increaseMoney(int reward){
@@ -11,10 +10,6 @@ void Player::decreaseMoney(int price){
     this->money -= price;
 }
 
-// // int Player::increaseScore()
-// // {
-// //     if() //si tel ennemi est tué vous gagnez tant de points
-// //     {
-// //         score+=1;
-// //     }
-// // };
+void Player::increaseScore(int new_score){
+    this->score += new_score;
+}

@@ -10,5 +10,5 @@ struct Player {
 
     void increaseMoney(int reward);
     void decreaseMoney(int price);
-    int increaseScore();
+    void increaseScore(int new_score);
 };
