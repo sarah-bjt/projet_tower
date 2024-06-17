@@ -115,7 +115,7 @@ void Tower::tower_aiming(std::vector<Enemy>& enemys){
 }
 
 void Tower::tower_fire(float x_pos_enemy, float y_pos_enemy){
-    this->bullet = Bullet{0.01f, 1.5f, this->x_pos+(170.0f/720.0f)/2.0f, this->y_pos+(170.0f/720.0f)/2.0f}; //, 0.0f, 0.0f
+    this->bullet = Bullet{0.01f, 1.5f, this->x_pos+(120.0f/720.0f)/2.0f, this->y_pos+(120.0f/720.0f)/2.0f}; //, 0.0f, 0.0f
     this->bullet.bullet_fire(x_pos_enemy, y_pos_enemy);
 }
 
