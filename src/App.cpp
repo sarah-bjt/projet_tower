@@ -46,26 +46,13 @@ void App::update() {
 
 
 
-// std::string player_name {"Sophie"}; // nom provisoir
-
 void App::render() {
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    if (game_over) {
-        glPushMatrix();
-        glColor3f(1.0f, 1.0f, 1.0f);
-        if (player_won) {
-            draw_quad_with_texture(_tex_win);
-        } else {
-            draw_quad_with_texture(_tex_lose);
-        }
-        glPopMatrix();
-    } 
-    
-    else {
+
 
     // Phrases de bienvenue
 
@@ -73,6 +60,7 @@ void App::render() {
     const std::string player_name_text { "Bienvenue " + _player_name };
     TextRenderer.Label(player_name_text.c_str(),  _width - _width/4, 85, SimpleText::CENTER);
     TextRenderer.Label("Vous avez masse d oeufs !", _width - _width/4, 120, SimpleText::CENTER);
+    TextRenderer.Label("POUR QUITER PUSH ECHAP !", _width - _width/4, 190, SimpleText::CENTER);
 
     // Info joueur
 
@@ -138,17 +126,22 @@ void App::render() {
     // glPopMatrix();
 
 
-    }
+    
 }
 
 int App::key_callback(int key, int scancode, int action, int mods) {
+
     if (key == 66 && scancode == 48 && action == GLFW_PRESS)
     {
-        return 1; // Pour la touche W
+        return 1; // Pour la touche B
     }
     else if (key == 80 && scancode == 25 && action == GLFW_PRESS)
     {
-        return 2; // Pour la touche R
+        return 2; // Pour la touche P
+    }
+    else if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS){
+        glfwSetWindowShouldClose(glfwGetCurrentContext(), GLFW_TRUE);
+        return 0;
     }
     else
     {
