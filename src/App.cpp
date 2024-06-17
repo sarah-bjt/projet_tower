@@ -129,23 +129,9 @@ void App::render() {
     
 }
 
-int App::key_callback(int key, int scancode, int action, int mods) {
-
-    if (key == GLFW_KEY_B && action == GLFW_PRESS)
-    {
-        return 1; // Pour la touche B
-    }
-    else if (key == GLFW_KEY_P && action == GLFW_PRESS)
-    {
-        return 2; // Pour la touche P
-    }
-    else if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS){
+void App::key_callback(int key, int scancode, int action, int mods) {
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS){
         glfwSetWindowShouldClose(glfwGetCurrentContext(), GLFW_TRUE);
-        return 0;
-    }
-    else
-    {
-        return 0;
     }
 }
 
