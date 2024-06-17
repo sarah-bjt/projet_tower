@@ -98,7 +98,7 @@ void Tower::tower_aiming(std::vector<Enemy>& enemys){
             if(time_to_wait >= this->fire_rythm || time_to_wait == 0.0f){
                 std::cout << "a capté" << std::endl;
                 this->tower_fire(enemys[i].pos_X, enemys[i].pos_Y);
-                not_alive = enemys[i].enemy_death(this->bullet.X, this->bullet.Y, this->fire_power);
+                not_alive = !enemys[i].alive(this->bullet.X, this->bullet.Y, this->fire_power);
 
                 if(not_alive){  //si l'ennemi est mort et qu'il n'est pas DEJA mort alors on change son statut en mort
                     enemys[i].enemy_id = -1;
