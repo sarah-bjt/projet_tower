@@ -44,6 +44,13 @@ void App::setup() {
 void App::update(Player& player) {
     this->score = player.score;
     this->money = player.money;
+
+    // Info joueur
+
+    // score
+    const std::string player_score_text { "votre score : " + std::to_string(score) };
+    TextRenderer.Label(player_score_text.c_str(), _width - _width/4, 140, SimpleText::CENTER);
+
     
     // argent (oeuf)
     const std::string player_money_text { "votre nombre d oeufs : " + std::to_string(this->money) };
@@ -71,14 +78,7 @@ void App::render() {
     TextRenderer.Label(player_name_text.c_str(),  _width - _width/4, 85, SimpleText::CENTER);
     TextRenderer.Label("Vous avez masse d oeufs !", _width - _width/4, 120, SimpleText::CENTER);
     TextRenderer.Label("POUR QUITER PRESS ECHAP !", _width - _width/4, 650, SimpleText::CENTER);
-
-    // Info joueur
-
-    // score
-    const std::string player_score_text { "votre score : " + std::to_string(score) };
-    TextRenderer.Label(player_score_text.c_str(), _width - _width/4, 140, SimpleText::CENTER);
-
-    
+  
 
     // visuel Boutique
 
