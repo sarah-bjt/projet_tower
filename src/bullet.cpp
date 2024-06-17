@@ -1,6 +1,9 @@
 #include <iostream>
 #include "bullet.hpp"
 
+#include <math.h>
+#define M_PI 3.14159265358979f
+
 #include "App.hpp"
 
 #include <glad/glad.h>
