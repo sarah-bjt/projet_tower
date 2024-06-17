@@ -3,11 +3,11 @@
 #include "enemy.hpp"
 
 
-// std::string Player::chooseName()
-// {
-//     std::cout << "Entrez un nom : " << std::endl;
-//     std::cin >> name;
-// };
+std::string Player::chooseName()
+{
+    std::cout << "Entrez un nom : " << std::endl;
+    std::cin >> name;
+};
 
 // // int Player::increaseMoney()
 // // {
@@ -17,18 +17,6 @@
 // //     }
 // // };
 
-// int Player::buy()
-// {
-//     if(money > price) //Si votre qté d'argent est >= au prix, vous pouvez l'acheter et on retire la qté d'argent de notre somme d'argent
-//     {
-//         money-= price;
-//     }
-//     else 
-//     {
-//         std::cout << "Vous n'avez pas assez d'argent" << std::endl;
-//     }
-// };
-
 // // int Player::increaseScore()
 // // {
 // //     if() //si tel ennemi est tué vous gagnez tant de points
@@ -36,8 +24,3 @@
 // //         score+=1;
 // //     }
 // // };
-
-// void addTower(const Tower_Type& tower)
-// {
-//     towers.push_back(tower);
-// }
