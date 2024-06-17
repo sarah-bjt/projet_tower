@@ -88,10 +88,6 @@ void Tower::tower_map_apparition(){   //prend en paramètres les coordonées du 
     // }
 }
 
-void Tower::tower_interface_apparition(){    //peut être qu'au final on aura pas besoin de cette méthode
-    //Applique définitivement les sprites de chaque tower dans la boutique de l'interface
-}
-
 void Tower::tower_aiming(std::vector<Enemy>& enemys){
     bool not_alive {false};
     //il faudra que je sois relié à wave pour avoir un tableau de Enemy
