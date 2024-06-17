@@ -60,7 +60,7 @@ void App::render() {
     const std::string player_name_text { "Bienvenue " + _player_name };
     TextRenderer.Label(player_name_text.c_str(),  _width - _width/4, 85, SimpleText::CENTER);
     TextRenderer.Label("Vous avez masse d oeufs !", _width - _width/4, 120, SimpleText::CENTER);
-    TextRenderer.Label("POUR QUITER PUSH ECHAP !", _width - _width/4, 190, SimpleText::CENTER);
+    TextRenderer.Label("POUR QUITER PRESS ECHAP !", _width - _width/4, 650, SimpleText::CENTER);
 
     // Info joueur
 
@@ -131,11 +131,11 @@ void App::render() {
 
 int App::key_callback(int key, int scancode, int action, int mods) {
 
-    if (key == 66 && scancode == 48 && action == GLFW_PRESS)
+    if (key == GLFW_KEY_B && action == GLFW_PRESS)
     {
         return 1; // Pour la touche B
     }
-    else if (key == 80 && scancode == 25 && action == GLFW_PRESS)
+    else if (key == GLFW_KEY_P && action == GLFW_PRESS)
     {
         return 2; // Pour la touche P
     }
