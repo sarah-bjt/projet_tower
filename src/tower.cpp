@@ -106,8 +106,6 @@ void Tower::tower_aiming(std::vector<Enemy>& enemys){
                 enemys[i].enemy_id = -1;
                 not_alive = false;
             }
-
-            //break;
         }
     }
     //on récupère la position de chaque ennemi de la vague (tableau)
