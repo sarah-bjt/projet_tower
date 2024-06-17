@@ -21,14 +21,10 @@ void Game::start(){
     wave.wave_forward();
     // all_towers[0].tower_aiming(this->wave.enemys);
     for(int i {0}; i<all_towers.size(); i++){
-        all_towers[i].tower_aiming(this->wave.enemys);
+        all_towers[i].tower_aiming(this->wave.enemys, this->player);
     }
     for(auto& enemy : this->wave.enemys){
         enemy.enemy_arrives();
-        if(enemy.enemy_id == -1){
-            this->player.increaseMoney(enemy.money_reward);
-            std::cout << this->player.money << std::endl;
-        }
     }
 }
 

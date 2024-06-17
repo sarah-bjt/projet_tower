@@ -303,30 +303,6 @@ img::Image Enemy::enemy_animation(){
     //}
 }
 
-bool Enemy::enemy_death(float bullet_x, float bullet_y, int power_impact){
-    if(!this->alive(bullet_x, bullet_y, power_impact)){
-        //std::cout << "MORT" << std::endl;
-        return true;
-        //Faire disparaitre le sprite de l'ennemi à tout jamais (ça va faire un trou dans la vague d'ennemi et c'est normal)
-        //Et faire augmenter le score du joueur
-        // CODE A IMPLEMENTER QUAND J'AURAIS LE FCIHIER JOUEUR :
-        /*
-        player.money += this->money_reward;  //en utilisant la méthode increaseMoney()
-        if(this->type == Enemy_Type::Fast){
-            player.score += 2;  //en utilisant la méthode increaseScore()
-        }
-        else if(this->type == Enemy_Type::Robust){
-            player.score += 3;
-        }
-        else {
-            player.score += 1;
-        }
-        */
-    }
-
-    return false;
-}
-
 void Enemy::enemy_arrives(){   //on va devoir relier à Party.cpp/.hpp (position d'apparition des ennemis, position de la sortie à protéger)
     //conditions exemple mais faudra aller les chercher dans les infos de path, party, levels...
     if(this->current_target > this->path.size()){ //this->pos_X+0.1f >= 0.5f, --> ça ce sera plutôt dans une autre fonction qui fera appel à celle là

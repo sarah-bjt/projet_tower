@@ -24,6 +24,6 @@ struct Tower{
     Bullet bullet;
     
     void tower_map_apparition();  //méthode pour faire apparaître les sprites des towers sur la map
-    void tower_aiming(std::vector<Enemy>& enemys);  //La méthode pour détecter un ennemi à partir de fire_distance
+    void tower_aiming(std::vector<Enemy>& enemys, Player& player);  //La méthode pour détecter un ennemi à partir de fire_distance
     void tower_fire(Enemy& enemy);  //méthode pour faire feu sur un ennemi quand il y a détection
 };
