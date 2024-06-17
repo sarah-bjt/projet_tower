@@ -107,8 +107,6 @@ int main() {
     double xpos {0};
     double ypos {0};
 
-
-
     // Loop until the user closes the window
     while (!glfwWindowShouldClose(window)) {
 
@@ -121,16 +119,18 @@ int main() {
         if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
         {
             key = GLFW_KEY_B;
+            player_action = 1;
+    
         }
         else if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
         {
             key = GLFW_KEY_P;
+            player_action = 2;
         }
-
-        action = glfwGetKey(window, key);
-        scancode = glfwGetKeyScancode(key);
-
-        player_action = window_as_app(window).key_callback(key, scancode, action, mods);
+        else
+        {
+            player_action = 0;
+        }
 
         app.update();
         new_game.start();
