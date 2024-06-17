@@ -5,16 +5,6 @@
 #include <iostream>
 #include <vector>
 
-// pour faire apparaitre les towers
-void t_button_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
-{
-	std::cout << "key pressed: " << key << ", " << scancode << std::endl;
-	if (key = 82, scancode = 19)
-	{
-		std::cout<<"met une tour de pierres"<<std::endl;
-	}
-};
-
 int var {0};
 
 void Game::create_game(){
