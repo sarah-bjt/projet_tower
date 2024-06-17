@@ -5,12 +5,11 @@
 #include <iostream>
 #include <vector>
 
-int var {0};
-
-void Game::create_game(){
-    all_towers.push_back(Tower {1, 50, 3, 1.5f, 150, Tower_Type::Rock, -0.2f, -0.2f});
+void Game::create_game(std::string player_name){
+    all_towers.push_back(Tower {1, 300, 3, 1.5f, 150, Tower_Type::Rock, -0.2f, -0.2f});
     wave = Wave {};
     wave.wave_setup();
+    player.name = player_name;
 }
 
 void Game::start(){
@@ -22,12 +21,11 @@ void Game::start(){
     wave.wave_forward();
     // all_towers[0].tower_aiming(this->wave.enemys);
     for(int i {0}; i<all_towers.size(); i++){
-        all_towers[i].tower_aiming(this->wave.enemys);
+        all_towers[i].tower_aiming(this->wave.enemys, this->player);
     }
     for(auto& enemy : this->wave.enemys){
         enemy.enemy_arrives();
     }
-    var++;
 }
 
 

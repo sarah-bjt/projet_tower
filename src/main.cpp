@@ -19,13 +19,10 @@ namespace {
 constexpr double TARGET_TIME_FOR_FRAME { 1.0 / 60.0 };
 
 int main() {
-
     // Demander au joueur de saisir son nom
     std::string player_name;
     std::cout << "Entrez votre nom: ";
     std::getline(std::cin, player_name);
-
-    std::cout <<  " Le jeu va commencer ! " << std::endl;
 
     // Set an error callback to display glfw errors
     glfwSetErrorCallback([](int error, const char* description) {
@@ -66,8 +63,10 @@ int main() {
 
     //Va créer une valeur game;
     Game new_game;
-    new_game.create_game();
+    new_game.create_game(player_name);
     //Puis va utiliser une méthode pour le lancer
+
+    std::cout <<  " Le jeu va commencer ! " << std::endl;
 
     // App app {};
     App app(player_name);
@@ -108,8 +107,6 @@ int main() {
     double xpos {0};
     double ypos {0};
 
-
-
     // Loop until the user closes the window
     while (!glfwWindowShouldClose(window)) {
 
@@ -130,11 +127,10 @@ int main() {
             key = GLFW_KEY_P;
             player_action = 2;
         }
-
-
-
-        
-
+        else
+        {
+            player_action = 0;
+        }
 
         app.update();
         new_game.start();

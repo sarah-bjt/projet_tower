@@ -88,7 +88,7 @@ void Tower::tower_map_apparition(){   //prend en paramètres les coordonées du 
     // }
 }
 
-void Tower::tower_aiming(std::vector<Enemy>& enemys){
+void Tower::tower_aiming(std::vector<Enemy>& enemys, Player& player){
     bool not_alive {false};
     //il faudra que je sois relié à wave pour avoir un tableau de Enemy
     for(int i {0}; i<enemys.size(); i++){ 
@@ -102,6 +102,8 @@ void Tower::tower_aiming(std::vector<Enemy>& enemys){
 
                 if(not_alive){  //si l'ennemi est mort et qu'il n'est pas DEJA mort alors on change son statut en mort
                     enemys[i].enemy_id = -1;
+                    player.increaseMoney(enemys[i].money_reward);
+                    std::cout << player.money << std::endl;
                     not_alive = false;
                 }
 
@@ -116,7 +118,7 @@ void Tower::tower_aiming(std::vector<Enemy>& enemys){
 
 void Tower::tower_fire(Enemy& enemy){
     this->bullet = Bullet{0.01f, 1.5f, this->x_pos+((120.0f/720.0f)/2.0f), this->y_pos+((120.0f/720.0f)/2.0f)}; //, 0.0f, 0.0f
-    this->bullet.bullet_fire(enemy);
+    this->bullet.bullet_fire(enemy, this->fire_power);
 }
 
 // LES DEUX FONCTIONS PRÉCÉDENTES DEVRONT ÊTRE UTILISÉES DANS UN WHILE DANS GAME.CPP OU PARTY.CPP ...

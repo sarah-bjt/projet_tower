@@ -13,11 +13,11 @@ struct Game{
     Map map;
     // App app;
     //Interface interface;
-    //Player player;
+    Player player;
     //Party party; (Path dans party...)
 
     //méthode pour créer le jeu
-    void create_game();
+    void create_game(std::string player_name);
     //méthode pour commencer le jeu et utiliser toutes les autres méthodes des autres struct
     void start();
     void update(int player_action,std::pair<double, double> mouse_position);
