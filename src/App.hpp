@@ -16,10 +16,15 @@ public:
     void key_callback(int key, int scancode, int action, int mods);
     void mouse_button_callback(int button, int action, int mods);
     void scroll_callback(double xoffset, double yoffset);
-    std::pair<double, double> cursor_position_callback(double xpos, double ypos);
+    void cursor_position_callback(double xpos, double ypos);
     void size_callback(int width, int height);
 
+    std::pair<double, double> getMousePosition() const { return mouse_position; }
+
 private:
+
+    std::pair<double, double> mouse_position {0.0, 0.0}; // Pair de coordonnées x et y de la souris
+
     void render();
 
     int _width {};

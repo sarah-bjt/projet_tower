@@ -153,7 +153,7 @@ int main() {
 			glfwWaitEventsTimeout(TARGET_TIME_FOR_FRAME-elapsedTime);
 		}
 
-        new_game.update(player_action, window_as_app(window).cursor_position_callback(xpos, ypos));
+        new_game.update(player_action, app.getMousePosition());
     }
 
 

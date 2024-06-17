@@ -141,9 +141,11 @@ void App::mouse_button_callback(int /*button*/, int /*action*/, int /*mods*/) {
 void App::scroll_callback(double /*xoffset*/, double /*yoffset*/) {
 }
 
-std::pair<double, double> App::cursor_position_callback(double xpos, double ypos) {
-    return std::make_pair(xpos, ypos);
+void App::cursor_position_callback(double xpos, double ypos) {
+    mouse_position = std::make_pair(xpos, ypos);
 }
+
+
 
 void App::size_callback(int width, int height) {
     _width  = width;
