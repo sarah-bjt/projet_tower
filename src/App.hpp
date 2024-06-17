@@ -2,10 +2,11 @@
 
 #include <glad/glad.h>
 #include <simpletext.h>
+#include"player.hpp"
 
 class App {
 public:
-    App();
+    App(const std::string& player_name);
 
     void setup();
     void update();
@@ -28,7 +29,9 @@ private:
     // Add your variables here
     GLuint _tex_tower_rock {};
     GLuint _tex_tower_wood {};
+    GLuint _tex_egg {};
     float _angle {};
+    std::string _player_name;
 
     SimpleText TextRenderer {};
 };

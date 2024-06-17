@@ -1,4 +1,3 @@
-#include <iostream>
 #include "bullet.hpp"
 
 #include "App.hpp"
@@ -6,9 +5,10 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <img/img.hpp>
-
+#include <iostream>
 #include <sstream>
-
+#include <math.h>
+#define M_PI 3.14159265358979f
 #include "simpletext.h"
 #include "utils.hpp"
 #include "GLHelpers.hpp"

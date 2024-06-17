@@ -1,19 +1,16 @@
-#include <iostream>
 #include "enemy.hpp"
 
 #include "App.hpp"
+#include "path.hpp"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <img/img.hpp>
-
+#include <iostream>
 #include <sstream>
-
 #include "simpletext.h"
 #include "utils.hpp"
 #include "GLHelpers.hpp"
-
-#include "path.hpp"
 
 void Enemy::enemy_apparition(img::Image image){
     if(this->enemy_id == -1 || this->enemy_id == -2) return; 
