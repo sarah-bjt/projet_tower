@@ -23,13 +23,8 @@ void Wave::create_wave(int level){
     // Convert std::filesystem::path to std::string
     std::filesystem::path path = make_absolute_path("data/niveau1.itd", true);
     read_itd_file(path.string(), graphe);
-
-    // WeightedGraph graphe;
-    // read_itd_file(make_absolute_path("data/niveau1.itd", true), graphe);
-    for(int i {0}; i<graphe.node_positions.size(); i++){
-        std::cout << graphe.node_positions[i].first << ", " << graphe.node_positions[i].second << std::endl;
-    }
     this->graph = graphe;
+    
     if(level == 1){
         for(int i {0}; i<this->number_enemys; i++){
             Enemy one_enemy {1+i, 150, 0.5f, 20, Enemy_Type::Normal, -1.8f-(((float)i)*(120.0f/720.0f)), 1.0f-2.0f*(120.0f/720.0f), 0, 1, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}};  //initialise l'ennemis
