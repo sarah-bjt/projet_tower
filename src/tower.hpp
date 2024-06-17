@@ -1,6 +1,7 @@
 #pragma once
 #include "bullet.hpp"
 #include "wave.hpp"
+#include "enemy.hpp"
 #include <vector>
 
 enum class Tower_Type {
@@ -23,5 +24,5 @@ struct Tower{
     
     void tower_map_apparition();  //méthode pour faire apparaître les sprites des towers sur la map
     void tower_aiming(std::vector<Enemy>& enemys);  //La méthode pour détecter un ennemi à partir de fire_distance
-    void tower_fire(float x_pos_enemy, float y_pos_enemy);  //méthode pour faire feu sur un ennemi quand il y a détection
+    void tower_fire(Enemy& enemy);  //méthode pour faire feu sur un ennemi quand il y a détection
 };

@@ -2,6 +2,7 @@
 #include "tower.hpp"
 #include "bullet.hpp"
 #include "wave.hpp"
+#include "enemy.hpp"
 #include <vector>
 
 #include "App.hpp"
@@ -97,7 +98,7 @@ void Tower::tower_aiming(std::vector<Enemy>& enemys){
         if(dist_X && dist_Y && enemys[i].enemy_id!=-1){  //Si l'ennemi se trouve dans la zone de tire et qu'il n'est pas déjà mort 
             if(time_to_wait >= this->fire_rythm || time_to_wait == 0.0f){
                 std::cout << "a capté" << std::endl;
-                this->tower_fire(enemys[i].pos_X, enemys[i].pos_Y);
+                this->tower_fire(enemys[i]);
                 not_alive = !enemys[i].alive(this->bullet.X, this->bullet.Y, this->fire_power);
 
                 if(not_alive){  //si l'ennemi est mort et qu'il n'est pas DEJA mort alors on change son statut en mort
@@ -114,9 +115,9 @@ void Tower::tower_aiming(std::vector<Enemy>& enemys){
     //on calcule la distance entre leur position et celle de la tour
 }
 
-void Tower::tower_fire(float x_pos_enemy, float y_pos_enemy){
-    this->bullet = Bullet{0.01f, 1.5f, this->x_pos+(120.0f/720.0f)/2.0f, this->y_pos+(120.0f/720.0f)/2.0f}; //, 0.0f, 0.0f
-    this->bullet.bullet_fire(x_pos_enemy, y_pos_enemy);
+void Tower::tower_fire(Enemy& enemy){
+    this->bullet = Bullet{0.01f, 1.5f, this->x_pos+((120.0f/720.0f)/2.0f), this->y_pos+((120.0f/720.0f)/2.0f)}; //, 0.0f, 0.0f
+    this->bullet.bullet_fire(enemy);
 }
 
 // LES DEUX FONCTIONS PRÉCÉDENTES DEVRONT ÊTRE UTILISÉES DANS UN WHILE DANS GAME.CPP OU PARTY.CPP ...

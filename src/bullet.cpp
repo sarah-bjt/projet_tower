@@ -13,6 +13,8 @@
 #include "utils.hpp"
 #include "GLHelpers.hpp"
 
+#include "enemy.hpp"
+
 float invisible {1.0f};
 double previous_time_time {0.0};
 
@@ -39,25 +41,28 @@ void Bullet::bullet_draw(){
     glPopMatrix();
 }
 
-void Bullet::bullet_fire(float target_X, float target_Y){
-    const double time {glfwGetTime()/10};
-    const double time_elapsed2 {time - previous_time_time};  //récupère le temps en direct
+void Bullet::bullet_fire(Enemy& enemy){
+    const double time {glfwGetTime()/50};
+    const double time_elapsed2 {time - previous_time_time}; 
     previous_time_time = time;
 
-    this->_directX += (target_X - this->X) * this->speed * time_elapsed2;
-    this->_directY += (target_Y - this->Y) * this->speed * time_elapsed2;
+    this->_directX += (enemy.pos_X - this->X) * this->speed * time_elapsed2;
+    this->_directY += (enemy.pos_Y - this->Y) * this->speed * time_elapsed2;
 
     this->bullet_draw();
 
-    this->X = this->_directX;
-    this->Y = this->_directY;
-    if(this->X < target_X+(120.0f/720.0f)/2.0f && this->X > target_X-(120.0f/720.0f)/2.0f){
-        if(this->Y < target_Y+(120.0f/720.0f)/2.0f && this->Y > target_Y-(120.0f/720.0f)/2.0f){
-            this->bullet_disappear();
-        }
-    }
+    // this->X = this->_directX;
+    // this->Y = this->_directY;
+    // if(this->X <= enemy.pos_X+(120.0f/720.0f)/2.0f && this->X >= enemy.pos_X){
+    //     if(this->Y <= enemy.pos_Y+(120.0f/720.0f)/2.0f && this->Y >= enemy.pos_Y){
+    //         std::cout << "balle disparait" << std::endl;
+    //         enemy.life -= 50;
+    //         this->bullet_disappear();
+    //     }
+    // }
 }
 
 void Bullet::bullet_disappear(){
+    std::cout << "bullet_disappear" << std::endl;
     invisible = 0.0f;
 }
