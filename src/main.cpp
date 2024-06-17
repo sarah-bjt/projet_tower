@@ -108,8 +108,6 @@ int main() {
     double xpos {0};
     double ypos {0};
 
-
-
     // Loop until the user closes the window
     while (!glfwWindowShouldClose(window)) {
 
@@ -130,11 +128,10 @@ int main() {
             key = GLFW_KEY_P;
             player_action = 2;
         }
-
-
-
-        
-
+        else
+        {
+            player_action = 0;
+        }
 
         app.update();
         new_game.start();
