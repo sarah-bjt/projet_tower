@@ -21,6 +21,6 @@ struct Game{
     void start();
     void update(int player_action, std::pair<double, double> position);
 
-    // void Game::check_game_over();
+
 };
 

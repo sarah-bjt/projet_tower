@@ -34,15 +34,6 @@ void Game::start(){
     var++;
 }
 
-// void Game::check_game_over() {
-//     if (/* Condition de victoire */) {
-//         app->player_won = true;
-//         app->game_over = true;
-//     } else if (/* Condition de défaite */) {
-//         app->player_won = false;
-//         app->game_over = true;
-//     }
-// }
 
 void Game::update(int player_action, std::pair<double, double> position)
 {
@@ -51,14 +42,14 @@ void Game::update(int player_action, std::pair<double, double> position)
 
     if (player_action == 1 && !woodTowerPurchased) //Pour tower Wood
     {
-        std::cout << "achat tour W" << std::endl;
+        std::cout << "achat tour B" << std::endl;
         all_towers.push_back(Tower {1, 20, 2, 0.0005, 60, Tower_Type::Wood, static_cast<float>(position.first), static_cast<float>(position.second)});
         woodTowerPurchased = true;
         std::cout << "Nombre total de tours : " << all_towers.size() << std::endl;
     }
     else if (player_action == 2 && !rockTowerPurchased) // Pour tower Rock
     {
-        std::cout << "achat tour R" << std::endl;
+        std::cout << "achat tour P" << std::endl;
         all_towers.push_back(Tower {1, 80, 3, 0.0005, 150, Tower_Type::Rock, static_cast<float>(position.first), static_cast<float>(position.second)});
         rockTowerPurchased = true;
         std::cout << "Nombre total de tours : " << all_towers.size() << std::endl;

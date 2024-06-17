@@ -54,14 +54,27 @@ void App::render() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-// Phrases de bienvenue
+    if (game_over) {
+        glPushMatrix();
+        glColor3f(1.0f, 1.0f, 1.0f);
+        if (player_won) {
+            draw_quad_with_texture(_tex_win);
+        } else {
+            draw_quad_with_texture(_tex_lose);
+        }
+        glPopMatrix();
+    } 
+    
+    else {
+
+    // Phrases de bienvenue
 
     TextRenderer.Label("Tempete de Poulets Geants !", _width - _width/4, 60, SimpleText::CENTER);
     const std::string player_name_text { "Bienvenue " + _player_name };
     TextRenderer.Label(player_name_text.c_str(),  _width - _width/4, 85, SimpleText::CENTER);
     TextRenderer.Label("Vous avez masse d oeufs !", _width - _width/4, 120, SimpleText::CENTER);
 
-// Info joueur
+    // Info joueur
 
     // score
     const std::string player_score_text { "votre score : " + std::to_string(0) };
@@ -71,7 +84,7 @@ void App::render() {
     const std::string player_money_text { "votre nombre d oeufs : " + std::to_string(200) };
     TextRenderer.Label(player_money_text.c_str(), _width - _width/4, 160, SimpleText::CENTER);
 
-// visuel Boutique
+    // visuel Boutique
 
     // Rock Tower
     glPushMatrix();
@@ -91,7 +104,7 @@ void App::render() {
     TextRenderer.Label("Elle coute 150 oeufs", _width - _width/4 - 105, 410, SimpleText::CENTER);
     TextRenderer.Label("Puissance de tire : 80", _width - _width/4 - 105, 430, SimpleText::CENTER);
     TextRenderer.Label("POUR ACHETER ", _width - _width/4 - 105, 470, SimpleText::CENTER);
-    TextRenderer.Label("PRESS R", _width - _width/4 - 105, 490, SimpleText::CENTER);
+    TextRenderer.Label("PRESS P", _width - _width/4 - 105, 490, SimpleText::CENTER);
 
     // Wood Tower
     glPushMatrix();
@@ -111,7 +124,7 @@ void App::render() {
     TextRenderer.Label("Elle coute 60 oeufs", _width - _width/4 + 165, 410, SimpleText::CENTER);
     TextRenderer.Label("Puissance de tire : 20", _width - _width/4 + 165, 430, SimpleText::CENTER);
     TextRenderer.Label("POUR ACHETER ", _width - _width/4 + 165, 470, SimpleText::CENTER);
-    TextRenderer.Label("PRESS W", _width - _width/4 + 165, 490, SimpleText::CENTER);
+    TextRenderer.Label("PRESS B", _width - _width/4 + 165, 490, SimpleText::CENTER);
 
 
     TextRenderer.Render();
@@ -125,7 +138,7 @@ void App::render() {
     // glPopMatrix();
 
 
-
+    }
 }
 
 int App::key_callback(int key, int scancode, int action, int mods) {
