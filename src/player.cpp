@@ -7,6 +7,7 @@ std::string Player::chooseName()
 {
     std::cout << "Entrez un nom : " << std::endl;
     std::cin >> name;
+    return name;
 };
 
 // // int Player::increaseMoney()

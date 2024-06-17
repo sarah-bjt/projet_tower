@@ -2,6 +2,7 @@
 
 #include <glad/glad.h>
 #include <simpletext.h>
+#include"player.hpp"
 
 class App {
 public:
@@ -28,6 +29,7 @@ private:
     // Add your variables here
     GLuint _tex_tower_rock {};
     GLuint _tex_tower_wood {};
+    GLuint _tex_egg {};
     float _angle {};
 
     SimpleText TextRenderer {};
