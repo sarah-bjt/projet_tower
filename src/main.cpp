@@ -1,5 +1,6 @@
 #include "App.hpp"
 #include "game.hpp"
+#include <queue>
 
 #define GLFW_INCLUDE_NONE
 #include <glad/glad.h>
@@ -69,9 +70,6 @@ int main() {
     // App app {};
     App app(player_name);
 
-
-
-
     glfwSetWindowUserPointer(window, &app);
 
     glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -100,6 +98,14 @@ int main() {
 
     app.setup();
 
+    int key {0};
+    int action {0};
+    int scancode {0};
+    int mods {0};
+    int player_action {0};
+    double xpos {0};
+    double ypos {0};
+
 
 
     // Loop until the user closes the window
@@ -107,6 +113,20 @@ int main() {
 
         // Get time (in second) at loop beginning
 		double startTime { glfwGetTime() };
+
+        glfwPollEvents(); // Ensure events are processed to update key state
+
+        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+            key = GLFW_KEY_W;
+        } else if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
+            key = GLFW_KEY_R;
+        } else {
+            key = 0;
+        }
+        action = glfwGetKey(window, key);
+        scancode = glfwGetKeyScancode(key);
+
+        player_action = window_as_app(window).key_callback(key, scancode, action, mods);
 
         app.update();
         new_game.start();
@@ -124,6 +144,16 @@ int main() {
 		{
 			glfwWaitEventsTimeout(TARGET_TIME_FOR_FRAME-elapsedTime);
 		}
+
+
+        if (player_action == 1) {
+            // Action pour la touche W
+            std::cout << "Action pour la touche W" << std::endl;
+        } else if (player_action == 2) {
+            // Action pour la touche R
+            std::cout << "Action pour la touche R" << std::endl;
+        }
+        new_game.update(player_action, window_as_app(window).cursor_position_callback(xpos, ypos));
     }
 
 

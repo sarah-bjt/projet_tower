@@ -19,5 +19,6 @@ struct Game{
     void create_game();
     //méthode pour commencer le jeu et utiliser toutes les autres méthodes des autres struct
     void start();
+    void update(int player_action, std::pair<double, double> position);
 };
 
