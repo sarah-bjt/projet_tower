@@ -51,18 +51,17 @@ void Bullet::bullet_fire(Enemy& enemy){
 
     this->bullet_draw();
 
-    // this->X = this->_directX;
-    // this->Y = this->_directY;
-    // if(this->X <= enemy.pos_X+(120.0f/720.0f)/2.0f && this->X >= enemy.pos_X){
-    //     if(this->Y <= enemy.pos_Y+(120.0f/720.0f)/2.0f && this->Y >= enemy.pos_Y){
-    //         std::cout << "balle disparait" << std::endl;
-    //         enemy.life -= 50;
-    //         this->bullet_disappear();
-    //     }
-    // }
+    this->X = this->_directX;
+    this->Y = this->_directY;
+    if(this->X <= enemy.pos_X+(120.0f/720.0f) && this->X >= enemy.pos_X){
+        if(this->Y <= enemy.pos_Y+(120.0f/720.0f) && this->Y >= enemy.pos_Y){
+            std::cout << "balle disparait" << std::endl;
+            enemy.life -= 50;
+            this->bullet_disappear();
+        }
+    }
 }
 
 void Bullet::bullet_disappear(){
-    std::cout << "bullet_disappear" << std::endl;
     invisible = 0.0f;
 }
