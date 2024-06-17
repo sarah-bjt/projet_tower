@@ -116,7 +116,7 @@ void Tower::tower_aiming(std::vector<Enemy>& enemys){
 
 void Tower::tower_fire(Enemy& enemy){
     this->bullet = Bullet{0.01f, 1.5f, this->x_pos+((120.0f/720.0f)/2.0f), this->y_pos+((120.0f/720.0f)/2.0f)}; //, 0.0f, 0.0f
-    this->bullet.bullet_fire(enemy);
+    this->bullet.bullet_fire(enemy, this->fire_power);
 }
 
 // LES DEUX FONCTIONS PRÉCÉDENTES DEVRONT ÊTRE UTILISÉES DANS UN WHILE DANS GAME.CPP OU PARTY.CPP ...
