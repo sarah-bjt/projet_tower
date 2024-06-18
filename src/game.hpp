@@ -8,15 +8,16 @@
 
 struct Game{
 public :
-    std::vector<Tower> all_towers {};  //En fait ce serait un tableau de tower
-    std::vector<Wave> waves {}; //(enemy dans wave...)
-    Map map; //pour faire apparaitre la map
-    Player player;
+    std::vector<Tower> all_towers {};  //Tableau de towers de la game
+    std::vector<Wave> waves {}; //Tableau contenant les différentes waves de la partie
+    Map map; //Contient la map de la partie
+    Player player; //Contient les informations du joueur de la partie
 
     //méthode pour créer le jeu
     void create_game(std::string player_name);
     //méthode pour commencer le jeu et utiliser toutes les autres méthodes des autres struct
     void start();
+    //méthode qui mettra à jour le jeu à chaque ajout de tour sur la map
     void update(int player_action,std::pair<double, double> mouse_position);
 
     // Indicateur pour savoir si le jeu est terminé
