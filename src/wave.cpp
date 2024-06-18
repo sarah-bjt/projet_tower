@@ -3,6 +3,7 @@
 #include "enemy.hpp"
 #include "utils.hpp"
 #include "GLHelpers.hpp"
+#include "eventDispatcher.hpp"
 
 
 #include <glad/glad.h>
@@ -72,11 +73,19 @@ void Wave::wave_forward(){
     }
 }
 
-int Wave::allEnemiesDead() const {
+void Wave::allEnemiesDead() const {
+    int death {0};
+    bool all_death = true;
     for (const auto& enemy : enemys) {
         if (enemy.enemy_id != -1) {  // Si au moins un ennemi est vivant (son id n'est pas -1)
-            return 0;
+            all_death = false;
         }
     }
-    return -1;  // Tous les ennemis sont morts
+    if (!all_death){
+        death = 0;
+    }
+    else{
+        death = -1;
+    }
+    EventDispatcher::instance().enemy_happen(death);
 }

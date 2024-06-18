@@ -25,6 +25,7 @@ void Game::start(){
     for(auto& enemy : this->wave.enemys){
         enemy.enemy_arrives();
     }
+    wave.allEnemiesDead();
 }
 
 
