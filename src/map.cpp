@@ -57,9 +57,9 @@ void Map::map_apparition(img::Image const& map) {
 
             if (pixel_r == 0 && pixel_v == 0 && pixel_b == 0) {
                 texture_pixel = loadTexture(grass);
-            } else if (pixel_r == 0 && pixel_v == 0 && pixel_b == 1){
+            } else if (pixel_r == 0 && pixel_v == 0 && pixel_b == 255){
                 texture_pixel = loadTexture(out);
-            }else if (pixel_r == 1 && pixel_v == 0 && pixel_b == 0){
+            }else if (pixel_r == 255 && pixel_v == 0 && pixel_b == 0){
                 texture_pixel = loadTexture(entry);
             }else {
                 texture_pixel = loadTexture(path);
