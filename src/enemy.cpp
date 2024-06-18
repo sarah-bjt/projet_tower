@@ -84,7 +84,7 @@ img::Image Enemy::enemy_animation(){
             //Afficher le sprite d'animation n°1 avec this->pos_X et this->pos_Y
             if(this->type == Enemy_Type::Fast){
                 //Applique dans la case sélectionnée le sprite de la ennemi fast
-                img::Image fast_repos {img::load(make_absolute_path("images/images_objects/mash/mash1.png", true), 4, true)};
+                img::Image fast_repos {img::load(make_absolute_path("images/images_objects/mash/mash2.png", true), 4, true)};
                 this->anim++;
                 return fast_repos;
             }

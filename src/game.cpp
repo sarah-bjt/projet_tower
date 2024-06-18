@@ -55,7 +55,7 @@ void Game::update(int player_action, std::pair<double, double> mouse_position)
     {
         if(this->player.money-150 >= 0){
             std::cout << "achat tour P dans les positions "<<mouse_position.first<<mouse_position.second << std::endl;
-            Tower towerR = Tower {1, 80, 3, 1.5f, 150, Tower_Type::Rock,position_tower_x, position_tower_y};
+            Tower towerR = Tower {1, 80, 3, 1.5f, 90, Tower_Type::Rock,position_tower_x, position_tower_y};
             this->player.decreaseMoney(towerR.price);
             all_towers.push_back(towerR);
             //std::cout << "argent = " << this->player.money << std::endl;

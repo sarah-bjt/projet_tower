@@ -126,7 +126,7 @@ void App::render() {
     glPopMatrix();
 
     TextRenderer.Label("La tour en pierres", _width - _width/4 - 105, 390, SimpleText::CENTER);
-    TextRenderer.Label("Prix : 150 oeufs", _width - _width/4 - 105, 410, SimpleText::CENTER);
+    TextRenderer.Label("Prix : 90 oeufs", _width - _width/4 - 105, 410, SimpleText::CENTER);
     TextRenderer.Label("Puissance de tire : 80", _width - _width/4 - 105, 430, SimpleText::CENTER);
     TextRenderer.Label("POUR ACHETER ", _width - _width/4 - 105, 470, SimpleText::CENTER);
     TextRenderer.Label("PRESS P", _width - _width/4 - 105, 490, SimpleText::CENTER);
