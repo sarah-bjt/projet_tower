@@ -319,8 +319,9 @@ img::Image Enemy::enemy_animation(){
 //     //faire disparaitre le sprite de l'ennemi sans faire augmenter le score du joueur
 // }
 
-void Enemy::enemy_arrives(){                
-    if(this->current_target > this->path.size() ){      // le 1 c'est le noeud qui indique la fin
+void Enemy::enemy_arrives(){     
+    int size {static_cast<int>(this->path.size())-1};       
+    if(this->current_target > size){      // le 1 c'est le noeud qui indique la fin
         this->enemy_id = -2;            // le -2 indique que l'ennemi a attain la fin
         EventDispatcher::instance().enemy_happen(enemy_id);
     }
