@@ -9,7 +9,7 @@ void Game::create_game(std::string player_name){
     waves.push_back(Wave {10});
     waves.push_back(Wave {12});
     waves.push_back(Wave {15});
-    for(int i {0}; i<waves.size(); i++){
+    for(unsigned int i {0}; i<waves.size(); i++){
         waves[i].wave_setup(i+1);
     }
     player.name = player_name;
@@ -17,14 +17,14 @@ void Game::create_game(std::string player_name){
 
 void Game::start(){
     map.map_apparition(map1);
-    for(int i {0}; i<all_towers.size(); i++){
+    for(unsigned int i {0}; i<all_towers.size(); i++){
         all_towers[i].tower_map_apparition();
     }
     // all_towers[0].tower_map_apparition();
     if(!this->waves[0].enemys_of_one_wave_dead()){
         waves[0].wave_forward();
         // all_towers[0].tower_aiming(this->wave.enemys);
-        for(int i {0}; i<all_towers.size(); i++){
+        for(unsigned int i {0}; i<all_towers.size(); i++){
             all_towers[i].tower_aiming(this->waves[0].enemys, this->player);
         }
         for(auto& enemy : this->waves[0].enemys){
@@ -34,7 +34,7 @@ void Game::start(){
     else if(!this->waves[1].enemys_of_one_wave_dead()){
         waves[1].wave_forward();
         // all_towers[0].tower_aiming(this->wave.enemys);
-        for(int i {0}; i<all_towers.size(); i++){
+        for(unsigned int i {0}; i<all_towers.size(); i++){
             all_towers[i].tower_aiming(this->waves[1].enemys, this->player);
         }
         for(auto& enemy : this->waves[1].enemys){
@@ -45,7 +45,7 @@ void Game::start(){
         //la dernière vague
         waves[waves.size()-1].wave_forward();
         // all_towers[0].tower_aiming(this->wave.enemys);
-        for(int i {0}; i<all_towers.size(); i++){
+        for(unsigned int i {0}; i<all_towers.size(); i++){
             all_towers[i].tower_aiming(this->waves[waves.size()-1].enemys, this->player);
         }
         for(auto& enemy : this->waves[waves.size()-1].enemys){
