@@ -6,7 +6,6 @@
 #include <vector>
 
 void Game::create_game(std::string player_name){
-    all_towers.push_back(Tower {1, 300, 3, 1.5f, 150, Tower_Type::Rock, -0.2f, -0.2f});
     wave = Wave {};
     wave.wave_setup();
     player.name = player_name;
@@ -41,7 +40,7 @@ void Game::update(int player_action, std::pair<double, double> mouse_position)
     {
         if(this->player.money-60 >= 0){
             std::cout << "achat tour B dans les positions "<<mouse_position.first<<mouse_position.second << std::endl;
-            Tower towerW = Tower {1, 20, 2, 0.0005, 60, Tower_Type::Wood,position_tower_x, position_tower_y};
+            Tower towerW = Tower {1, 20, 2, 1.5f, 60, Tower_Type::Wood,position_tower_x, position_tower_y};
             this->player.decreaseMoney(towerW.price);
             all_towers.push_back(towerW);
             //std::cout << "argent = " << this->player.money << std::endl;
@@ -56,7 +55,7 @@ void Game::update(int player_action, std::pair<double, double> mouse_position)
     {
         if(this->player.money-150 >= 0){
             std::cout << "achat tour P dans les positions "<<mouse_position.first<<mouse_position.second << std::endl;
-            Tower towerR = Tower {1, 80, 3, 0.0005, 150, Tower_Type::Rock,position_tower_x, position_tower_y};
+            Tower towerR = Tower {1, 80, 3, 1.5f, 150, Tower_Type::Rock,position_tower_x, position_tower_y};
             this->player.decreaseMoney(towerR.price);
             all_towers.push_back(towerR);
             //std::cout << "argent = " << this->player.money << std::endl;

@@ -26,7 +26,7 @@ void Bullet::bullet_draw(){
 
     glPushMatrix();
     glTranslatef(this->_directX, this->_directY, 0.0f);
-    glColor4f(1.0f, 0.0f, 0.0f, invisible); //invisible
+    glColor4f(0.0f, 0.0f, 0.0f, invisible); //invisible
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(this->X, this->Y);
     for (int i = 0; i <= 100; i++) {
@@ -42,24 +42,22 @@ void Bullet::bullet_draw(){
 }
 
 void Bullet::bullet_fire(Enemy& enemy, int power_impact){
-    const double time {glfwGetTime()/50};
-    const double time_elapsed2 {time - previous_time_time}; 
-    previous_time_time = time;
+    while((this->X > enemy.pos_X+(120.0f/720.0f) && this->X < enemy.pos_X) && (this->Y > enemy.pos_Y+(120.0f/720.0f) && this->Y < enemy.pos_Y)){
+        const double time {glfwGetTime()/50};
+        const double time_elapsed2 {time - previous_time_time}; 
+        previous_time_time = time;
 
-    this->_directX += (enemy.pos_X - this->X) * this->speed * time_elapsed2;
-    this->_directY += (enemy.pos_Y - this->Y) * this->speed * time_elapsed2;
+        this->_directX += (enemy.pos_X - this->X) * this->speed * time_elapsed2;
+        this->_directY += (enemy.pos_Y - this->Y) * this->speed * time_elapsed2;
 
-    this->bullet_draw();
+        this->bullet_draw();
 
-    this->X = this->_directX;
-    this->Y = this->_directY;
-    if(this->X <= enemy.pos_X+(120.0f/720.0f) && this->X >= enemy.pos_X){
-        if(this->Y <= enemy.pos_Y+(120.0f/720.0f) && this->Y >= enemy.pos_Y){
-            std::cout << "balle disparait" << std::endl;
-            enemy.life -= power_impact;
-            this->bullet_disappear();
-        }
+        this->X = this->_directX;
+        this->Y = this->_directY;
     }
+    std::cout << "balle disparait" << std::endl;
+    enemy.life -= power_impact;
+    this->bullet_disappear();
 }
 
 void Bullet::bullet_disappear(){
