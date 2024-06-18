@@ -30,4 +30,5 @@ extern img::Image map3;
 
 extern img::Image path;
 extern img::Image grass;
-
+extern img::Image entry;
+extern img::Image out;

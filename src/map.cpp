@@ -20,11 +20,13 @@ const int window_height = 720;
 
 
 // Charger les textures
-img::Image path { img::load(make_absolute_path("images/images_textures/path1.png", true), 4, true) };
-img::Image grass { img::load(make_absolute_path("images/images_textures/grass2.png", true), 4, true) };
+img::Image path { img::load(make_absolute_path("images/images_textures/path.png", true), 4, true) };
+img::Image grass { img::load(make_absolute_path("images/images_textures/grass.png", true), 4, true) };
+img::Image entry { img::load(make_absolute_path("images/images_textures/entry.png", true), 4, true) };
+img::Image out { img::load(make_absolute_path("images/images_textures/out.png", true), 4, true) };
 
 // Charger les maps
-img::Image map1 { img::load(make_absolute_path("images/images_maps/map1v3.png", true), 3, true) };
+img::Image map1 { img::load(make_absolute_path("images/images_maps/map1.png", true), 3, true) };
 img::Image map2 { img::load(make_absolute_path("images/images_maps/map2.png", true), 3, true) };
 img::Image map3 { img::load(make_absolute_path("images/images_maps/map3.png", true), 3, true) };
 
@@ -55,7 +57,11 @@ void Map::map_apparition(img::Image const& map) {
 
             if (pixel_r == 0 && pixel_v == 0 && pixel_b == 0) {
                 texture_pixel = loadTexture(grass);
-            } else {
+            } else if (pixel_r == 0 && pixel_v == 0 && pixel_b == 255){
+                texture_pixel = loadTexture(out);
+            }else if (pixel_r == 255 && pixel_v == 0 && pixel_b == 0){
+                texture_pixel = loadTexture(entry);
+            }else {
                 texture_pixel = loadTexture(path);
             }
 

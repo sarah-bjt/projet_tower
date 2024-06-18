@@ -19,7 +19,6 @@ App::App(const std::string& player_name) : _previousTime(0.0), _viewSize(2.0),_p
     
     img::Image tower_rock {img::load(make_absolute_path("images/images_objects/rock_tower.png", true), 4, true)};
     img::Image tower_wood {img::load(make_absolute_path("images/images_objects/wood_tower.png", true), 4, true)};
-    img::Image egg {img::load(make_absolute_path("images/images_objects/egg.png", true), 4, true)};
     img::Image img_win {img::load(make_absolute_path("images/images_ends/you_win.png", true), 4, true)};
     img::Image img_lose {img::load(make_absolute_path("images/images_ends/game_over.png", true), 4, true)};
     
@@ -27,7 +26,7 @@ App::App(const std::string& player_name) : _previousTime(0.0), _viewSize(2.0),_p
     _tex_lose = loadTexture(img_lose);
     _tex_tower_rock = loadTexture(tower_rock);
     _tex_tower_wood = loadTexture(tower_wood);
-    _tex_egg = loadTexture(egg);
+
 }
 
 
