@@ -14,22 +14,18 @@
 #include <sstream>
 #include "simpletext.h"
 
-
-
-
-double previous_time {0.0};
+double previous_time {0.0};  //intialisation pour l'enregistrement du temps en direct
 
 void Wave::create_wave(int level){
     WeightedGraph graphe;
-    // Convert std::filesystem::path to std::string
     std::filesystem::path path = make_absolute_path("data/niveau1.itd", true);
     read_itd_file(path.string(), graphe);
-    this->graph = graphe;
+    this->graph = graphe;  //initialise le graphe que suivra la vague d'ennemis
     
-    if(level == 1){
+    if(level == 1){  //Si c'est la vague numéro 1, on est donc au level 1
         for(int i {0}; i<this->number_enemys; i++){
-            Enemy one_enemy {1+i, 150, 0.5f, 20, Enemy_Type::Normal, -1.8f-(((float)i)*(120.0f/720.0f)), 1.0f-2.0f*(120.0f/720.0f), 0, 1, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}};  //initialise l'ennemis
-            if(i==3){  //condition temporaire pour intégrer des types d'ennemis différents dans une même vague
+            Enemy one_enemy {1+i, 150, 0.5f, 20, Enemy_Type::Normal, -1.8f-(((float)i)*(120.0f/720.0f)), 1.0f-2.0f*(120.0f/720.0f), 0, 1, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}};  //initialise les ennemis, on les met par défaut au type Normal
+            if(i==3){  //condition pour intégrer des types d'ennemis différents dans une même vague
                 one_enemy.life = 100;
                 one_enemy.speed = 1.0f;
                 one_enemy.money_reward = 30;
@@ -45,10 +41,10 @@ void Wave::create_wave(int level){
             this->enemys.push_back(one_enemy);  //ajout de l'ennemi dans le tableau d'ennemis de la vague
         }
     }
-    else if(level == 2){
+    else if(level == 2){ //Si c'est la vague numéro 2, on est donc au level 2
         for(int i {0}; i<this->number_enemys; i++){
-            Enemy one_enemy {1+i, 150, 0.5f, 20, Enemy_Type::Normal, -1.8f-(((float)i)*(120.0f/720.0f)), 1.0f-2.0f*(120.0f/720.0f), 0, 1, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}};  //initialise l'ennemis
-            if(i==3 || i==4 || i==7){  //condition temporaire pour intégrer des types d'ennemis différents dans une même vague
+            Enemy one_enemy {1+i, 150, 0.5f, 20, Enemy_Type::Normal, -1.8f-(((float)i)*(120.0f/720.0f)), 1.0f-2.0f*(120.0f/720.0f), 0, 1, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}}; //initialise les ennemis, on les met par défaut au type Normal
+            if(i==3 || i==4 || i==7){  //condition pour intégrer des types d'ennemis différents dans une même vague
                 one_enemy.life = 100;
                 one_enemy.speed = 1.0f;
                 one_enemy.money_reward = 30;
@@ -64,10 +60,10 @@ void Wave::create_wave(int level){
             this->enemys.push_back(one_enemy);  //ajout de l'ennemi dans le tableau d'ennemis de la vague
         }
     }
-    else if(level == 3){
+    else if(level == 3){ //Si c'est la vague numéro 3, on est donc au level 3
         for(int i {0}; i<this->number_enemys; i++){
-            Enemy one_enemy {1+i, 150, 0.5f, 20, Enemy_Type::Normal, -1.8f-(((float)i)*(120.0f/720.0f)), 1.0f-2.0f*(120.0f/720.0f), 0, 1, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}};  //initialise l'ennemis
-            if(i==3 || i==4 || i==7 || i==13){  //condition temporaire pour intégrer des types d'ennemis différents dans une même vague
+            Enemy one_enemy {1+i, 150, 0.5f, 20, Enemy_Type::Normal, -1.8f-(((float)i)*(120.0f/720.0f)), 1.0f-2.0f*(120.0f/720.0f), 0, 1, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}};  //initialise les ennemis, on les met par défaut au type Normal
+            if(i==3 || i==4 || i==7 || i==13){  //condition pour intégrer des types d'ennemis différents dans une même vague
                 one_enemy.life = 100;
                 one_enemy.speed = 1.0f;
                 one_enemy.money_reward = 30;
@@ -85,27 +81,22 @@ void Wave::create_wave(int level){
     }
 }
 
-void Wave::wave_setup(int level){
+
+void Wave::wave_setup(int level){ //Cette méthode appelle la création du jeu
     this->create_wave(level);
-    // for(int i {0}; i<this->number_enemys; i++){
-    //     this->enemys[i].enemy_apparition();
-    // }
 }
 
-void Wave::wave_forward(){
-    const double time {glfwGetTime()/5};
+void Wave::wave_forward(){ //méthode pour faire avancer la vague d'ennemis vers son but
+    const double time {glfwGetTime()/5}; //On le divise pour que les ennemis n'aillent pas trop vite
     const double time_elapse {time - previous_time};  //récupère le temps en direct
     previous_time = time;
-    // for(int i {0}; i<this->number_enemys; i++){
-    //     this->enemys[i].enemy_forward(time_elapse, horizontal, vertical, UP, DOWN, LEFT, RIGHT); //this->H, this->V, this->u, this->d, this->l, this->r
-    // }
+
     for (int i {0}; i < this->number_enemys; i++) {
-        // this->enemys[i].enemy_forward(time_elapse);
-        this->enemys[i].enemy_forward(time_elapse, this->graph);
+        this->enemys[i].enemy_forward(time_elapse, this->graph);  //On fait avancer chaque ennemis de la vague, en donnant le graphe dont ils ont besoin
     }
 }
 
-bool Wave::enemys_of_one_wave_dead(){
+bool Wave::enemys_of_one_wave_dead(){  //Méthode pour vérifier si les ennemis d'une vague sont tous mort. Celle-ci sert pour switcher entre chaque nouvelle vague d'ennemis
     for (const auto& enemy : enemys) {
         if (enemy.enemy_id != -1) {  // Si au moins un ennemi est vivant (son id n'est pas -1)
             return false;
