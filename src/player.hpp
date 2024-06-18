@@ -5,10 +5,10 @@
 
 struct Player {
     std::string name;
-    int money = {200};
-    int score = {0};
+    int money = {200}; // Quantité d'argent initial
+    int score = {0}; // Score initial
 
-    void increaseMoney(int reward);
-    void decreaseMoney(int price);
-    void increaseScore(int new_score);
+    void increaseMoney(int reward); // Méthode pour augmenter la somme d'argent
+    void decreaseMoney(int price); // Méthode pour baisser la somme d'argent
+    void increaseScore(int new_score); // Méthode pour augmenter le score
 };
