@@ -32,7 +32,7 @@ std::unordered_map<int, std::pair<float, int>> dijkstra(WeightedGraph const& gra
 
         if (current.second == end) //Si le sommet actuel est le sommet d'arrivée, on retourne le tableau associatif
         {
-            distances; // On retourne le tableau associatif contentant les distances
+            return distances; // On retourne le tableau associatif contentant les distances
         }
 
         for (auto& neighbor : graph.getNeighbors(current.second)) //On parcourt les voisins du sommet actuel à partir de la liste d'adjacence
@@ -59,24 +59,37 @@ std::unordered_map<int, std::pair<float, int>> dijkstra(WeightedGraph const& gra
     return distances; //On renvoie le tableau associatif contenant les plus courts chemins
 }
 
-void read_itd_file(const std::string& filepath, WeightedGraph& graph) {
-    std::ifstream file(filepath); // On ouvre le fichier
-    std::string line; // Variable pour stocker les lignes du fichier
+void read_itd_file(const std::string& filepath, WeightedGraph& graph)
+{
+    // Ouverture du fichier ITD
+    std::ifstream file(filepath);
+    if (!file.is_open()) {
+        std::cerr << "Error opening file: " << filepath << std::endl; // Si le fichier ne peut pas s'ouvrir, on affiche une erreur
+        return;
+    }
 
-    while (std::getline(file, line)) { // On lit le fichier ligne par ligne
-        if (line.find("node") == 0) { // On regarde si la ligne du fichier commence par "node"
-            std::istringstream iss(line); // On crée un flux pour analyser la ligne commençant par "node"
-            std::string node_keyword;
+    std::string line; // Variable pour stocker chaque ligne lue du fichier ITD
+    while (std::getline(file, line))
+    {
+        std::istringstream iss(line); // Flux pour lire et analyser chaque ligne
+        std::string keyword;
+
+        if (line.find("node") == 0) { // Lecture des lignes commençant par "node"
             int node_id;
             float x, y;
 
-            if (iss >> node_keyword >> node_id >> x >> y) {
-                graph.node_positions.emplace_back(x, y); // On ajoute la position du noeud dans le graphe
+            if (iss >> keyword >> node_id >> x >> y) { // On extrait les données des lignes commençant par "node"
+                graph.node_positions.emplace_back(x, y); // Ajout du nœud au graphe avec sa position
             } else {
-                std::cerr << "Error parsing line: " << line << std::endl;
+                std::cerr << "Error parsing node line: " << line << std::endl;
             }
         }
     }
+
+    int start_node = 0;
+    int end_node = 15;
+
+    auto distances = dijkstra(graph, start_node, end_node);
 }
 
 std::pair<float, float> get_node_position(int node, const WeightedGraph& graph) {
