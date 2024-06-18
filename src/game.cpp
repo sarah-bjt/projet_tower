@@ -5,51 +5,54 @@
 #include <iostream>
 #include <vector>
 
-void Game::create_game(std::string player_name){
+void Game::create_game(std::string player_name){  //Méthode qui met en place les waves d'ennemis
     waves.push_back(Wave {10});
     waves.push_back(Wave {12});
     waves.push_back(Wave {15});
-    for(unsigned int i {0}; i<waves.size(); i++){
+    for(unsigned int i {0}; i<waves.size(); i++){  //Fait appel à la méthode set_up de chaque wave créer dans le tableau
         waves[i].wave_setup(i+1);
     }
-    player.name = player_name;
+    player.name = player_name; //créer et met à jour le nom du joueur
 }
 
 void Game::start(){
     map.map_apparition(map1); // fait apparaitre la map 
-    for(unsigned int i {0}; i<all_towers.size(); i++){
+    for(unsigned int i {0}; i<all_towers.size(); i++){  //Met à jour les apparitions des tours à chaque nouvelle boucle
         all_towers[i].tower_map_apparition();
     }
-    // all_towers[0].tower_map_apparition();
-    if(!this->waves[0].enemys_of_one_wave_dead()){
-        waves[0].wave_forward();
-        // all_towers[0].tower_aiming(this->wave.enemys);
+    
+    if(!this->waves[0].enemys_of_one_wave_dead()){ // Les méthodes pour la première wave
+        waves[0].wave_forward();  // On fait appel à sa méthode d'avancée des ennemis
+
         for(unsigned int i {0}; i<all_towers.size(); i++){
-            all_towers[i].tower_aiming(this->waves[0].enemys, this->player);
+            all_towers[i].tower_aiming(this->waves[0].enemys, this->player);  //Pour chaque tour on active la méthode de détection pour tirer sur les ennemis
         }
+        
         for(auto& enemy : this->waves[0].enemys){
-            enemy.enemy_arrives();
+            enemy.enemy_arrives();  //On vérifie si un ennemi est arrivé, à chaque appel de start()
         }
     }
-    else if(!this->waves[1].enemys_of_one_wave_dead()){
-        waves[1].wave_forward();
-        // all_towers[0].tower_aiming(this->wave.enemys);
+    else if(!this->waves[1].enemys_of_one_wave_dead()){ // Les méthodes pour la deuxième wave
+        waves[1].wave_forward();// On fait appel à sa méthode d'avancée des ennemis
+
         for(unsigned int i {0}; i<all_towers.size(); i++){
-            all_towers[i].tower_aiming(this->waves[1].enemys, this->player);
+            all_towers[i].tower_aiming(this->waves[1].enemys, this->player); //Pour chaque tour on active la méthode de détection pour tirer sur les ennemis
         }
+        
         for(auto& enemy : this->waves[1].enemys){
-            enemy.enemy_arrives();
+            enemy.enemy_arrives(); //On vérifie si un ennemi est arrivé, à chaque appel de start()
         }
     }
     else {
-        //la dernière vague
+        //Pour la dernière vague
         waves[waves.size()-1].wave_forward();
-        // all_towers[0].tower_aiming(this->wave.enemys);
+
         for(unsigned int i {0}; i<all_towers.size(); i++){
-            all_towers[i].tower_aiming(this->waves[waves.size()-1].enemys, this->player);
+            all_towers[i].tower_aiming(this->waves[waves.size()-1].enemys, this->player); //Pour chaque tour on active la méthode de détection pour tirer sur les ennemis
         }
+        
         for(auto& enemy : this->waves[waves.size()-1].enemys){
-            enemy.enemy_arrives();
+            enemy.enemy_arrives(); //On vérifie si un ennemi est arrivé, à chaque appel de start()
         }
     }
     waves[waves.size()-1].allEnemiesDead(); //indique que tous les ennemies après les trois vagues sont bien mort, donc la partie est gagnée
