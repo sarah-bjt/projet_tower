@@ -44,7 +44,7 @@ void Map::map_apparition(img::Image const& map) {
     float size_case {(6.9f)*(texture_width / window_width)};
 
     glPushMatrix();
-    glTranslatef(-11.0f*size_case,-6*size_case,0);
+    glTranslatef(-10.8f*size_case,-6*size_case,0);
 
     for (int i = 0; i < 12; ++i) {
         for (int j = 0; j < 12; ++j) {

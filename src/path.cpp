@@ -83,7 +83,7 @@ void read_itd_file(const std::string& filepath, WeightedGraph& graph) {
 
 std::pair<float, float> get_node_position(int node, const WeightedGraph& graph) {
     if (node < graph.node_positions.size()) {
-        return std::make_pair(-1.85f + graph.node_positions[node].first*(120.0f/720.0f), 0.85f - graph.node_positions[node].second*(120.0f/720.0f));
+        return std::make_pair(-1.81f + graph.node_positions[node].first*(120.0f/720.0f), 0.85f - graph.node_positions[node].second*(120.0f/720.0f));
     } else {
         // Gestion d'erreur si le nœud n'existe pas
         return std::make_pair(-1.0f, -1.0f);
