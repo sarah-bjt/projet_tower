@@ -15,7 +15,7 @@ namespace {
     }
 }
 
-// Optional: limit the frame rate
+// limit the frame rate
 constexpr double TARGET_TIME_FOR_FRAME { 1.0 / 60.0 };
 
 int main() {
@@ -33,15 +33,6 @@ int main() {
     if (!glfwInit()) {
         return -1;
     }
-
-// Not working on apple with those hint for unknown reason
-// #ifdef __APPLE__
-//     // We need to explicitly ask for a 3.3 context on Mac
-//     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-//     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-//     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-//     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-// #endif
 
     // Create window
     GLFWwindow* window { glfwCreateWindow(1280, 720, "Window", nullptr, nullptr) };
@@ -68,7 +59,6 @@ int main() {
 
     std::cout <<  " Le jeu va commencer ! " << std::endl;
 
-    // App app {};
     App app(player_name);
 
     glfwSetWindowUserPointer(window, &app);
@@ -99,12 +89,9 @@ int main() {
 
     app.setup();
 
-    int key {0};
-    int action {0};
-    int scancode {0};
-    int mods {0};
-    int player_action {0};
-    double xpos {0};
+    int key {0}; //recupére la touche utilisé
+    int player_action {0}; //associe une touche à une action
+    double xpos {0}; //prend en variable la position de la souris
     double ypos {0};
 
     // Loop until the user closes the window
@@ -113,14 +100,12 @@ int main() {
         // Get time (in second) at loop beginning
 		double startTime { glfwGetTime() };
         
-
         glfwPollEvents(); // Ensure events are processed to update key state
 
         if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
         {
             key = GLFW_KEY_B;
             player_action = 1;
-    
         }
         else if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
         {
