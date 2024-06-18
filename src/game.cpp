@@ -6,26 +6,53 @@
 #include <vector>
 
 void Game::create_game(std::string player_name){
-    wave = Wave {};
-    wave.wave_setup();
+    waves.push_back(Wave {10});
+    waves.push_back(Wave {12});
+    waves.push_back(Wave {15});
+    for(int i {0}; i<waves.size(); i++){
+        waves[i].wave_setup(i+1);
+    }
     player.name = player_name;
 }
 
 void Game::start(){
     map.map_apparition(map1);
-    // all_towers[0].tower_map_apparition();
     for(int i {0}; i<all_towers.size(); i++){
         all_towers[i].tower_map_apparition();
     }
-    wave.wave_forward();
-    // all_towers[0].tower_aiming(this->wave.enemys);
-    for(int i {0}; i<all_towers.size(); i++){
-        all_towers[i].tower_aiming(this->wave.enemys, this->player);
+    // all_towers[0].tower_map_apparition();
+    if(!this->waves[0].enemys_of_one_wave_dead()){
+        waves[0].wave_forward();
+        // all_towers[0].tower_aiming(this->wave.enemys);
+        for(int i {0}; i<all_towers.size(); i++){
+            all_towers[i].tower_aiming(this->waves[0].enemys, this->player);
+        }
+        for(auto& enemy : this->waves[0].enemys){
+            enemy.enemy_arrives();
+        }
     }
-    for(auto& enemy : this->wave.enemys){
-        enemy.enemy_arrives();
+    else if(!this->waves[1].enemys_of_one_wave_dead()){
+        waves[1].wave_forward();
+        // all_towers[0].tower_aiming(this->wave.enemys);
+        for(int i {0}; i<all_towers.size(); i++){
+            all_towers[i].tower_aiming(this->waves[1].enemys, this->player);
+        }
+        for(auto& enemy : this->waves[1].enemys){
+            enemy.enemy_arrives();
+        }
     }
-    wave.allEnemiesDead();
+    else {
+        //la dernière vague
+        waves[waves.size()-1].wave_forward();
+        // all_towers[0].tower_aiming(this->wave.enemys);
+        for(int i {0}; i<all_towers.size(); i++){
+            all_towers[i].tower_aiming(this->waves[waves.size()-1].enemys, this->player);
+        }
+        for(auto& enemy : this->waves[waves.size()-1].enemys){
+            enemy.enemy_arrives();
+        }
+    }
+    waves[waves.size()-1].allEnemiesDead();
 }
 
 
@@ -54,7 +81,7 @@ void Game::update(int player_action, std::pair<double, double> mouse_position)
     }
     else if (player_action == 2 && !rockTowerPurchased) // Pour tower Rock
     {
-        if(this->player.money-150 >= 0){
+        if(this->player.money-90 >= 0){
             std::cout << "achat tour P dans les positions "<<mouse_position.first<<mouse_position.second << std::endl;
             Tower towerR = Tower {1, 80, 3, 1.5f, 90, Tower_Type::Rock,position_tower_x, position_tower_y};
             this->player.decreaseMoney(towerR.price);

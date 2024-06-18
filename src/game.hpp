@@ -11,7 +11,7 @@ struct Game{
 public :
     //std::vector<Tower> tower; //(bullet dans tower ...)
     std::vector<Tower> all_towers {};  //En fait ce serait un tableau de tower
-    Wave wave; //(enemy dans wave...)
+    std::vector<Wave> waves {}; //(enemy dans wave...)
     Map map;
     // App app;
     //Interface interface;

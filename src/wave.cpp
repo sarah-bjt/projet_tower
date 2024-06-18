@@ -46,15 +46,47 @@ void Wave::create_wave(int level){
         }
     }
     else if(level == 2){
-        //En attente de réalisation 
+        for(int i {0}; i<this->number_enemys; i++){
+            Enemy one_enemy {1+i, 150, 0.5f, 20, Enemy_Type::Normal, -1.8f-(((float)i)*(120.0f/720.0f)), 1.0f-2.0f*(120.0f/720.0f), 0, 1, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}};  //initialise l'ennemis
+            if(i==3 || i==4 || i==7){  //condition temporaire pour intégrer des types d'ennemis différents dans une même vague
+                one_enemy.life = 100;
+                one_enemy.speed = 1.0f;
+                one_enemy.money_reward = 30;
+                one_enemy.type = Enemy_Type::Fast;
+            }
+            else if(i==8 || i==10){
+                one_enemy.life = 250;
+                one_enemy.speed = 0.25f;
+                one_enemy.money_reward = 50;
+                one_enemy.type = Enemy_Type::Robust;
+            }
+
+            this->enemys.push_back(one_enemy);  //ajout de l'ennemi dans le tableau d'ennemis de la vague
+        }
     }
     else if(level == 3){
-        //En attente de réalisation 
+        for(int i {0}; i<this->number_enemys; i++){
+            Enemy one_enemy {1+i, 150, 0.5f, 20, Enemy_Type::Normal, -1.8f-(((float)i)*(120.0f/720.0f)), 1.0f-2.0f*(120.0f/720.0f), 0, 1, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}};  //initialise l'ennemis
+            if(i==3 || i==4 || i==7 || i==13){  //condition temporaire pour intégrer des types d'ennemis différents dans une même vague
+                one_enemy.life = 100;
+                one_enemy.speed = 1.0f;
+                one_enemy.money_reward = 30;
+                one_enemy.type = Enemy_Type::Fast;
+            }
+            else if(i==8 || i==10 || i==14){
+                one_enemy.life = 250;
+                one_enemy.speed = 0.25f;
+                one_enemy.money_reward = 50;
+                one_enemy.type = Enemy_Type::Robust;
+            }
+
+            this->enemys.push_back(one_enemy);  //ajout de l'ennemi dans le tableau d'ennemis de la vague
+        }
     }
 }
 
-void Wave::wave_setup(){
-    this->create_wave(1);
+void Wave::wave_setup(int level){
+    this->create_wave(level);
     // for(int i {0}; i<this->number_enemys; i++){
     //     this->enemys[i].enemy_apparition();
     // }
@@ -71,6 +103,15 @@ void Wave::wave_forward(){
         // this->enemys[i].enemy_forward(time_elapse);
         this->enemys[i].enemy_forward(time_elapse, this->graph);
     }
+}
+
+bool Wave::enemys_of_one_wave_dead(){
+    for (const auto& enemy : enemys) {
+        if (enemy.enemy_id != -1) {  // Si au moins un ennemi est vivant (son id n'est pas -1)
+            return false;
+        }
+    }
+    return true;
 }
 
 void Wave::allEnemiesDead() const {
