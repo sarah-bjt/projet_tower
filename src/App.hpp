@@ -8,6 +8,7 @@
 class App {
 public:
     App(const std::string& player_name);
+
     int score;
     int money;
 
@@ -20,7 +21,6 @@ public:
     void scroll_callback(double xoffset, double yoffset);
     void cursor_position_callback(double xpos, double ypos);
     void size_callback(int width, int height);
-
     std::pair<double, double> getMousePosition() const { return mouse_position; }
 
 private:
