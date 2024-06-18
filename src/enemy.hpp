@@ -12,7 +12,7 @@
 #include "GLHelpers.hpp"
 #include <vector>
 
-enum class Enemy_Type {
+enum class Enemy_Type {  //Les trois différents types d'ennemis possibles
     Fast,
     Normal,
     Robust
@@ -27,17 +27,14 @@ struct Enemy{
 
     float pos_X;
     float pos_Y; //Sa position qui va évoluée avec le temps
-    int anim;
-    int current_target;
-    std::vector<int> path;
-    GLuint texture {0};
+    int anim;  //Le suivie d'animation pour switch les sprites de l'ennemi
+    int current_target;  // Le noeud à atteindre pour l'ennemi
+    std::vector<int> path;  //La liste de tous les noeuds du graphe
+    GLuint texture {0};  //Le contenant de texture de l'ennemi
 
-    //Wave wave;
     void enemy_apparition(img::Image image);  //méthode pour faire apparaître les sprites des ennemis sur la map quand ils arrivent
-    bool alive(float bullet_x, float bullet_y, int power_impact); //méthode qui permettra au jeu de vérifier simultanément si l'ennemi est toujours en vie ou mort
-    img::Image enemy_animation();   //méthode pour faire les sprites animés des ennemis (ils marchent)
-    bool enemy_death(float bullet_x, float bullet_y, int power_impact);   //méthode pour compter lorsqu'un ennemi est mort dû au joueur, et faire augmenter l'argent du joueur en fonction de money_reward
-    void enemy_arrives();   //méthode pour comptabiliser lorsqu'un ennemi disparait par le portail sans se faire tuer par le joueur (il vit).
-    void enemy_forward(const double time_elapse, const WeightedGraph& graph); //, bool horizontal, bool vertical, bool UP, bool DOWN, bool LEFT, bool RIGHT
-    // ça c'est la fonction qui va permettre que les ennemis prennent la même directions sans pour autant agir en bloc
+    bool alive(); //méthode qui permettra au jeu de vérifier simultanément si l'ennemi est toujours en vie ou mort
+    img::Image enemy_animation();   //méthode pour faire les sprites animés des ennemis (ils marchent). Une partie de ce code est mis en commentaire car c'est un début pour une amélioration future
+    void enemy_arrives();   //méthode pour changer le statut d'un ennemi lorsqu'il disparait par le portail sans se faire tuer par le joueur (il vit).
+    void enemy_forward(const double time_elapse, const WeightedGraph& graph); //Méthode permettant de faire évoluer la position des ennemis durant leur marche dans la map
 };
