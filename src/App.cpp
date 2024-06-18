@@ -86,10 +86,11 @@ void App::render() {
     else { // La partie continue
 
         // Phrases de bienvenue
-        TextRenderer.Label("Tempete de Poulets Geants !", _width - _width/4, 60, SimpleText::CENTER);
+        TextRenderer.Label("Oh non on m'a vole mes oeufs !", _width - _width/4, 40, SimpleText::CENTER);
+        TextRenderer.Label("Au voleur !", _width - _width/4, 60, SimpleText::CENTER);
         const std::string player_name_text { "Bienvenue " + _player_name };
         TextRenderer.Label(player_name_text.c_str(),  _width - _width/4, 85, SimpleText::CENTER);
-        TextRenderer.Label("Vous avez masse d oeufs !", _width - _width/4, 120, SimpleText::CENTER);
+        TextRenderer.Label("Vous avez etonnamment beaucoup d oeufs !", _width - _width/4, 120, SimpleText::CENTER);
         TextRenderer.Label("POUR QUITER PRESS ECHAP !", _width - _width/4, 650, SimpleText::CENTER);
     
 
