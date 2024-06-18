@@ -34,6 +34,10 @@ int main() {
         return -1;
     }
 
+    // Désactiver la redimensionnement de la fenêtre
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+
+
     // Crée une window
     GLFWwindow* window { glfwCreateWindow(1280, 720, "Window", nullptr, nullptr) };
     if (!window) {
@@ -41,6 +45,8 @@ int main() {
         glfwTerminate();
         return -1;
     }
+
+
 
     glfwMakeContextCurrent(window);
 
