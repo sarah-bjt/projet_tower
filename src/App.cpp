@@ -10,6 +10,7 @@
 #include "simpletext.h"
 #include <GLFW/glfw3.h>
 #include "player.hpp"
+#include "eventDispatcher.hpp"
 
 
 
@@ -69,8 +70,32 @@ void App::render() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
+    if (EventDispatcher::instance().isGameOver()) {
+        // Gérer la fin du jeu dans votre logique de mise à jour
+        game_over = true;
+    }
 
-
+    if (game_over) {
+        // Afficher l'image de fin de jeu (écran de défaite)
+        glPushMatrix();
+        // Utiliser les coordonnées et l'échelle appropriées pour afficher l'image de fin
+        // Par exemple, centrer l'image au milieu de l'écran
+        glTranslatef(0.0f, 0.0f, 0.0f);
+        glScalef(1.0f, 1.0f, 1.0f);
+        draw_quad_with_texture(_tex_lose);  // Dessiner l'image de défaite
+        glPopMatrix();
+    } 
+    else if (player_won) {
+        // Afficher l'image de victoire
+        glPushMatrix();
+        // Utiliser les coordonnées et l'échelle appropriées pour afficher l'image de victoire
+        // Par exemple, centrer l'image au milieu de l'écran
+        glTranslatef(0.0f, 0.0f, 0.0f);
+        glScalef(1.0f, 1.0f, 1.0f);
+        draw_quad_with_texture(_tex_win);  // Dessiner l'image de victoire
+        glPopMatrix();
+    } 
+    else {
     // Phrases de bienvenue
 
     TextRenderer.Label("Tempete de Poulets Geants !", _width - _width/4, 60, SimpleText::CENTER);
@@ -133,6 +158,7 @@ void App::render() {
     // draw_quad_with_texture(_tex_egg);
     // glPopMatrix();
 
+    }
 
     
 }

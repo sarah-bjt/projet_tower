@@ -2,6 +2,7 @@
 
 #include "App.hpp"
 #include "path.hpp"
+#include "eventDispatcher.hpp"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -303,17 +304,36 @@ img::Image Enemy::enemy_animation(){
     //}
 }
 
-void Enemy::enemy_arrives(){   //on va devoir relier à Party.cpp/.hpp (position d'apparition des ennemis, position de la sortie à protéger)
-    //conditions exemple mais faudra aller les chercher dans les infos de path, party, levels...
-    if(this->current_target > this->path.size()){ //this->pos_X+0.1f >= 0.5f, --> ça ce sera plutôt dans une autre fonction qui fera appel à celle là
-        //std::cout << "arrivé" << std::endl;
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//  pour tester le message de fin
+
+// void Enemy::enemy_arrives(){   //on va devoir relier à Party.cpp/.hpp (position d'apparition des ennemis, position de la sortie à protéger)
+//     //conditions exemple mais faudra aller les chercher dans les infos de path, party, levels...
+//     if(this->current_target > this->path.size()){ //this->pos_X+0.1f >= 0.5f, --> ça ce sera plutôt dans une autre fonction qui fera appel à celle là
+//         //std::cout << "arrivé" << std::endl;
+//         this->enemy_id = -2;
+//         //return true;
+//     }
+//     //return false;
+//     //faire disparaitre le sprite de l'ennemi sans faire augmenter le score du joueur
+// }
+
+void Enemy::enemy_arrives(){                // le 1 c'est le noeud qui indique la fin
+    if(this->current_target > 1 ){ 
+        std::cout << "arrivé" << std::endl;
         this->enemy_id = -2;
         //return true;
+        EventDispatcher::instance().enemyReachedEnd(enemy_id);
+
     }
+
+    
     //return false;
     //faire disparaitre le sprite de l'ennemi sans faire augmenter le score du joueur
 }
 
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void Enemy::enemy_forward(const double time_elapse, const WeightedGraph& graph){  //, bool horizontal, bool vertical, bool UP, bool DOWN, bool LEFT, bool RIGHT
     if(this->enemy_id == -1 || this->enemy_id == -2) return;  
 

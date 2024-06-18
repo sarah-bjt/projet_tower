@@ -39,6 +39,8 @@ private:
     GLuint _tex_tower_wood {};
     GLuint _tex_egg {};
     std::string _player_name;
+
+    //game over message
     GLuint _tex_win {};
     GLuint _tex_lose {};
     bool game_over = false;
