@@ -9,14 +9,14 @@
 
 std::vector<WeightedGraphEdge> WeightedGraph::getNeighbors(int vertex) const
 {
-    auto it = adjacency_list.find(vertex);
+    auto it = adjacency_list.find(vertex); // Cherche le sommet dans la liste d'adjacence
     if (it != adjacency_list.end()) {
-        return it->second;
+        return it->second; // Si le sommet est trouvé, on retourne les sommets liés (les voisins)
     } else {
         return {};
     }
 }
-//
+
 std::unordered_map<int, std::pair<float, int>> dijkstra(WeightedGraph const& graph, int const& start, int const end) //Prend en paramètre un graphe, un sommet de départ et un sommet d'arrivée
 {
     std::unordered_map<int, std::pair<float, int>> distances {}; //Tableau associatif associant à chaque sommet du graphe une paire (distance, sommet précédent). Ce tableau permet de stocker les distances les plus courtes du sommet de départ à chaque sommet.
@@ -25,14 +25,14 @@ std::unordered_map<int, std::pair<float, int>> dijkstra(WeightedGraph const& gra
     distances[start] = std::make_pair(0.0f, -1); //On initialise le tableau associatif distances avec le premier sommet, définie à 0 et n'ayant pas de sommet précédent
     to_visit.push(std::make_pair(0.0f, start)); //On ajoute le premier sommet à la file de priorité
     
-    while (!to_visit.empty()) //Tant que la file de priorité n'est pas vide, c'est-à-dire tant que l'on a pas tout visité
+    while (!to_visit.empty()) //Boucle tant que la file de priorité n'est pas vide, c'est-à-dire tant que l'on a pas tout visité
     {
         auto current = to_visit.top(); //On prend le sommet le plus proche du sommet de départ
         to_visit.pop(); //On le retire de la file
 
         if (current.second == end) //Si le sommet actuel est le sommet d'arrivée, on retourne le tableau associatif
         {
-            distances;
+            distances; // On retourne le tableau associatif contentant les distances
         }
 
         for (auto& neighbor : graph.getNeighbors(current.second)) //On parcourt les voisins du sommet actuel à partir de la liste d'adjacence
@@ -60,21 +60,19 @@ std::unordered_map<int, std::pair<float, int>> dijkstra(WeightedGraph const& gra
 }
 
 void read_itd_file(const std::string& filepath, WeightedGraph& graph) {
-    std::ifstream file(filepath);
-    std::string line;
+    std::ifstream file(filepath); // On ouvre le fichier
+    std::string line; // Variable pour stocker les lignes du fichier
 
-    while (std::getline(file, line)) {
-        if (line.find("node") == 0) {
-            std::istringstream iss(line);
+    while (std::getline(file, line)) { // On lit le fichier ligne par ligne
+        if (line.find("node") == 0) { // On regarde si la ligne du fichier commence par "node"
+            std::istringstream iss(line); // On crée un flux pour analyser la ligne commençant par "node"
             std::string node_keyword;
             int node_id;
             float x, y;
 
-            // Extracting the relevant parts from the line
             if (iss >> node_keyword >> node_id >> x >> y) {
-                graph.node_positions.emplace_back(x, y);
+                graph.node_positions.emplace_back(x, y); // On ajoute la position du noeud dans le graphe
             } else {
-                // Handle error in parsing the line
                 std::cerr << "Error parsing line: " << line << std::endl;
             }
         }
@@ -82,19 +80,9 @@ void read_itd_file(const std::string& filepath, WeightedGraph& graph) {
 }
 
 std::pair<float, float> get_node_position(int node, const WeightedGraph& graph) {
-    if (node < graph.node_positions.size()) {
-        return std::make_pair(-1.81f + graph.node_positions[node].first*(120.0f/720.0f), 0.85f - graph.node_positions[node].second*(120.0f/720.0f));
+    if (node < graph.node_positions.size()) { // On vérifie que le nœud existe dans le vecteur des positions des nœuds
+        return std::make_pair(-1.81f + graph.node_positions[node].first*(120.0f/720.0f), 0.85f - graph.node_positions[node].second*(120.0f/720.0f)); // Calcul des positions x et y transformées
     } else {
-        // Gestion d'erreur si le nœud n'existe pas
-        return std::make_pair(-1.0f, -1.0f);
+        return std::make_pair(-1.0f, -1.0f); // Gestion d'erreur si le nœud n'existe pas
     }
-    // if(node == 1){
-    //     return std::make_pair(-1.0f-(120.0f/720.0f), 1.0f-2.0f*(120.0f/720.0f));
-    // }
-    // else if(node == 2){
-    //     return std::make_pair(-1.0f-(120.0f/720.0f), 1.0f-4.0f*(120.0f/720.0f));
-    // }
-    // else {
-    //     return std::make_pair(0.0f+(120.0f/720.0f), 1.0f-4.0f*(120.0f/720.0f));
-    // }
 }

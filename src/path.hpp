@@ -9,24 +9,21 @@
 #include <iostream>
 
 
-struct WeightedGraphEdge
+struct WeightedGraphEdge // Structure pour définir une arrête dans un graphe
 {
-    int to {};
-    float weight {1.0f};
+    int to {}; // Destination de l'arrête
+    float weight {1.0f}; // Poids de l'arrête
 };
 
-struct WeightedGraph
+struct WeightedGraph // Structure pour définir un graphe pondéré
 {
-    std::unordered_map<int, std::vector<WeightedGraphEdge>> adjacency_list {};
-    std::vector<std::pair<float, float>> node_positions;
-
-    std::vector<WeightedGraphEdge> getNeighbors(int vertex) const;
+    std::unordered_map<int, std::vector<WeightedGraphEdge>> adjacency_list {}; // Liste d'adjacence
+    std::vector<std::pair<float, float>> node_positions; // Tableau de positions des noeuds
+    std::vector<WeightedGraphEdge> getNeighbors(int vertex) const; // Fonction pour trouver les voisins d'un noeud
 };
 
-// Déclaration de la fonction
-std::pair<float, float> get_node_position(int node, const WeightedGraph& graph);
+std::pair<float, float> get_node_position(int node, const WeightedGraph& graph); // Fonction pour trouver la position d'un noeud
 
-// Déclaration de la fonction de lecture du fichier itd
-void read_itd_file(const std::string& filepath, WeightedGraph& graph);
+void read_itd_file(const std::string& filepath, WeightedGraph& graph); // Déclaration de la fonction de lecture du fichier itd
 
 #endif
