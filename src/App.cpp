@@ -152,12 +152,6 @@ void App::render() {
     TextRenderer.Render();
 
 
-// Dessin oeuf
-    // glPushMatrix();
-    // glTranslatef(0.70f,0.60f,0);
-    // glScalef(0.1f, 0.1f, 0.1f);
-    // draw_quad_with_texture(_tex_egg);
-    // glPopMatrix();
 
     }
 
