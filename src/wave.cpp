@@ -128,5 +128,5 @@ void Wave::allEnemiesDead() const {
     else{
         death = -1;
     }
-    EventDispatcher::instance().enemy_happen(death);
+    EventDispatcher::instance().enemy_happen(death); //informe que tous les ennemis ont été tué
 }
