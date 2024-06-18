@@ -71,11 +71,9 @@ void App::render() {
     glLoadIdentity();
 
     if (EventDispatcher::instance().isGameOver()) {
-        // Gérer la fin du jeu dans votre logique de mise à jour
         game_over = true;
     }
     if (EventDispatcher::instance().isGameWon()) {
-        // Gérer la fin du jeu dans votre logique de mise à jour
         player_won = true;
     }
 
