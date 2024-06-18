@@ -16,7 +16,7 @@ void Game::create_game(std::string player_name){
 }
 
 void Game::start(){
-    map.map_apparition(map1);
+    map.map_apparition(map1); // fait apparaitre la map 
     for(unsigned int i {0}; i<all_towers.size(); i++){
         all_towers[i].tower_map_apparition();
     }
@@ -52,54 +52,33 @@ void Game::start(){
             enemy.enemy_arrives();
         }
     }
-    waves[waves.size()-1].allEnemiesDead();
+    waves[waves.size()-1].allEnemiesDead(); //indique que tous les ennemies après les trois vagues sont bien mort, donc la partie est gagnée
 }
 
-
+// Cette fonction place une tour sur la grille en fonction de la position de la souris
 void Game::update(int player_action, std::pair<double, double> mouse_position)
 {
     static bool woodTowerPurchased = false; // Variable statique pour suivre l'état de l'achat de la tour en bois
     static bool rockTowerPurchased = false; // Variable statique pour suivre l'état de l'achat de la tour en pierre
 
+    // ici x et y sont les coordonnées des cases où apparaissent les tours
     int x {static_cast<int>( static_cast<float>( mouse_position.first)/60)};
     int y {static_cast<int>( static_cast<float>( mouse_position.second)/60)};
-
+    // les coordonnées exactes des tours
     float position_tower_x {-1.85f + x*(120.0f/720.0f)};
     float position_tower_y {0.85f - y*(120.0f/720.0f)};
-
-    if (x > 11 ){
-        return;
-    }
-    else if (y == 1 && (x < 5 || (x > 6 && x < 11))){
-        return;
-    }
-    else if (y == 2 && (x == 4 || x == 7 || x == 10)){
-        return;
-    }
-    else if (y == 3 && ((x >3 && x<8) || x == 10)){
-        return;
-    }
-    else if (y == 4 && x==10 ){
-        return;
-    }
-    else if (y == 5 && ((x >0 && x<5) ||(x >7 && x<11))){
-        return;
-    }
-    else if (y == 6 && (x == 1 || x == 4 || x == 8)){
-        return;
-    }
-    else if (y == 7 && (x == 1 || x == 4 || (x >7 && x<11)) ){
-        return;
-    }
-    else if (y == 8 && (x == 4 || x == 10 || x<2 ) ) {
-        return;
-    }
-    else if (y == 9 && (x == 4 || x == 10 )){
-        return;
-    }
-    else if (y == 10 && (x >3 && x<11)){
-        return;
-    }
+    //Les tours ne peuvent être placées que sur des cases spécifiques (les "herbes")
+    if (x > 11 ){return;}
+    else if (y == 1 && (x < 5 || (x > 6 && x < 11))){return;}
+    else if (y == 2 && (x == 4 || x == 7 || x == 10)){return;}
+    else if (y == 3 && ((x >3 && x<8) || x == 10)){return;}
+    else if (y == 4 && x==10 ){return;}
+    else if (y == 5 && ((x >0 && x<5) ||(x >7 && x<11))){return;}
+    else if (y == 6 && (x == 1 || x == 4 || x == 8)){return;}
+    else if (y == 7 && (x == 1 || x == 4 || (x >7 && x<11)) ){return;}
+    else if (y == 8 && (x == 4 || x == 10 || x<2 ) ) {return;}
+    else if (y == 9 && (x == 4 || x == 10 )){return;}
+    else if (y == 10 && (x >3 && x<11)){return;}
 
 
     if (player_action == 1 && !woodTowerPurchased) //Pour tower Wood
