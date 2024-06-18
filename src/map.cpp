@@ -18,7 +18,6 @@ const int window_width = 1280;
 const int window_height = 720;
 
 
-
 // Charger les textures
 img::Image path { img::load(make_absolute_path("images/images_textures/path.png", true), 4, true) };
 img::Image grass { img::load(make_absolute_path("images/images_textures/grass.png", true), 4, true) };
@@ -33,7 +32,7 @@ img::Image map3 { img::load(make_absolute_path("images/images_maps/map3.png", tr
 float texture_width { 31.0f };
 float texture_height { 31.0f };
 
-// Définition de la fonction map_apparition
+// Faire apparaitre la map à gauche de l'écran
 void Map::map_apparition(img::Image const& map) {
     if (map.channels_count() != 3) {
         throw std::runtime_error{"Image must have 3 channels"};
