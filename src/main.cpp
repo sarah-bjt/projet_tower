@@ -15,7 +15,7 @@ namespace {
     }
 }
 
-// limit the frame rate
+// Limite la frame rate
 constexpr double TARGET_TIME_FOR_FRAME { 1.0 / 60.0 };
 
 int main() {
@@ -24,17 +24,17 @@ int main() {
     std::cout << "Entrez votre nom: ";
     std::getline(std::cin, player_name);
 
-    // Set an error callback to display glfw errors
+    // Définit un rappel d'erreur pour afficher les erreurs GLFW
     glfwSetErrorCallback([](int error, const char* description) {
         std::cerr << "Error " << error << ": " << description << std::endl;
     });
 
-    // Initialize glfw
+    // Initialise glfw
     if (!glfwInit()) {
         return -1;
     }
 
-    // Create window
+    // Crée une window
     GLFWwindow* window { glfwCreateWindow(1280, 720, "Window", nullptr, nullptr) };
     if (!window) {
         std::cerr << "Failed to create window" << std::endl;
@@ -42,10 +42,9 @@ int main() {
         return -1;
     }
 
-    // Make the window's context current
     glfwMakeContextCurrent(window);
 
-    // Intialize glad (loads the OpenGL functions)
+    // Intialise glad
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cerr << "Failed to initialize OpenGL context" << std::endl;
         glfwTerminate();
@@ -57,8 +56,10 @@ int main() {
     new_game.create_game(player_name);
     //Puis va utiliser une méthode pour le lancer
 
+    //Annonce le début du jeu au joueur
     std::cout <<  " Le jeu va commencer ! " << std::endl;
 
+    //Ajoute le nom du joueur dans l'interface
     App app(player_name);
 
     glfwSetWindowUserPointer(window, &app);
@@ -80,7 +81,7 @@ int main() {
         window_as_app(window).size_callback(width, height);
     });
     
-    // Force calling the size_callback of the game to set the right viewport and projection matrix
+    // Force l'appel du size_callback du jeu pour définir le bon viewport et la matrice de projection
     {
         int width, height;
         glfwGetWindowSize(window, &width, &height);
@@ -89,52 +90,46 @@ int main() {
 
     app.setup();
 
-    int key {0}; //recupére la touche utilisé
-    int player_action {0}; //associe une touche à une action
-    double xpos {0}; //prend en variable la position de la souris
+    int key {0}; //Recupère la touche utilisé
+    int player_action {0}; //Associe une touche à une action
+    double xpos {0}; //Prend en variable la position de la souris
     double ypos {0};
 
-    // Loop until the user closes the window
+    // Boucle jusqu'à ce que le joueur ferme la fenêtre
     while (!glfwWindowShouldClose(window)) {
 
-        // Get time (in second) at loop beginning
+        // Prend le temps (en secondes) au début de la boucle
 		double startTime { glfwGetTime() };
         
         glfwPollEvents(); // Ensure events are processed to update key state
 
-        if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
+        if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS) //Vérifie si la touche B est pressée
         {
-            key = GLFW_KEY_B;
-            player_action = 1;
+            player_action = 1; // Définie player_action = 1 pour l'achat de tour de bois
         }
-        else if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
+        else if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS) // Vérifie si la touche P est pressée
         {
-            key = GLFW_KEY_P;
-            player_action = 2;
+            player_action = 2; // Définie player_action = 2 pour l'achat de tour de pierre
         }
         else
         {
-            player_action = 0;
+            player_action = 0; // Si aucune touche est pressé, player_action = 0;
         }
 
         app.update(new_game.player);
-        new_game.start();
+        new_game.start(); // La partie commence
 
-        // Swap front and back buffers
         glfwSwapBuffers(window);
 
-        // Poll for and process events
         glfwPollEvents();
 
-        // Optional: limit the frame rate
 		double elapsedTime { glfwGetTime() - startTime };
-        // wait the remaining time to match the target wanted frame rate
 		if(elapsedTime < TARGET_TIME_FOR_FRAME)
 		{
 			glfwWaitEventsTimeout(TARGET_TIME_FOR_FRAME-elapsedTime);
 		}
 
-        new_game.update(player_action, app.getMousePosition());
+        new_game.update(player_action, app.getMousePosition()); //Rajoute la tour acheté par le joueur
     }
 
 
