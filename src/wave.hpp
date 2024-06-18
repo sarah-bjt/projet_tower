@@ -15,4 +15,5 @@ struct Wave{
     void create_wave(int level); // Doit prendre en paramètres le niveau dans lequel on est pour créer le tableau d'Enemys
     void wave_forward(); // Méthode qui fait avancer le tableau d'ennemis   //bool horizontal, bool vertical, bool UP, bool DOWN, bool LEFT, bool RIGHT
     void wave_setup(); // méthode pour mettre en place la wave
+    int allEnemiesDead() const; //savoir si tous les ennemis sont mort 
 };

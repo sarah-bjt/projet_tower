@@ -20,8 +20,8 @@ App::App(const std::string& player_name) : _previousTime(0.0), _viewSize(2.0),_p
     img::Image tower_rock {img::load(make_absolute_path("images/images_objects/rock_tower.png", true), 4, true)};
     img::Image tower_wood {img::load(make_absolute_path("images/images_objects/wood_tower.png", true), 4, true)};
     img::Image egg {img::load(make_absolute_path("images/images_objects/egg.png", true), 4, true)};
-    img::Image img_win {img::load(make_absolute_path("images/images_ends/win.png", true), 4, true)};
-    img::Image img_lose {img::load(make_absolute_path("images/images_ends/lose.png", true), 4, true)};
+    img::Image img_win {img::load(make_absolute_path("images/images_ends/you_win.png", true), 4, true)};
+    img::Image img_lose {img::load(make_absolute_path("images/images_ends/game_over.png", true), 4, true)};
     
     _tex_win = loadTexture(img_win);
     _tex_lose = loadTexture(img_lose);
@@ -74,13 +74,17 @@ void App::render() {
         // Gérer la fin du jeu dans votre logique de mise à jour
         game_over = true;
     }
+    if (EventDispatcher::instance().isGameWon()) {
+        // Gérer la fin du jeu dans votre logique de mise à jour
+        player_won = true;
+    }
 
     if (game_over) {
         // Afficher l'image de fin de jeu (écran de défaite)
         glPushMatrix();
         // Utiliser les coordonnées et l'échelle appropriées pour afficher l'image de fin
         // Par exemple, centrer l'image au milieu de l'écran
-        glTranslatef(0.0f, 0.0f, 0.0f);
+        glTranslatef(0.95f, 0.0f, 0.0f);
         glScalef(1.0f, 1.0f, 1.0f);
         draw_quad_with_texture(_tex_lose);  // Dessiner l'image de défaite
         glPopMatrix();
@@ -90,7 +94,7 @@ void App::render() {
         glPushMatrix();
         // Utiliser les coordonnées et l'échelle appropriées pour afficher l'image de victoire
         // Par exemple, centrer l'image au milieu de l'écran
-        glTranslatef(0.0f, 0.0f, 0.0f);
+        glTranslatef(0.95f, 0.0f, 0.0f);
         glScalef(1.0f, 1.0f, 1.0f);
         draw_quad_with_texture(_tex_win);  // Dessiner l'image de victoire
         glPopMatrix();

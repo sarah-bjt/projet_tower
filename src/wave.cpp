@@ -71,3 +71,12 @@ void Wave::wave_forward(){
         this->enemys[i].enemy_forward(time_elapse, this->graph);
     }
 }
+
+int Wave::allEnemiesDead() const {
+    for (const auto& enemy : enemys) {
+        if (enemy.enemy_id != -1) {  // Si au moins un ennemi est vivant (son id n'est pas -1)
+            return 0;
+        }
+    }
+    return -1;  // Tous les ennemis sont morts
+}
